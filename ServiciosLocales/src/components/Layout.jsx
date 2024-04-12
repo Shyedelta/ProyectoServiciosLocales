@@ -23,7 +23,7 @@ function Layout() {
     };
     useEffect(() => {
         const modalInstance = new Modal(modalRef.current, options, instanceOptions);
-        //modalInstance.hide();
+        modalInstance.hide();
         setModal(modalInstance);
     }, []);
     return (
