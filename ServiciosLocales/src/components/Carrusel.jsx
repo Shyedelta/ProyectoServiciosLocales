@@ -180,24 +180,25 @@ function Carrusel({ coords, setCoords }) {
 
 
   useEffect(() => {
-    const obtenerDatos = async () => {
-      try {
-        const data = await fetchDatos();
-        if(data == null){
-          setEmpresas(datosOffline);
-        }else{
+  const obtenerDatos = async () => {
+    try {
+      const data = await fetchDatos();
+      if (data == null) {
+        setEmpresas(datosOffline);
+      } else {
         setEmpresas(data);
-}
-      } catch (error) {
-        console.error("Error al obtener los datos. ", error);
-      } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 1500);
       }
-    };
-    obtenerDatos();
-  }, []);
+    } catch (error) {
+      console.error("Error al obtener los datos. ", error);
+      setEmpresas(datosOffline); // Establecer datosOffline en caso de error
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500);
+    }
+  };
+  obtenerDatos();
+}, []);
 
   useEffect(() => {
     if (empresas.length > 0 && coloresAsignados.length === 0) {
