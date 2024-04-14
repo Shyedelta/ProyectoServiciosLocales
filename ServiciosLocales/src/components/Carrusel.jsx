@@ -183,7 +183,7 @@ function Carrusel({ coords, setCoords }) {
     const obtenerDatos = async () => {
       try {
         const data = await fetchDatos();
-        if(!data.ok){
+        if(data == null){
           setEmpresas(datosOffline);
         }else{
         setEmpresas(data);
