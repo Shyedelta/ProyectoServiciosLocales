@@ -4,15 +4,11 @@ import Carrusel from './Carrusel'
 import Header from './Header'
 import Footer from './Footer';
 import Categorias from './Categorias';
-import Tarjeta from './Tarjeta';
-import { Modal } from 'flowbite';
+import Tarjeta from './Tarjeta'; 
 function Layout() {
     const [coords, setCoords] = useState(null);
-    
     return (
         <>
-           
-           
             <div className="layout p-10 backgroundCustom h-screen transition transform motion-reduce:transition-none motion-reduce:hover:transform-none">
                 <div className="bg-white/50 rounded-3xl p-10 shadow-lg min-h-[20vh] h-screen max-h-[85vh] overflow-y-auto mt-14 pt-0 flex flex-col justify-between">
                     <Header setCoords={setCoords} />
