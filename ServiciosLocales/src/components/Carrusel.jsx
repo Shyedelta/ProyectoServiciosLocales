@@ -193,7 +193,7 @@ function Carrusel({ coords, setCoords }) {
       setEmpresas(datosOffline); // Establecer datosOffline en caso de error
     } finally {
       setTimeout(() => {
-        setLoading(false);
+        //setLoading(false);
       }, 1500);
     }
   };
