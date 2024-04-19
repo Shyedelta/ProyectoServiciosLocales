@@ -5,13 +5,14 @@ import "../styles/style.css"
 import otros from "../assets/otros.js"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from "react-router-dom";
 
 function Carrusel({ coords, setCoords }) {
   const [empresas, setEmpresas] = useState([]);
   const [activeItem, setActiveItem] = useState(null);
   const [coloresAsignados, setColoresAsignados] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
@@ -22,7 +23,7 @@ function Carrusel({ coords, setCoords }) {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 1500);
+        }, 1000);
       }
     };
     obtenerDatos();
@@ -47,16 +48,16 @@ function Carrusel({ coords, setCoords }) {
   return (
     <div className="overflow-auto min-h-[max-content] scroll-smooth h-[45em]">
       {loading ? (
-        <div className=" overflow-auto overflow-y-hidden flex  ">
+        <div className=" overflow-hidden flex  ">
           {[...Array(10)].map((_, index) => (
             <div key={index} className="animate-pulse">
               <div className="m-2 bg-purple-100 p-5 my-5 shadow-lg rounded-3xl aspect-square h-72 w-72 flex justify-center align-middle">
-                <div class="loader w-max h-40 pt-32 ">
-                  <div class="loader__circle"></div>
-                  <div class="loader__circle"></div>
-                  <div class="loader__circle"></div>
-                  <div class="loader__circle"></div>
-                  <div class="loader__circle"></div>
+                <div className="loader w-max h-40 pt-32 ">
+                  <div className="loader__circle"></div>
+                  <div className="loader__circle"></div>
+                  <div className="loader__circle"></div>
+                  <div className="loader__circle"></div>
+                  <div className="loader__circle"></div>
                 </div>
               </div>
             </div>
@@ -87,7 +88,9 @@ function Carrusel({ coords, setCoords }) {
                         {empresa.NameNegocio}
                         <div className='font-light tracking-wide'>{empresa.TipoServicio}</div>
                         <div className="name uppercase">{empresa.NombreEmprendedor}</div>
-                        <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
+                        <Link to={"/servicios/id/"+empresa.id} >
+                          <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -105,7 +108,7 @@ function Carrusel({ coords, setCoords }) {
         </>
       )}
 
-      {coords && <p className='relative  '>{coords.latitude},  {coords.longitude}</p>}
+      {coords && <p className='absolute top-20 '>{coords.latitude},  {coords.longitude}</p>}
     </div>
   );
 }

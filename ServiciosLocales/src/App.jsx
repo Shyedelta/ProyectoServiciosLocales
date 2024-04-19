@@ -1,13 +1,19 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './components/Layout';
+import Servicio from './components/Servicio';
+import Home from './components/Home';
 
-import Layout from "./components/Layout";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />} />
-      </Routes>
-    </Router>
+    <BrowserRouter> 
+        <Routes>
+          <Route path="/" element={<Layout />} >
+            <Route index element={<Home />} /> 
+            <Route path="/servicios/id/:id" element={<Servicio />} />
+          </Route>
+        </Routes> 
+    </BrowserRouter>
   );
 }
 

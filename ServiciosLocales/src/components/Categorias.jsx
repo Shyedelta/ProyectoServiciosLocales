@@ -1,9 +1,24 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import otros from "../assets/otros.js";
 import "../styles/style.css";
+import fetchDatos from '../service/consumirDatos.js';
+import { Link } from 'react-router-dom';
 
 function Categorias() {
     const contenedorRef = useRef(null);
+    const [empresas, setEmpresas] = useState([]);
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            try {
+                const data = await fetchDatos();
+                setEmpresas(data);
+            } catch (error) {
+                console.error("Error al obtener los datos. ", error);
+            }
+        };
+        obtenerDatos();
+    }, []);
 
     const scrollTo = (scrollOffset) => {
         if (contenedorRef.current) {
@@ -30,11 +45,12 @@ function Categorias() {
                         key={index}
                         className={`z-auto mx-1 shadow-lg active:opacity-70 hover:-translate-y-[0.15em] transition  text-center max-h-7 min-w-[10em] text-base overflow-hidden border-2 border-black/10 hover:outline outline-offset-0 outline-2 ${c.color} ${c.text} text-sm font-medium me-2 px-2.5 py-1 my-auto rounded-2xl cursor-pointer `}
                     >
-                        <p className='relative -top-[0.2em]'>{c.nombre}</p>
+                        <Link to={empresas.length > 0 ? "/servicios/id/" + (empresas.find(x => x.Categorias[0] == c.nombre || x.Categorias[1] == c.nombre)?.id || "") : "/"}>
+                            <p className='relative -top-[0.2em]'>{c.nombre}</p>
+                        </Link>
                     </span>
                 ))}
             </div>
-            
         </div>
     );
 }

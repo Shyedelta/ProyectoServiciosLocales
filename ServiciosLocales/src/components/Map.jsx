@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import otros from "../assets/otros"
 import { GoogleMap, MarkerF, useLoadScript, InfoWindowF } from "@react-google-maps/api";
-function Map({ empresa }) {
+function Map({ empresa,controlOf }) {
 
   const [activeMarker, setActiveMarker] = useState(null);
 
@@ -22,22 +23,29 @@ function Map({ empresa }) {
   const handleCloseInfoWindow = () => {
     setActiveMarker(null);
   }
+  
   return (
     <>
       {isLoaded ? (
         <GoogleMap
-          mapContainerStyle={{ width: '100%', height: '100%', maxWidth: "20em",maxHeight: "20em", aspectRatio: 1 / 1, borderRadius: "1em" }}
+          mapContainerStyle={{ width: '100%', height: '100%', borderRadius: "1em" }}
           zoom={15}
           center={center}
           onClick={handleCloseInfoWindow}
-          options={{
+          options={controlOf ? {
+            controlSize: 0,
+            draggable: false,
+            clickableIcons: false,
+            disableDefaultUI: true,
+          } : {
             controlSize: 20,
             draggable: false,
             clickableIcons: false,
             mapTypeControlOptions: {
               style: google.maps.MapTypeControlStyle.DEFAULT
             }
-          }} 
+          } 
+        }
         >
           <MarkerF
             position={center}
