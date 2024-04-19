@@ -18,7 +18,8 @@
     min-width: 240px !important;
     padding-top: 10px;
     display: block !important;
-    overflow-y: auto;
+
+    overflow: hidden;
 }
 
 .gm-style .gm-style-iw-tc {
@@ -39,7 +40,8 @@
     color: #222222a9;
     font-size: 12px;
     border-radius: 0.5em;
-    padding: 0.2em;
+    padding: 0.2em; 
+    overflow: hidden !important;
 }
 
 .gm-style div div div div div div div div a {

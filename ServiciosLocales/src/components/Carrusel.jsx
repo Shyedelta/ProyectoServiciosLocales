@@ -5,6 +5,7 @@ import "../styles/style.css"
 import otros from "../assets/otros.js"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { Link } from "react-router-dom";
 
 function Carrusel({ coords, setCoords }) {
   const [empresas, setEmpresas] = useState([]);
@@ -22,7 +23,7 @@ function Carrusel({ coords, setCoords }) {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 1500);
+        }, 1000);
       }
     };
     obtenerDatos();
@@ -47,7 +48,7 @@ function Carrusel({ coords, setCoords }) {
   return (
     <div className="overflow-auto min-h-[max-content] scroll-smooth h-[45em]">
       {loading ? (
-        <div className=" overflow-auto overflow-y-hidden flex  ">
+        <div className=" overflow-hidden flex  ">
           {[...Array(10)].map((_, index) => (
             <div key={index} className="animate-pulse">
               <div className="m-2 bg-purple-100 p-5 my-5 shadow-lg rounded-3xl aspect-square h-72 w-72 flex justify-center align-middle">
@@ -64,7 +65,7 @@ function Carrusel({ coords, setCoords }) {
         </div>
       ) : (
         <>
-          <Carousel responsive={otros[1]} className='z-[11]'> 
+          <Carousel responsive={otros[1]} className='z-[11]'>
             {empresas.slice(0, 10).map((empresa, index) => (
               <div key={empresa.id} className="static h-[36em] z-[11] w-[17em]">
                 <div
@@ -87,7 +88,9 @@ function Carrusel({ coords, setCoords }) {
                         {empresa.NameNegocio}
                         <div className='font-light tracking-wide'>{empresa.TipoServicio}</div>
                         <div className="name uppercase">{empresa.NombreEmprendedor}</div>
-                        <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
+                        <Link to={"/servicios/id/"+empresa.id} >
+                          <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -101,11 +104,11 @@ function Carrusel({ coords, setCoords }) {
                 )}
               </div>
             ))}
-          </Carousel> 
+          </Carousel>
         </>
       )}
 
-      {coords && <p className='relative  '>{coords.latitude},  {coords.longitude}</p>}
+      {coords && <p className='absolute top-20 '>{coords.latitude},  {coords.longitude}</p>}
     </div>
   );
 }

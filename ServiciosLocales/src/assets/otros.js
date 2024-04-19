@@ -1,3 +1,18 @@
+import mecanico from "../imgs/mecanico.jpg"
+import informatica from "../imgs/informatica.jpg"
+import asesoria from "../imgs/asesoria.jpg"
+import electricidad from "../imgs/electricidad.jpg"
+import salud from "../imgs/salud.jpg"
+import peluqueria from "../imgs/peluqueria.jpg"
+import decoracion from "../imgs/decoracion.jpg"
+import diseno from "../imgs/diseno.jpg"
+import belleza from "../imgs/belleza.jpg"
+import masaje from "../imgs/masaje.jpg"
+import cafeteria from "../imgs/cafeteria.jpg"
+import floreria from "../imgs/floreria.jpg"
+import pasteleria from "../imgs/pasteleria.jpg"
+import entretenimiento from "../imgs/entretenimiento.jpg"
+import servicios from "../imgs/servicios.jpg"
 const colores = [
   'linear-gradient(135deg, #98e6e3 0%, #fcb9d8 100%)', // Rare Wind
   'linear-gradient(135deg, #cdc0f5 0%, #6b8df5 100%)', // Deep Blue
@@ -17,15 +32,19 @@ const colores = [
   'linear-gradient(135deg, #7A88FF 0%, #86A8E7 100%)', // Blue Lavender
   'linear-gradient(135deg, #1B9CFC 0%, #55E6C1 100%)', // Aqua Menthe
   'linear-gradient(135deg, #EA2027 0%, #F093FB 100%)', // Rouge
-]; 
+];
 const responsive = {
   superLargeDesktop: {
-    breakpoint: { max: 4000, min: 1920 },
+    breakpoint: { max: 2000, min: 1920 },
     items: 6
   },
   desktop: {
-    breakpoint: { max: 1920, min: 768 },
-    items: 6
+    breakpoint: { max: 1920, min: 1545 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 1545, min: 768 },
+    items: 4
   },
   tablet: {
     breakpoint: { max: 768, min: 464 },
@@ -35,26 +54,27 @@ const responsive = {
     breakpoint: { max: 464, min: 0 },
     items: 1
   }
-};
+}
 const categorias = [
-  { nombre: 'Peluquería', color: 'bg-blue-100', text: 'text-blue-800' },
-  { nombre: 'Belleza', color: 'bg-pink-100', text: 'text-pink-800' },
-  { nombre: 'Taller mecánico', color: 'bg-yellow-100', text: 'text-yellow-800' },
-  { nombre: 'Automóviles', color: 'bg-orange-100', text: 'text-orange-800' },
-  { nombre: 'Cafetería', color: 'bg-green-100', text: 'text-green-800' },
-  { nombre: 'Pastelería', color: 'bg-red-100', text: 'text-red-800' },
-  { nombre: 'Electricidad', color: 'bg-purple-100', text: 'text-purple-800' },
-  { nombre: 'Servicios', color: 'bg-indigo-100', text: 'text-indigo-800' },
-  { nombre: 'Florería', color: 'bg-cyan-100', text: 'text-cyan-800' },
-  { nombre: 'Decoración', color: 'bg-pink-100', text: 'text-pink-800' },
-  { nombre: 'Diseño gráfico', color: 'bg-yellow-100', text: 'text-yellow-800' },
-  { nombre: 'Publicidad', color: 'bg-orange-100', text: 'text-orange-800' },
-  { nombre: 'Asesoría contable', color: 'bg-green-100', text: 'text-green-800' },
-  { nombre: 'Asesoría fiscal', color: 'bg-red-100', text: 'text-red-800' },
-  { nombre: 'Masajes', color: 'bg-purple-100', text: 'text-purple-800' },
-  { nombre: 'Salud', color: 'bg-indigo-100', text: 'text-indigo-800' },
-  { nombre: 'Entrenamiento', color: 'bg-gray-100', text: 'text-gray-800' },
-  { nombre: 'Informática', color: 'bg-yellow-100', text: 'text-yellow-800' },
+  { nombre: 'Informática', color: 'bg-blue-100', text: 'text-blue-800', img: informatica },
+  { nombre: 'Taller mecánico', color: 'bg-orange-100', text: 'text-orange-800', img: mecanico },
+  { nombre: 'Asesoría contable', color: 'bg-yellow-100', text: 'text-yellow-800', img: asesoria },
+  { nombre: 'Electricidad', color: 'bg-purple-100', text: 'text-purple-800', img: electricidad },
+  { nombre: 'Salud', color: 'bg-green-100', text: 'text-green-800', img: salud },
+  { nombre: 'Peluquería', color: 'bg-pink-100', text: 'text-pink-800', img: peluqueria },
+  { nombre: 'Decoración', color: 'bg-cyan-100', text: 'text-cyan-800', img: decoracion },
+  { nombre: 'Publicidad', color: 'bg-orange-100', text: 'text-orange-800', img: diseno },
+  { nombre: 'Belleza', color: 'bg-yellow-100', text: 'text-yellow-800', img: belleza },
+  { nombre: 'Masajes', color: 'bg-green-100', text: 'text-green-800', img: masaje },
+  { nombre: 'Diseño gráfico', color: 'bg-pink-100', text: 'text-pink-800', img: diseno },
+  { nombre: 'Cafetería', color: 'bg-orange-100', text: 'text-orange-800', img: cafeteria },
+  { nombre: 'Asesoría fiscal', color: 'bg-red-100', text: 'text-red-800', img: asesoria },
+  { nombre: 'Florería', color: 'bg-purple-100', text: 'text-purple-800', img: floreria },
+  { nombre: 'Pastelería', color: 'bg-blue-100', text: 'text-blue-800', img: pasteleria },
+  { nombre: 'Automóviles', color: 'bg-red-100', text: 'text-red-800', img: mecanico },
+  { nombre: 'Entrenamiento', color: 'bg-gray-100', text: 'text-gray-800', img: entretenimiento },
+  { nombre: 'Servicios', color: 'bg-indigo-100', text: 'text-indigo-800', img: servicios },
 ];
 
-export default [colores,responsive,categorias];
+
+export default [colores, responsive, categorias];
