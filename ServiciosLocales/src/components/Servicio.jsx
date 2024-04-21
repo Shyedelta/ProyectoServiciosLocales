@@ -4,6 +4,7 @@ import fetchDatos from '../service/consumirDatos';
 import "../styles/style.css"
 import otros from "../assets/otros.js"
 import Map from "../components/Map"
+
 function Servicio() {
     const [empresas, setEmpresas] = useState([]);
     useEffect(() => {

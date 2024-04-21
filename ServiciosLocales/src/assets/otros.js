@@ -13,6 +13,7 @@ import floreria from "../imgs/floreria.jpg"
 import pasteleria from "../imgs/pasteleria.jpg"
 import entretenimiento from "../imgs/entretenimiento.jpg"
 import servicios from "../imgs/servicios.jpg"
+
 const colores = [
   'linear-gradient(135deg, #98e6e3 0%, #fcb9d8 100%)', // Rare Wind
   'linear-gradient(135deg, #cdc0f5 0%, #6b8df5 100%)', // Deep Blue
@@ -75,6 +76,5 @@ const categorias = [
   { nombre: 'Entrenamiento', color: 'bg-gray-100', text: 'text-gray-800', img: entretenimiento },
   { nombre: 'Servicios', color: 'bg-indigo-100', text: 'text-indigo-800', img: servicios },
 ];
-
 
 export default [colores, responsive, categorias];
