@@ -8,15 +8,13 @@ function Map({ empresa, controlOf, coords }) {
   const [directions, setDirections] = useState(null);
   const [travelMode, setTravelMode] = useState("DRIVING");
   const polylineRef = useRef(null); // Referencia a la Polyline
-
+  const [shouldCalculateRoute, setShouldCalculateRoute] = useState(true);
   const GOOGLE_MAP_API_KEY = "AIzaSyBQTmH4sZjvUcHvS18ngof48-wJIcN4sFo";
 
   const center = {
     lat: parseFloat(empresa.Ubicacion.latitud),
     lng: parseFloat(empresa.Ubicacion.longitud)
   };
-
-  const lineCoordinates = coords ? [center, { lat: coords.latitude, lng: coords.longitude }] : null;
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: GOOGLE_MAP_API_KEY,
@@ -27,8 +25,9 @@ function Map({ empresa, controlOf, coords }) {
       map.panTo({ lat: coords.latitude, lng: coords.longitude });
       setCurrentLocation({ lat: coords.latitude, lng: coords.longitude });
       calculateRoute();
+      setShouldCalculateRoute(false); 
     }
-  }, [coords, map]);
+  }, [coords, map,shouldCalculateRoute]);
 
   const handleMarkerClick = (markerId) => {
     setActiveMarker(markerId);
@@ -44,19 +43,21 @@ function Map({ empresa, controlOf, coords }) {
 
   const handleModeChange = (event) => {
     setTravelMode(event.target.value);
+    setShouldCalculateRoute(true); 
   };
 
   const travelModeColors = {
-    DRIVING: "#FF0000",
-    WALKING: "#00FF00",
-    BICYCLING: "#0000FF",
-    TRANSIT: "#FFFF00"
+    DRIVING: "#FF0000", 
+    WALKING: "#4B0082", 
+    BICYCLING: "#00b52a", 
+    TRANSIT: "#006400" 
   };
+  
 
   const calculateRoute = () => {
     if (map && coords) {
       const directionsService = new window.google.maps.DirectionsService();
-
+  
       directionsService.route(
         {
           origin: { lat: coords.latitude, lng: coords.longitude },
@@ -72,14 +73,14 @@ function Map({ empresa, controlOf, coords }) {
         }
       );
     }
-  };
+  };  
 
   useEffect(() => {
     if (directions && polylineRef.current) {
-      polylineRef.current.setMap(null); // Eliminar la ruta anterior
+      polylineRef.current.setMap(null); 
     }
     if (directions && directions.routes[0].overview_path) {
-      const color = travelModeColors[travelMode]; // Obtener el color correspondiente al modo de viaje
+      const color = travelModeColors[travelMode];
       const newPolyline = new window.google.maps.Polyline({
         path: directions.routes[0].overview_path,
         strokeColor: color ? color : "#FF0000", 
@@ -96,7 +97,7 @@ function Map({ empresa, controlOf, coords }) {
       {isLoaded ? (
         <GoogleMap
           mapContainerStyle={{ width: '100%', height: '100%', borderRadius: "1em" }}
-          zoom={15}
+          zoom={7}
           center={center}
           onClick={handleCloseInfoWindow}
           onLoad={onLoad}
@@ -122,17 +123,6 @@ function Map({ empresa, controlOf, coords }) {
             <option value="TRANSIT">Transit</option>
           </select>
 
-          {lineCoordinates && (
-            <Polyline
-              path={lineCoordinates}
-              options={{
-                strokeColor: "#FF0000",
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-              }}
-            />
-          )}
-
           <MarkerF
             position={center}
             title={empresa.NameNegocio}
@@ -156,10 +146,11 @@ function Map({ empresa, controlOf, coords }) {
           {currentLocation && (
             <MarkerF
               position={currentLocation}
-              icon={{
-                url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-              }}
-            />
+              // icon={{
+              //   url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              // }}
+            >
+            </MarkerF>
           )}
 
         </GoogleMap>
