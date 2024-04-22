@@ -7,7 +7,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from "react-router-dom";
 
-function Carrusel({ coords, setCoords }) {
+function Carrusel() {
   const [empresas, setEmpresas] = useState([]);
   const [activeItem, setActiveItem] = useState(null);
   const [coloresAsignados, setColoresAsignados] = useState([]);
@@ -108,7 +108,6 @@ function Carrusel({ coords, setCoords }) {
         </>
       )}
 
-      {coords && <p className='absolute top-20 '>{coords.latitude},  {coords.longitude}</p>}
     </div>
   );
 }

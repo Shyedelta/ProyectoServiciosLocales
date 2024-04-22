@@ -3,17 +3,7 @@ import "../styles/style.css"
 import MenuNav from './MenuNav'
 import Star from './Star';
 
-function Header({ setCoords }) {
-
-  const contenedorRef = useRef(null);
-  const scrollTo = (scrollOffset) => {
-    if (contenedorRef.current) {
-      contenedorRef.current.scrollBy({
-        left: scrollOffset,
-        behavior: 'smooth'
-      });
-    }
-  };
+function Header({ coords, setCoords }) {
 
   return (
     <>
@@ -38,6 +28,7 @@ function Header({ setCoords }) {
       </nav>
 
       <MenuNav setCoords={setCoords} />
+
     </>
   )
 }

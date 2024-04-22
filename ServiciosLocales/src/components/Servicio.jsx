@@ -5,7 +5,7 @@ import "../styles/style.css"
 import otros from "../assets/otros.js"
 import Map from "../components/Map"
 
-function Servicio() {
+function Servicio({ coords }) {
     const [empresas, setEmpresas] = useState([]);
     useEffect(() => {
         const obtenerDatos = async () => {
@@ -26,11 +26,11 @@ function Servicio() {
     return (
         <div className='py-10 h-max flex flex-col'>
             <div className="relative h-max">
-                <div style={{ 
-                    backgroundImage: imgURL ? `url(${imgURL})` : 'none', 
-                    backgroundRepeat: 'no-repeat', 
+                <div style={{
+                    backgroundImage: imgURL ? `url(${imgURL})` : 'none',
+                    backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center' 
+                    backgroundPosition: 'center'
                 }}
                     className='h-[19em] mb-0 p-5 rounded-xl content-center'>
                 </div>
@@ -38,7 +38,9 @@ function Servicio() {
                     {empresa && <p className='text-center text-white text-6xl font-extralight tracking-widest tracking-in-expand'>{empresa.NameNegocio}</p>}
                 </div>
             </div>
-            {/* {empresa && <div className='h-full relative bottom-[22.6em] -z-1 '><Map controlOf empresa={empresa} /></div>} */}
+            {empresa && <div className='py-10 h-[20em] '><Map controlOf empresa={empresa} coords={coords}/></div>}
+
+            {coords && <p>{coords.latitude},  {coords.longitude}</p>}
         </div>
     );
 }
