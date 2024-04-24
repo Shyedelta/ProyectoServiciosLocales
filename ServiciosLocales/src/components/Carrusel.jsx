@@ -7,6 +7,8 @@ import 'react-multi-carousel/lib/styles.css';
 import { Link } from "react-router-dom";
 import json from "../db.json"
 
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+
 function Carrusel() {
   const [empresas, setEmpresas] = useState([]);
   const [activeItem, setActiveItem] = useState(null);
@@ -26,8 +28,8 @@ function Carrusel() {
         }, 1000);
       }
     };
-    obtenerDatos(); 
- 
+    obtenerDatos();
+
   }, []);
 
   useEffect(() => {
@@ -69,7 +71,17 @@ function Carrusel() {
           {empresas ? (
             <Carousel responsive={otros[1]} className='z-[11]'>
               {empresas.slice(0, 10).map((empresa, index) => (
-                <div key={empresa.id} className="static h-[36em] z-[11] w-[17em]">
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
+                    delay: 0.2 * index
+                  }}   
+                  whileInView={{ opacity: 1 }}
+                  key={empresa.id} className="static h-[36em] z-[11] w-[17em]">
                   <div
                     className=" bg-slate-300 p-5 my-5 shadow-lg text-stone-800 rounded-3xl aspect-square h-64 w-64"
                     style={{ backgroundImage: coloresAsignados[index] }}
@@ -104,7 +116,7 @@ function Carrusel() {
                       </div>
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
             </Carousel>
 

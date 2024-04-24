@@ -45,47 +45,44 @@ function Header({ coords, setCoords }) {
             </form>
           </div> */}
 
-          <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-            <ul class={`flex flex-col font-medium p-4 md:p-0 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row `}>
+          <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+            <ul className={`flex flex-col font-medium p-4 md:p-0 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row `}>
               <li>
-                <a href="#" class={`text-gray-900 hover:text-blue-700 `}>Home </a>
+                <a href="#" className={`text-gray-900 hover:text-blue-700 `}>Home </a>
               </li>
               <li>
-                <button onClick={handleClick} id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                <button onClick={handleClick} id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" className="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Dropdown <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
                 </svg></button>
-                <div onMouseLeave={handleClick} id="dropdownNavbar" class={`z-10 ${openMenu ? 'absolute' : 'hidden'} top-14  font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}>
-                  <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
+                <div onMouseLeave={handleClick} id="dropdownNavbar" className={`z-10 ${openMenu ? 'absolute' : 'hidden'} top-14  font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}>
+                  <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                      <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
                     </li>
                   </ul>
-                  <div class="py-1">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                  <div className="py-1">
+                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
                   </div>
                 </div>
               </li>
               <li>
-                <a href="#" class="text-gray-900 rounded hover:text-blue-700">Services</a>
+                <a href="#" className="text-gray-900 rounded hover:text-blue-700">Services</a>
               </li>
               <li>
-                <a href="#" class="text-gray-900 rounded hover:text-blue-700">Pricing</a>
+                <a href="#" className="text-gray-900 rounded hover:text-blue-700">Pricing</a>
               </li>
               <li>
-                <a href="#" class="text-gray-900 rounded hover:text-blue-700">Contact</a>
+                <a href="#" className="text-gray-900 rounded hover:text-blue-700">Contact</a>
               </li>
             </ul>
           </div>
-
-
-
-
+ 
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse ">
             <Star text={"Explorar"} />
           </div>

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './components/Layout';
 import Servicio from './components/Servicio';
 import Home from './components/Home';
-
 function App() {
   const [coords, setCoords] = useState(null);
 

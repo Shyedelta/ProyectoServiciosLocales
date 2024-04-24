@@ -28,6 +28,7 @@
     "@react-native-community/geolocation": "^3.2.1",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.8.0",
+    "framer-motion": "^11.1.7",
     "json-server": "^1.0.0-alpha.23",
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.22.3",

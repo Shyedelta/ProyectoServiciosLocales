@@ -1,8 +1,10 @@
 * {
+    font-family: sofia-pro, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} 
+}
+
 .backgroundCustom {
     background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
 }
@@ -393,13 +395,16 @@
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     border-radius: 0.5em;
-} 
-span{
+}
+
+span {
     transition: 0.7s;
 }
-.buttonCustom2:hover span{
+
+.buttonCustom2:hover span {
     opacity: 0;
 }
+
 .star-1 {
     position: absolute;
     color: transparent;
@@ -490,7 +495,7 @@ span{
     height: auto;
     filter: drop-shadow(0 0 1em #9715a8);
     z-index: 2;
-    color: #961ec96e; 
+    color: #961ec96e;
 }
 
 .buttonCustom2:hover .star-3 {
@@ -501,7 +506,7 @@ span{
     height: auto;
     filter: drop-shadow(0 0 1em #9715a8);
     z-index: 2;
-    color: #c91e966e; 
+    color: #c91e966e;
 }
 
 .buttonCustom2:hover .star-4 {
@@ -512,7 +517,7 @@ span{
     height: auto;
     filter: drop-shadow(0 0 1em #9715a8);
     z-index: 2;
-    color: #b52adf6e; 
+    color: #b52adf6e;
 }
 
 .buttonCustom2:hover .star-5 {
