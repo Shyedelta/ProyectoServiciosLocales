@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Modal({ coords, setModalVisible }) {
+    const [load, setLoad] = useState(true);
+    
     useEffect(() => {
         if (coords != null) {
             setModalVisible(false)
         }
+        setTimeout(()=>{
+            setLoad(false);
+        },1000)
     }, [coords])
     return (
         <>
