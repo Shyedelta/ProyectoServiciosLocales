@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout coords={coords} setCoords={setCoords}/>} >
             <Route index element={<Home />} /> 
-            <Route path="/servicios/id/:id" element={<Servicio coords={coords}/>} />
+            <Route path="/servicios/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
           </Route>
         </Routes> 
     </BrowserRouter>

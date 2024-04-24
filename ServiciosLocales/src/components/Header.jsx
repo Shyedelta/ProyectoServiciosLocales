@@ -27,7 +27,7 @@ function Header({ coords, setCoords }) {
         </div>
       </nav>
 
-      <MenuNav setCoords={setCoords} />
+      {/* <MenuNav setCoords={setCoords} /> */}
 
     </>
   )

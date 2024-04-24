@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import fetchDatos from '../service/consumirDatos.js';
 import Map from "./Map.jsx"
 import "../styles/style.css"
 import otros from "../assets/otros.js"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from "react-router-dom";
+import json from "../db.json"
 
 function Carrusel() {
   const [empresas, setEmpresas] = useState([]);
@@ -16,8 +16,8 @@ function Carrusel() {
   useEffect(() => {
     const obtenerDatos = async () => {
       try {
-        const data = await fetchDatos();
-        setEmpresas(data);
+        const data = await json;
+        setEmpresas(data.empresas);
       } catch (error) {
         console.error("Error al obtener los datos. ", error);
       } finally {
@@ -26,7 +26,8 @@ function Carrusel() {
         }, 1000);
       }
     };
-    obtenerDatos();
+    obtenerDatos(); 
+ 
   }, []);
 
   useEffect(() => {
@@ -65,46 +66,49 @@ function Carrusel() {
         </div>
       ) : (
         <>
-          <Carousel responsive={otros[1]} className='z-[11]'>
-            {empresas.slice(0, 10).map((empresa, index) => (
-              <div key={empresa.id} className="static h-[36em] z-[11] w-[17em]">
-                <div
-                  className=" bg-slate-300 p-5 my-5 shadow-lg text-stone-800 rounded-3xl aspect-square h-64 w-64"
-                  style={{ backgroundImage: coloresAsignados[index] }}
-                  onMouseEnter={() => handleMouseEnter(empresa.id)}
-                >
-                  {activeItem !== empresa.id && (
-                    <h2 className="text-center relative color-[initial] text-white drop-shadow-sm blur-[0.5px] text-1xl h-full flex items-center justify-center animate-pulse">
-                      <div className="tracking-in-expand uppercase text-2xl ">{empresa.NameNegocio}</div>
-                    </h2>
-                  )}
-                  {activeItem === empresa.id && (
-                    <div className="e-card relative playing text-nowrap -translate-y-[6.2em]">
-                      <div className="image"></div>
-                      <div className="wave"></div>
-                      <div className="wave"></div>
-                      <div className="wave"></div>
-                      <div className="infotop scale-in-top delay-1">
-                        {empresa.NameNegocio}
-                        <div className='font-light tracking-wide'>{empresa.TipoServicio}</div>
-                        <div className="name uppercase">{empresa.NombreEmprendedor}</div>
-                        <Link to={"/servicios/id/"+empresa.id} >
-                          <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
-                        </Link>
+          {empresas ? (
+            <Carousel responsive={otros[1]} className='z-[11]'>
+              {empresas.slice(0, 10).map((empresa, index) => (
+                <div key={empresa.id} className="static h-[36em] z-[11] w-[17em]">
+                  <div
+                    className=" bg-slate-300 p-5 my-5 shadow-lg text-stone-800 rounded-3xl aspect-square h-64 w-64"
+                    style={{ backgroundImage: coloresAsignados[index] }}
+                    onMouseEnter={() => handleMouseEnter(empresa.id)}
+                  >
+                    {activeItem !== empresa.id && (
+                      <h2 className="text-center relative color-[initial] text-white drop-shadow-sm blur-[0.5px] text-1xl h-full flex items-center justify-center animate-pulse">
+                        <div className="tracking-in-expand uppercase text-2xl ">{empresa.NameNegocio}</div>
+                      </h2>
+                    )}
+                    {activeItem === empresa.id && (
+                      <div className="e-card relative playing text-nowrap -translate-y-[6.2em]">
+                        <div className="image"></div>
+                        <div className="wave"></div>
+                        <div className="wave"></div>
+                        <div className="wave"></div>
+                        <div className="infotop scale-in-top delay-1">
+                          {empresa.NameNegocio}
+                          <div className='font-light tracking-wide'>{empresa.TipoServicio}</div>
+                          <div className="name uppercase">{empresa.NombreEmprendedor}</div>
+                          <Link to={"/servicios/id/" + empresa.id} >
+                            <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  {activeItem === empresa.id && empresa.Ubicacion && (
+                    <div className="scale-in-top relative right-2 top-1 z-50" onMouseLeave={() => setActiveItem(null)}>
+                      <div className="bg-white p-4 shadow-lg rounded-3xl aspect-square max-w-[17em] z-50 min-w-[17em] scroll-smooth md:scroll-auto">
+                        <Map empresa={empresa} />
                       </div>
                     </div>
                   )}
                 </div>
-                {activeItem === empresa.id && empresa.Ubicacion && (
-                  <div className="scale-in-top relative right-2 top-1 z-50" onMouseLeave={() => setActiveItem(null)}>
-                    <div className="bg-white p-4 shadow-lg rounded-3xl aspect-square max-w-[17em] z-50 min-w-[17em] scroll-smooth md:scroll-auto">
-                      <Map empresa={empresa} />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </Carousel>
+              ))}
+            </Carousel>
+
+          ) : (<div>No hay datos aun...</div>)}
         </>
       )}
 

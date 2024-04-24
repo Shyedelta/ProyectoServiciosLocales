@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import otros from "../assets/otros.js";
 import "../styles/style.css";
-import fetchDatos from '../service/consumirDatos.js';
 import { Link } from 'react-router-dom';
-
+import json from "../db.json"
 function Categorias() {
     const contenedorRef = useRef(null);
     const [empresas, setEmpresas] = useState([]);
@@ -11,8 +10,7 @@ function Categorias() {
     useEffect(() => {
         const obtenerDatos = async () => {
             try {
-                const data = await fetchDatos();
-                setEmpresas(data);
+                setEmpresas(json.empresas);
             } catch (error) {
                 console.error("Error al obtener los datos. ", error);
             }
@@ -28,7 +26,6 @@ function Categorias() {
             });
         }
     };
-
     return (
         <div>
             <div className='flex justify-between '>

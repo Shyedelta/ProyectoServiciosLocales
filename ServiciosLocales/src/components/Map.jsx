@@ -1,33 +1,47 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { GoogleMap, MarkerF, useLoadScript, Polyline, InfoWindowF } from "@react-google-maps/api";
+import React, { useState, useEffect } from 'react';
+import { GoogleMap, MarkerF, InfoWindowF, Polyline, useLoadScript } from "@react-google-maps/api";
 
-function Map({ empresa, controlOf, coords }) {
+function Map({ empresa, coords, controlOff, setModalVisible }) {
   const [activeMarker, setActiveMarker] = useState(null);
-  const [currentLocation, setCurrentLocation] = useState(null);
-  const [map, setMap] = useState(null);
+  const [animateMarker, setAnimateMarker] = useState(false);
+  const [markerPosition, setMarkerPosition] = useState(null);
   const [directions, setDirections] = useState(null);
-  const [travelMode, setTravelMode] = useState("DRIVING");
-  const polylineRef = useRef(null); // Referencia a la Polyline
-  const [shouldCalculateRoute, setShouldCalculateRoute] = useState(true);
-  const GOOGLE_MAP_API_KEY = "AIzaSyBQTmH4sZjvUcHvS18ngof48-wJIcN4sFo";
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyBQTmH4sZjvUcHvS18ngof48-wJIcN4sFo"
+  });
 
   const center = {
     lat: parseFloat(empresa.Ubicacion.latitud),
     lng: parseFloat(empresa.Ubicacion.longitud)
   };
 
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: GOOGLE_MAP_API_KEY,
-  });
-
   useEffect(() => {
-    if (coords && map) {
-      map.panTo({ lat: coords.latitude, lng: coords.longitude });
-      setCurrentLocation({ lat: coords.latitude, lng: coords.longitude });
-      calculateRoute();
-      setShouldCalculateRoute(false); 
+    const timer = setTimeout(() => {
+      setAnimateMarker(true);
+    }, 700);
+
+    if (coords && coords.latitude && coords.longitude) {
+      setMarkerPosition({ lat: parseFloat(coords.latitude), lng: parseFloat(coords.longitude) });
+      if (setModalVisible) {
+        setModalVisible(false);
+      }
+    } else if (isLoaded) {
+      if (setModalVisible) {
+        setModalVisible(true);
+      }
+      const geocoder = new window.google.maps.Geocoder();
+      geocoder.geocode({ address: "Toledo" }, (results, status) => {
+        if (status === 'OK') {
+          const position = results[0].geometry.location;
+          setMarkerPosition({ lat: position.lat(), lng: position.lng() });
+        } else {
+          console.error("Error al obtener ubicación Toledo: " + status);
+        }
+      });
     }
-  }, [coords, map,shouldCalculateRoute]);
+
+    return () => clearTimeout(timer);
+  }, [coords, isLoaded, setModalVisible]);
 
   const handleMarkerClick = (markerId) => {
     setActiveMarker(markerId);
@@ -37,32 +51,18 @@ function Map({ empresa, controlOf, coords }) {
     setActiveMarker(null);
   };
 
-  const onLoad = (map) => {
-    setMap(map);
+  const handleMarkerDragEnd = (e) => {
+    setMarkerPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() });
   };
-
-  const handleModeChange = (event) => {
-    setTravelMode(event.target.value);
-    setShouldCalculateRoute(true); 
-  };
-
-  const travelModeColors = {
-    DRIVING: "#FF0000", 
-    WALKING: "#4B0082", 
-    BICYCLING: "#00b52a", 
-    TRANSIT: "#006400" 
-  };
-  
 
   const calculateRoute = () => {
-    if (map && coords) {
+    if (markerPosition && center) {
       const directionsService = new window.google.maps.DirectionsService();
-  
       directionsService.route(
         {
-          origin: { lat: coords.latitude, lng: coords.longitude },
-          destination: center,
-          travelMode: travelMode,
+          origin: center,
+          destination: markerPosition,
+          travelMode: window.google.maps.TravelMode.DRIVING
         },
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
@@ -73,91 +73,82 @@ function Map({ empresa, controlOf, coords }) {
         }
       );
     }
-  };  
-
+  };
   useEffect(() => {
-    if (directions && polylineRef.current) {
-      polylineRef.current.setMap(null); 
-    }
-    if (directions && directions.routes[0].overview_path) {
-      const color = travelModeColors[travelMode];
-      const newPolyline = new window.google.maps.Polyline({
-        path: directions.routes[0].overview_path,
-        strokeColor: color ? color : "#FF0000", 
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
-        map: map
-      });
-      polylineRef.current = newPolyline;
-    }
-  }, [directions, map, travelMode]);
+    calculateRoute();
+  }, [markerPosition]);
+
 
   return (
     <>
       {isLoaded ? (
         <GoogleMap
-          mapContainerStyle={{ width: '100%', height: '100%', borderRadius: "1em" }}
-          zoom={7}
+          mapContainerStyle={{
+            width: '100%',
+            height: '100%'
+          }}
+          zoom={controlOff ? 8 : 12}
           center={center}
-          onClick={handleCloseInfoWindow}
-          onLoad={onLoad}
-          options={controlOf ? {
-            controlSize: 20,
-            draggable: true,
-            clickableIcons: true,
-            disableDefaultUI: false,
-          } : {
-            controlSize: 0,
-            draggable: false,
-            clickableIcons: false,
-            mapTypeControlOptions: {
-              style: google.maps.MapTypeControlStyle.DEFAULT
-            },
-            disableDefaultUI: true
+          options={{
+            draggable: controlOff ? true : false,
+            disableDefaultUI: !controlOff
           }}
         >
-          <select id="mode" onChange={handleModeChange} style={{ position: "absolute", top: 10, left: 10, zIndex: 1 }} value={travelMode}>
-            <option value="DRIVING">Driving</option>
-            <option value="WALKING">Walking</option>
-            <option value="BICYCLING">Bicycling</option>
-            <option value="TRANSIT">Transit</option>
-          </select>
-
-          <MarkerF
-            position={center}
-            title={empresa.NameNegocio}
-            onClick={() => handleMarkerClick(empresa.id)}
-          >
-            {activeMarker === empresa.id && (
-              <InfoWindowF
-                onCloseClick={handleCloseInfoWindow}
-                style={{ width: "20em" }}
-              >
-                <div>
-                  <p>{empresa.NameNegocio}</p>
-                  <p>{empresa.TipoServicio}</p>
-                  <p>Teléfono: {empresa.Telefono}</p>
-                  <p>{empresa.Horario}</p>
-                </div>
-              </InfoWindowF>
-            )}
-          </MarkerF>
-
-          {currentLocation && (
+          {empresa && (
             <MarkerF
-              position={currentLocation}
-              // icon={{
-              //   url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-              // }}
+              position={center}
+              onClick={() => handleMarkerClick(empresa.id)}
+              animation={animateMarker ? window.google.maps.Animation.DROP : null}
             >
+              {activeMarker === empresa.id && (
+                <InfoWindowF onCloseClick={handleCloseInfoWindow} >
+                  <div className='p-1'>
+                    <p className='font-bold'>{empresa.NameNegocio}</p>
+                    <p>{empresa.TipoServicio}</p>
+                    <p>Teléfono: {empresa.Telefono}</p>
+                    <p>{empresa.Horario}</p>
+                  </div>
+                </InfoWindowF>
+              )}
             </MarkerF>
+          )}
+          {markerPosition && (
+            <MarkerF
+              position={markerPosition}
+              draggable={true}
+              onDragEnd={handleMarkerDragEnd}
+              onClick={() => handleMarkerClick('mi-ubicacion')}
+              animation={animateMarker ? window.google.maps.Animation.DROP : null}
+            >
+              {activeMarker === 'mi-ubicacion' && (
+                <InfoWindowF position={markerPosition} onCloseClick={handleCloseInfoWindow}>
+                  <div>
+                    <p className="font-bold">Mi Ubicación</p>
+                    <p>Latitud: {markerPosition.lat.toFixed(8)}</p>
+                    <p>Longitud: {markerPosition.lng.toFixed(8)}</p>
+                  </div>
+                </InfoWindowF>
+              )}
+            </MarkerF>
+          )}
+          {controlOff && markerPosition && directions && (
+            <Polyline
+              path={directions.routes[0].overview_path}
+              options={{
+                strokeColor: "#4285F4",
+                strokeOpacity: 0.7,
+                strokeWeight: 7,
+              }}
+            />
           )}
 
         </GoogleMap>
-      ) : null}
 
+      ) : (
+        <div>Error cargando el mapa</div>
+      )}
     </>
-  );
+  )
 }
 
 export default Map;
