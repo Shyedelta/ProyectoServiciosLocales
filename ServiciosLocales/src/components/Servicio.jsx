@@ -12,7 +12,7 @@ import { motion, useMotionValue, useTransform, animate, useScroll } from "framer
 function Servicio({ coords, setCoords }) {
     const [empresas, setEmpresas] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
-    const { scrollYProgress } = useScroll();
+
     useEffect(() => {
         obtenerUbicacion();
         obtenerDatos();
@@ -39,7 +39,7 @@ function Servicio({ coords, setCoords }) {
 
     const { id } = useParams();
     const empresa = empresas.find(e => e.id == id);
-    const imgURL = empresa ? otros[2].find(img => img.nombre == empresa.Categorias[0])?.img : 'default_image_url_here';
+    const imgURL = empresa ? otros[2].find(img => img.nombre == empresa.categorias[0])?.img : 'default_image_url_here';
 
     // const count = useMotionValue(0);
     // const rounded = useTransform(count, Math.round);
@@ -62,7 +62,7 @@ function Servicio({ coords, setCoords }) {
                         className='h-[19em] mb-0 p-5 rounded-xl content-center'>
                     </div>
                     <div className="bg-black/50 shadow-md rounded-xl absolute inset-0 flex items-center justify-center pointer-events-none">
-                        {empresa && <p className='text-center text-white text-[4vw] px-5 font-extralight tracking-widest tracking-in-expand'>{empresa.NameNegocio}</p>}
+                        {empresa && <p className='text-center text-white text-[4vw] px-5 font-extralight tracking-widest tracking-in-expand'>{empresa.name}</p>}
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@ function Servicio({ coords, setCoords }) {
                             <Map controlOff empresa={empresa} coords={coords} setModalVisible={setModalVisible} />
                         </div>
                     </div>
-                } 
+                }
 
                 {coords && <span className='absolute top-7 left-10 text-white bg-purple-400 rounded-full px-2 border w-max'>{coords.latitude},  {coords.longitude}</span>}
 

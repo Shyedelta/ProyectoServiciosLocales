@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["index.html", "./src/**/*.{html,js,jsx}",
-    'node_modules/flowbite-react/lib/esm/**/*.js' ],
+    'node_modules/flowbite-react/lib/esm/**/*.js'],
   theme: {
     extend: {},
   },
   plugins: [
     require('flowbite/plugin')
-  ],
+  ], 
 }

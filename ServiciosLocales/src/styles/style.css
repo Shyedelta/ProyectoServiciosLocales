@@ -9,7 +9,8 @@
     background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 
-/* .gm-style .gm-style-iw {
+ 
+.gm-style .gm-style-iw {
     background-color: #ffffff !important;
     top: 0 !important;
     left: 0 !important;
@@ -17,12 +18,13 @@
     height: 100% !important;
     min-height: 105px !important;
     min-width: 240px !important;
+    max-width: 100px!important;
     padding-top: 10px;
     display: block !important;
 
     overflow: hidden;
 }
-
+/*
 .gm-style .gm-style-iw-tc {
     opacity: 0;
 }
@@ -324,8 +326,7 @@
 
 @supports (scrollbar-color: auto) {
     .layout {
-        scrollbar-color: #8ec5fc #8ec5fc38;
-        border-radius: 1em;
+        scrollbar-color: #8ec5fc #8ec5fc38; 
     }
 }
 

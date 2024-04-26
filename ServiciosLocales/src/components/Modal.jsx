@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
 function Modal({ coords, setModalVisible }) {
-    const [load, setLoad] = useState(true);
+    const [load, setLoad] = useState(false);
 
     useEffect(() => {
         if (coords != null) {
             setModalVisible(false)
+            
         }
         setTimeout(() => {
-            setLoad(false);
-        }, 1000)
+            setLoad(true);
+        }, 2000)
     }, [coords])
     return (
         <>
-            {!load &&
+            {load &&
                 <div className='w-full h-full bg-black/80 absolute inset-0 z-50 '>
                     <div id="popup-modal" tabIndex="-1" className="flex justify-items-center overflow-y-auto overflow-x-hidden fixed top-0 left-0 right-10 bottom-0 z-50 content-center justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div className="relative p-4 w-full max-w-md max-h-full">

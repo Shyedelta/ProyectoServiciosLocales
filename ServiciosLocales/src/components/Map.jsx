@@ -9,10 +9,9 @@ function Map({ empresa, coords, controlOff, setModalVisible }) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyBQTmH4sZjvUcHvS18ngof48-wJIcN4sFo"
   });
-
   const center = {
-    lat: parseFloat(empresa.Ubicacion.latitud),
-    lng: parseFloat(empresa.Ubicacion.longitud)
+    lat: parseFloat(empresa.ubicacion.latitud),
+    lng: parseFloat(empresa.ubicacion.longitud)
   };
 
   useEffect(() => {
@@ -54,7 +53,16 @@ function Map({ empresa, coords, controlOff, setModalVisible }) {
   const handleMarkerDragEnd = (e) => {
     setMarkerPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() });
   };
+  const calculateCenter = () => {
+    if (markerPosition && center) {
+      const lat = (markerPosition.lat + center.lat) / 2;
+      const lng = (markerPosition.lng + center.lng) / 2;
+      return { lat, lng };
+    }
+    return null;
+  };
 
+  const mapCenter = calculateCenter();
   const calculateRoute = () => {
     if (markerPosition && center) {
       const directionsService = new window.google.maps.DirectionsService();
@@ -87,8 +95,8 @@ function Map({ empresa, coords, controlOff, setModalVisible }) {
             width: '100%',
             height: '100%'
           }}
-          zoom={controlOff ? 8 : 12}
-          center={center}
+          zoom={controlOff ? 12 : 12}
+          center={controlOff && mapCenter || center}
           options={{
             draggable: controlOff ? true : false,
             disableDefaultUI: !controlOff
@@ -103,16 +111,16 @@ function Map({ empresa, coords, controlOff, setModalVisible }) {
               {activeMarker === empresa.id && (
                 <InfoWindowF onCloseClick={handleCloseInfoWindow} >
                   <div className='p-1'>
-                    <p className='font-bold'>{empresa.NameNegocio}</p>
-                    <p>{empresa.TipoServicio}</p>
-                    <p>Teléfono: {empresa.Telefono}</p>
-                    <p>{empresa.Horario}</p>
+                    <p className='font-bold'>{empresa.name}</p>
+                    <p>{empresa.servicio}</p>
+                    <p>Teléfono: {empresa.telefono}</p>
+                    <p>{empresa.horario}</p>
                   </div>
                 </InfoWindowF>
               )}
             </MarkerF>
           )}
-          {markerPosition && (
+          {controlOff && markerPosition && (
             <MarkerF
               position={markerPosition}
               draggable={true}
@@ -122,7 +130,7 @@ function Map({ empresa, coords, controlOff, setModalVisible }) {
             >
               {activeMarker === 'mi-ubicacion' && (
                 <InfoWindowF position={markerPosition} onCloseClick={handleCloseInfoWindow}>
-                  <div>
+                  <div className={`${controlOff && 'min-w-[10em]'}`}>
                     <p className="font-bold">Mi Ubicación</p>
                     <p>Latitud: {markerPosition.lat.toFixed(8)}</p>
                     <p>Longitud: {markerPosition.lng.toFixed(8)}</p>
