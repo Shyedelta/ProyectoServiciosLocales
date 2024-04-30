@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import otros from "../assets/otros.js";
+import otros from "../funciones/otros.js";
 import "../styles/style.css";
 import { Link } from 'react-router-dom';
 import json from "../db.json"

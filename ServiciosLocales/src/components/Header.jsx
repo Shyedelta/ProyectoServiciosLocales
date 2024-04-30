@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import "../styles/style.css"
 import Star from './Star';
 import Navbar from './Navbar';
-import useTypingEffect from "./useTypingEffect.jsx"
+import useTypingEffect from "../Effects/useTypingEffect.jsx"
 function Header({ coords, setCoords }) {
   const [openMenu, setOpenMenu] = useState(false);
   const handleClick = () => {

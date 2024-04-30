@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "../styles/style.css"
-import otros from "../assets/otros.js"
+import otros from "../funciones/otros.js"
 import Map from "../components/Map"
 import json from "../db.json"
 import Geolocation from '@react-native-community/geolocation';

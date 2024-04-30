@@ -4,7 +4,7 @@ import Layout from './components/Layout';
 import Servicio from './components/Servicio';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
-import ScrollToTop from './components/ScrollToTop';
+import ScrollToTop from './funciones/ScrollToTop';
 
 function App() {
   const [coords, setCoords] = useState(null);

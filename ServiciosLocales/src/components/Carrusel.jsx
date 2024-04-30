@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Map from "./Map.jsx"
 import "../styles/style.css"
-import otros from "../assets/otros.js"
+import otros from "../funciones/otros.js"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import json from "../db.json"
 import { motion } from "framer-motion";
 import SkeletonCarrusel from '../skeleton/SkeletonCarrusel.jsx';
-import EffectCardClick from '../EffectCard/EffectCardClick.jsx';
+import EffectCardClick from '../Effects/EffectCardClick.jsx';
 
 function Carrusel() {
   const [empresas, setEmpresas] = useState([]);
@@ -73,8 +73,9 @@ function Carrusel() {
                   >
                     {!isActive && (
                       <h2 className="pointer-events-none text-center relative color-[initial] text-white drop-shadow-sm blur-[0.5px] text-1xl h-full flex items-center justify-center animate-pulse">
-                        <div className="tracking-in-expand uppercase text-2xl">{empresa.name}</div>
+                        <div className=" uppercase text-2xl">{empresa.name}</div> 
                       </h2>
+                      // tracking-in-expand
                     )}
                     {isActive && <EffectCardClick empresa={empresa} />}
                   </div>
