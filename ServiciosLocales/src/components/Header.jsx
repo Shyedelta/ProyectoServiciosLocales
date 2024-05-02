@@ -2,18 +2,18 @@ import React, { useRef, useState } from 'react'
 import "../styles/style.css"
 import Star from './Star';
 import Navbar from './Navbar';
-import useTypingEffect from "../Effects/useTypingEffect.jsx"
+import UseTypingEffect from "../Effects/UseTypingEffect.jsx"
 function Header({ coords, setCoords }) {
   const [openMenu, setOpenMenu] = useState(false);
   const handleClick = () => {
     setOpenMenu(!openMenu);
   }
-  const titleEffect = useTypingEffect(
+  const titleEffect = UseTypingEffect(
     "ServiciosLocales", 100, true
   );
   return (
     <>
-      <nav className="bg-white/70 shadow-md dark:bg-gray-900 fixed w-full z-50 top-0 start-0 border-gray-200 dark:border-gray-600">
+      <nav className="bg-white/70 shadow-md dark:bg-gray-900 sticky  w-full z-50 top-0 start-0 border-gray-200 dark:border-gray-600">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-5 h-[4em]">
 
           <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">

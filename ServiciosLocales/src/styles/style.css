@@ -4,11 +4,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-.backgroundCustom {
-    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-}
-
  
 .gm-style .gm-style-iw {
     background-color: #ffffff !important;

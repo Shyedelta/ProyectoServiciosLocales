@@ -5,6 +5,7 @@ import Servicio from './components/Servicio';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
 import ScrollToTop from './funciones/ScrollToTop';
+import Servicios from './components/Servicios';
 
 function App() {
   const [coords, setCoords] = useState(null);
@@ -17,7 +18,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout coords={coords} setCoords={setCoords} />} >
           <Route index element={<Home />} />
-          <Route path="/servicios/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
+          <Route path="/servicio/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
+          <Route path="/servicios" element={<Servicios />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

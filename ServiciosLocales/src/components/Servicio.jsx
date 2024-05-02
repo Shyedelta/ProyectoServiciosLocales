@@ -6,7 +6,7 @@ import Map from "../components/Map"
 import json from "../db.json"
 import Geolocation from '@react-native-community/geolocation';
 import Modal from './Modal.jsx';
-
+import default_img from "../assets/img.png"
 import { motion, useMotionValue, useTransform, animate, useScroll } from "framer-motion";
 
 function Servicio({ coords, setCoords }) {
@@ -39,7 +39,7 @@ function Servicio({ coords, setCoords }) {
 
     const { id } = useParams();
     const empresa = empresas.find(e => e.id == id);
-    const imgURL = empresa ? otros[2].find(img => img.nombre == empresa.categorias[0])?.img : 'default_image_url_here';
+    const imgURL = empresa ? otros[2].find(img => img.nombre == empresa.categorias[0])?.img : default_img;
 
     // const count = useMotionValue(0);
     // const rounded = useTransform(count, Math.round);
@@ -61,7 +61,7 @@ function Servicio({ coords, setCoords }) {
                     }}
                         className='h-[19em] mb-0 p-5 rounded-xl content-center'>
                     </div>
-                    <div className="bg-black/50 shadow-md rounded-xl absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="bg-black/60 shadow-md rounded-xl absolute inset-0 flex items-center justify-center pointer-events-none">
                         {empresa && <p className='text-center text-white text-[4vw] px-5 font-extralight tracking-widest tracking-in-expand'>{empresa.name}</p>}
                     </div>
                 </div>
