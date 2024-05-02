@@ -2,13 +2,13 @@ import React, { useRef, useState } from 'react'
 import "../styles/style.css"
 import Star from './Star';
 import Navbar from './Navbar';
-import UseTypingEffect from "../Effects/UseTypingEffect.jsx"
+import useTypingEffect from "../Effects/useTypingEffect.jsx"
 function Header({ coords, setCoords }) {
   const [openMenu, setOpenMenu] = useState(false);
   const handleClick = () => {
     setOpenMenu(!openMenu);
   }
-  const titleEffect = UseTypingEffect(
+  const titleEffect = useTypingEffect(
     "ServiciosLocales", 100, true
   );
   return (
