@@ -11,12 +11,12 @@ function Banner() {
                         Eliminamos demoras y complicaciones, priorizando la comodidad del usuario.
                         Promovemos la colaboración y la accesibilidad entre comunidades, facilitando el bienestar de todos los involucrados.
                     </p>
-                    <button class=" lg:opacity-100 md:opacity-0 justify-items-end mt-5 w-max relative bottom-0 left-0 inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-white rounded-full group bg-gradient-to-r from-purple-600/50 to-blue-500/50 group-hover:from-purple-600 group-hover:to-blue-500 focus:ring-4 focus:outline-none focus:ring-purple-400/40 ">
-                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
+                    <button className=" lg:opacity-100 md:opacity-0 justify-items-end mt-5 w-max relative bottom-0 left-0 inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-white rounded-full group bg-gradient-to-r from-purple-600/50 to-blue-500/50 group-hover:from-purple-600 group-hover:to-blue-500 focus:ring-4 focus:outline-none focus:ring-purple-400/40 ">
+                        <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
                             Ver más
                         </span>
-                        <svg class="mr-5 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        <svg className="mr-5 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
                     </button>
                 </div>

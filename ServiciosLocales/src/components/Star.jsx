@@ -1,5 +1,6 @@
 import React from 'react'
 import { BsStars } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 function Star({ text }) {
     return (
         <div>
@@ -7,7 +8,9 @@ function Star({ text }) {
             bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent  '>
                 <span className="animate-ping absolute left-[6.2em]  top-[1] right-10 inline-flex rounded-full h-2 w-2 bg-blue-200"></span>
                 <span className=" absolute left-[6.2em]  top-[1] right-5 inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
-                <p className='font-normal tracking-wider'>{text}</p>
+                <Link to={"/servicios"} >
+                    <p className='font-normal tracking-wider'>{text}</p>
+                </Link>
                 <div className="star-1 ">
                     <BsStars size="12" />
                 </div>

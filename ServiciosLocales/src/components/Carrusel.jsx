@@ -44,7 +44,7 @@ function Carrusel() {
     return coloress[Math.floor(Math.random() * otros[0].length)];
   };
 
-  const handleClick = (id) => {
+  const handleMouseEnter = (id) => {
     setActiveItem(id);
   };
 
@@ -60,8 +60,7 @@ function Carrusel() {
               return (
                 <motion.div
                   key={empresa.id}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
+                  initial={{ scale: 0 }} animate={{ scale: 1 }}
                   transition={{ stiffness: 260, damping: 20, delay: 0.2 * index }}
                   whileInView={{ opacity: 1 }}
                   className=" first:ml-5 static h-[36em] z-[11] w-[17em]"
@@ -69,7 +68,7 @@ function Carrusel() {
                   <div
                     className={` active:-scale-[0.97] active:rotate-180 cursor-pointer bg-slate-300 p-5 my-5 shadow-xl text-stone-800 rounded-3xl aspect-square h-64 w-64`}
                     style={{ backgroundImage: coloresAsignados[index] }}
-                    onClick={() => handleClick(empresa.id)}
+                    onMouseEnter={() => handleMouseEnter(empresa.id)}
                   >
                     {!isActive && (
                       <h2 className="pointer-events-none text-center relative color-[initial] text-white drop-shadow-sm blur-[0.5px] text-1xl h-full flex items-center justify-center ">

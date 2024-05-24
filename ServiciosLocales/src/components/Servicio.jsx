@@ -53,12 +53,7 @@ function Servicio({ coords, setCoords }) {
             {modalVisible && <Modal coords={coords} setModalVisible={setModalVisible} />}
             <div className='p-10 h-max flex flex-col'>
                 <div className="relative h-max">
-                    <div style={{
-                        backgroundImage: `url(${imgURL})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                    }}
+                    <div style={{ backgroundImage: `url(${imgURL})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}
                         className='h-[19em] mb-0 p-5 rounded-xl content-center'>
                     </div>
                     <div className="bg-black/60 shadow-md rounded-xl absolute inset-0 flex items-center justify-center pointer-events-none">

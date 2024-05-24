@@ -3,160 +3,160 @@ const datosOffline = {
     "empresas": [
         {
             "id": 1,
-            "NameNegocio": "Peluquería Estilo y Belleza",
-            "NombreEmprendedor": "María López",
-            "Ubicacion": {
+            "namenegocio": "Peluquería Estilo y Belleza",
+            "nombreemprendedor": "María López",
+            "ubicacion": {
                 "latitud": 42.8767,
                 "longitud": -8.5463
             },
-            "TipoServicio": "Peluquería y estilismo",
-            "Telefono": "+34 987 654 321",
-            "Horario": "Lunes a viernes: 9:00 - 19:00, Sábado: 9:00 - 14:00",
-            "Categorias": [
+            "tiposervicio": "Peluquería y estilismo",
+            "telefono": "+34 987 654 321",
+            "horario": "Lunes a viernes: 9:00 - 19:00, Sábado: 9:00 - 14:00",
+            "categorias": [
                 "Peluquería",
                 "Belleza"
             ]
         },
         {
             "id": 2,
-            "NameNegocio": "Taller Mecánico El Progreso",
-            "NombreEmprendedor": "Juan García",
-            "Ubicacion": {
+            "namenegocio": "Taller Mecánico El Progreso",
+            "nombreemprendedor": "Juan García",
+            "ubicacion": {
                 "latitud": 41.6552,
                 "longitud": -4.7237
             },
-            "TipoServicio": "Reparación de automóviles",
-            "Telefono": "+34 912 345 678",
-            "Horario": "Lunes a viernes: 8:00 - 18:00",
-            "Categorias": [
+            "tiposervicio": "Reparación de automóviles",
+            "telefono": "+34 912 345 678",
+            "horario": "Lunes a viernes: 8:00 - 18:00",
+            "categorias": [
                 "Taller mecánico",
                 "Automóviles"
             ]
         },
         {
             "id": 3,
-            "NameNegocio": "Cafetería El Rincón de los Sabores",
-            "NombreEmprendedor": "Pedro Martínez",
-            "Ubicacion": {
+            "namenegocio": "Cafetería El Rincón de los Sabores",
+            "nombreemprendedor": "Pedro Martínez",
+            "ubicacion": {
                 "latitud": 39.4702,
                 "longitud": -0.3768
             },
-            "TipoServicio": "Cafetería y pastelería",
-            "Telefono": "+34 654 987 321",
-            "Horario": "Todos los días: 7:00 - 21:00",
-            "Categorias": [
+            "tiposervicio": "Cafetería y pastelería",
+            "telefono": "+34 654 987 321",
+            "horario": "Todos los días: 7:00 - 21:00",
+            "categorias": [
                 "Cafetería",
                 "Pastelería"
             ]
         },
         {
             "id": 4,
-            "NameNegocio": "Electricidad El Faro",
-            "NombreEmprendedor": "Ana Rodríguez",
-            "Ubicacion": {
+            "namenegocio": "Electricidad El Faro",
+            "nombreemprendedor": "Ana Rodríguez",
+            "ubicacion": {
                 "latitud": 37.3891,
                 "longitud": -5.9825
             },
-            "TipoServicio": "Servicios eléctricos",
-            "Telefono": "+34 667 123 456",
-            "Horario": "Lunes a sábado: 9:00 - 18:00",
-            "Categorias": [
+            "tiposervicio": "Servicios eléctricos",
+            "telefono": "+34 667 123 456",
+            "horario": "Lunes a sábado: 9:00 - 18:00",
+            "categorias": [
                 "Electricidad",
                 "Servicios"
             ]
         },
         {
             "id": 5,
-            "NameNegocio": "Florería La Primavera",
-            "NombreEmprendedor": "Luisa Sánchez",
-            "Ubicacion": {
+            "namenegocio": "Florería La Primavera",
+            "nombreemprendedor": "Luisa Sánchez",
+            "ubicacion": {
                 "latitud": 40.4167,
                 "longitud": -3.7032
             },
-            "TipoServicio": "Venta de flores y arreglos florales",
-            "Telefono": "+34 678 234 567",
-            "Horario": "Lunes a domingo: 8:00 - 20:00",
-            "Categorias": [
+            "tiposervicio": "Venta de flores y arreglos florales",
+            "telefono": "+34 678 234 567",
+            "horario": "Lunes a domingo: 8:00 - 20:00",
+            "categorias": [
                 "Florería",
                 "Decoración"
             ]
         },
         {
             "id": 6,
-            "NameNegocio": "Diseño Gráfico Creativo",
-            "NombreEmprendedor": "María Gómez",
-            "Ubicacion": {
+            "namenegocio": "Diseño Gráfico Creativo",
+            "nombreemprendedor": "María Gómez",
+            "ubicacion": {
                 "latitud": 41.3926,
                 "longitud": 2.1432
             },
-            "TipoServicio": "Diseño gráfico",
-            "Telefono": "+34 645 321 987",
-            "Horario": "Flexible, con cita previa",
-            "Categorias": [
+            "tiposervicio": "Diseño gráfico",
+            "telefono": "+34 645 321 987",
+            "horario": "Flexible, con cita previa",
+            "categorias": [
                 "Diseño gráfico",
                 "Publicidad"
             ]
         },
         {
             "id": 7,
-            "NameNegocio": "Asesoría Contable y Fiscal",
-            "NombreEmprendedor": "Juan Pérez",
-            "Ubicacion": {
+            "namenegocio": "Asesoría Contable y Fiscal",
+            "nombreemprendedor": "Juan Pérez",
+            "ubicacion": {
                 "latitud": 41.3888,
                 "longitud": 2.1589
             },
-            "TipoServicio": "Asesoría contable y fiscal",
-            "Telefono": "+34 678 987 654",
-            "Horario": "Lunes a viernes: 9:00 - 18:00, Sábado: 9:00 - 13:00",
-            "Categorias": [
+            "tiposervicio": "Asesoría contable y fiscal",
+            "telefono": "+34 678 987 654",
+            "horario": "Lunes a viernes: 9:00 - 18:00, Sábado: 9:00 - 13:00",
+            "categorias": [
                 "Asesoría contable",
                 "Asesoría fiscal"
             ]
         },
         {
             "id": 8,
-            "NameNegocio": "Masajista Terapéutico",
-            "NombreEmprendedor": "Laura Fernández",
-            "Ubicacion": {
+            "namenegocio": "Masajista Terapéutico",
+            "nombreemprendedor": "Laura Fernández",
+            "ubicacion": {
                 "latitud": 40.4637,
                 "longitud": -3.7492
             },
-            "TipoServicio": "Masajes terapéuticos",
-            "Telefono": "+34 689 234 567",
-            "Horario": "Flexible, con cita previa",
-            "Categorias": [
+            "tiposervicio": "Masajes terapéuticos",
+            "telefono": "+34 689 234 567",
+            "horario": "Flexible, con cita previa",
+            "categorias": [
                 "Masajes",
                 "Salud"
             ]
         },
         {
             "id": 9,
-            "NameNegocio": "Entrenador Personal",
-            "NombreEmprendedor": "Sergio Martín",
-            "Ubicacion": {
+            "namenegocio": "Entrenador Personal",
+            "nombreemprendedor": "Sergio Martín",
+            "ubicacion": {
                 "latitud": 40.4168,
                 "longitud": -3.7038
             },
-            "TipoServicio": "Entrenamiento personalizado",
-            "Telefono": "+34 657 876 543",
-            "Horario": "Flexible, adaptado a las necesidades del cliente",
-            "Categorias": [
+            "tiposervicio": "Entrenamiento personalizado",
+            "telefono": "+34 657 876 543",
+            "horario": "Flexible, adaptado a las necesidades del cliente",
+            "categorias": [
                 "Entrenamiento",
                 "Salud"
             ]
         },
         {
             "id": 10,
-            "NameNegocio": "Reparación de Ordenadores",
-            "NombreEmprendedor": "José García",
-            "Ubicacion": {
+            "namenegocio": "Reparación de Ordenadores",
+            "nombreemprendedor": "José García",
+            "ubicacion": {
                 "latitud": 40.4637,
                 "longitud": -3.7492
             },
-            "TipoServicio": "Reparación de ordenadores",
-            "Telefono": "+34 678 345 678",
-            "Horario": "Lunes a viernes: 10:00 - 19:00",
-            "Categorias": [
+            "tiposervicio": "Reparación de ordenadores",
+            "telefono": "+34 678 345 678",
+            "horario": "Lunes a viernes: 10:00 - 19:00",
+            "categorias": [
                 "Informática",
                 "Servicios"
             ]

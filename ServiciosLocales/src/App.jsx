@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Layout coords={coords} setCoords={setCoords} />} >
           <Route index element={<Home />} />
           <Route path="/servicio/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
-          <Route path="/servicios" element={<Servicios />} />
+          <Route path="/servicios" element={<Servicios coords={coords} setCoords={setCoords} />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -12,7 +12,7 @@ function EffectCardClick({empresa}) {
                 {empresa.name}
                 <div className='font-light tracking-wide'>{empresa.servicio}</div>
                 <div className="name uppercase">{empresa.emprendedor}</div>
-                <Link to={"/servicios/id/" + empresa.id} >
+                <Link to={"/servicio/id/" + empresa.id} >
                     <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
                 </Link>
             </div>
