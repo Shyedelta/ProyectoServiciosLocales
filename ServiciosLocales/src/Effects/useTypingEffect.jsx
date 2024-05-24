@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const UseTypingEffect = (text, duration, isTypeByLetter = false) => {
+const useTypingEffect = (text, duration, isTypeByLetter = false) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const items = isTypeByLetter ? text.split("") : text.split(" ");
 
@@ -23,4 +23,4 @@ const UseTypingEffect = (text, duration, isTypeByLetter = false) => {
   return items.slice(0, currentPosition).join(isTypeByLetter ? "" : " ");
 };
 
-export default UseTypingEffect;
+export default useTypingEffect;
