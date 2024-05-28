@@ -4,7 +4,15 @@
     padding: 0;
     box-sizing: border-box;
 }
- 
+.gm-style-iw-chr button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px !important;
+    height: 10px !important;
+    outline: 1px solid red;
+}
+
 .gm-style .gm-style-iw {
     background-color: #ffffff !important;
     top: 0 !important;

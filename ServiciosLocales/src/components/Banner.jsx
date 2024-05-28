@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Banner() {
     return (
@@ -11,7 +12,7 @@ function Banner() {
                         Eliminamos demoras y complicaciones, priorizando la comodidad del usuario.
                         Promovemos la colaboración y la accesibilidad entre comunidades, facilitando el bienestar de todos los involucrados.
                     </p>
-                    <a href="/servicios">
+                    <Link to={"/servicios"} >
                         <button className=" lg:opacity-100 md:opacity-0 justify-items-end mt-5 w-max relative bottom-0 left-0 inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-white rounded-full group bg-gradient-to-r from-purple-600/50 to-blue-500/50 group-hover:from-purple-600 group-hover:to-blue-500 focus:ring-4 focus:outline-none focus:ring-purple-400/40 ">
                             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 rounded-md group-hover:bg-opacity-0">
                                 Ver más
@@ -20,7 +21,7 @@ function Banner() {
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                             </svg>
                         </button>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

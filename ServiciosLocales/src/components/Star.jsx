@@ -1,6 +1,6 @@
 import React from 'react'
 import { BsStars } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+
 function Star({ text }) {
     return (
         <div>

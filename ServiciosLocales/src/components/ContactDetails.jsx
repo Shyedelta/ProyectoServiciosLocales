@@ -14,18 +14,18 @@ function ContactDetails({ empresa }) {
     return (
         <>
             {empresa && (
-                <div className="w-max max-h-[13em] bg-white border border-gray-200 shadow rounded-lg p-5">
+                <div className="w-full max-w-[30%] max-h-[14em] bg-white border border-gray-200 mr-10 mb-10 shadow rounded-lg p-5">
                     <h2 className="text-lg font-semibold text-gray-900 mb-2">Detalles de contacto</h2>
-                    <address className="relative bg-gray-50 p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-2">
+                    <address className="relative  bg-gray-50 max-h-[10em] overflow-hidden p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-2">
                         <div className="space-y-2 text-gray-500 leading-loose hidden sm:block">
                             Nombre <br />
                             Servicio <br />
-                            Teléfono
+                            Teléfono <br />
                         </div>
-                        <div id="contact-details" className="mr-10 space-y-2 text-gray-900 leading-loose">
+                        <div id="contact-details" className=" *:line-clamp-1 text-ellipsis text-nowrap mr-10 space-y-2 text-gray-900 leading-loose">
                             {empresa.propietario} <br />
                             {empresa.servicio} <br />
-                            {empresa.telefono}
+                            {empresa.telefono} <br />
                         </div>
                         <button 
                             onClick={handleCopyClick}

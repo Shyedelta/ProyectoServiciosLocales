@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import defaultImg from "../imgs/default.jpg"
+import { Link } from 'react-router-dom'
 
 function BotonPerfil({ userActive }) {
     const [openMenu, setOpenMenu] = useState(false);
@@ -20,9 +21,13 @@ function BotonPerfil({ userActive }) {
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                     <li>
                         {userActive && userActive.name == "admin" ? (
-                            <a href="/dashboard" className="block px-4 py-2 hover:bg-gray-100 ">Dashboard</a>
+                            <Link to={"/dashboard"} className="block px-4 py-2 hover:bg-gray-100 " >
+                                Dashboard
+                            </Link>
                         ) : (
-                            <a href="/misservicios" className="block px-4 py-2 hover:bg-gray-100 ">Mis servicios</a>
+                            <Link to={"/misservicios"} className="block px-4 py-2 hover:bg-gray-100 " >
+                                Mis servicios
+                            </Link>
                         )}
                     </li>
                     <li>

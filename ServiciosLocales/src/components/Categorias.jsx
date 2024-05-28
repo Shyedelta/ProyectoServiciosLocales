@@ -52,7 +52,7 @@ function categorias() {
                                 transition={{ delay: 0.2 * index }}
                             >
                                 {/* <Link to={empresas.length > 0 ? "/servicio/id/" + (empresas.find(x => x.categorias[0] == c.nombre || x.categorias[1] == c.nombre)?.id || "") : "/"}> */}
-                                <Link to={empresas.length > 0 ? "/servicios/" + (c.nombre || "") : "/"}>
+                                <Link to={empresas.length > 0 ? "/servicios/" + (c.nombre || "") : "/servicios"}>
                                     <p className='h-full line-clamp-1'>{c.nombre}</p>
                                 </Link>
                             </motion.div>
