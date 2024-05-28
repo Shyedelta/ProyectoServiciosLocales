@@ -37,7 +37,7 @@ function Login({ setUserActive }) {
                 console.log('Usuario autenticado:', user);
                 setError(null);
                 localStorage.setItem('user', JSON.stringify(user));
-                if(user.nombre == "admin"){
+                if(user.name == "admin"){
                     navigate("/dashboard");
                 }else{
                     navigate("/");

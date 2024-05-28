@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Toast from './Toast';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const masterKey = "$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e";
 const bUsers = "66543a29acd3cb34a84e3ff7";
@@ -165,14 +166,16 @@ const Register = () => {
                     </div>
                     <div className="px-8 py-4 bg-gray-100 text-center">
                         <span className="text-gray-600">¿Ya tienes una cuenta? </span>
-                        <a className="font-medium text-indigo-500 hover:text-indigo-400" href="/login"> Inicia sesión</a>
+                        <Link to={"/login"} className="font-medium text-indigo-500 hover:text-indigo-400" >
+                            Inicia sesión
+                        </Link>
                     </div>
                 </div>
             </div>
             {usuarioCreado &&
                 <>
                     <Toast text={"Usuario creado."} />
-                    {setTimeout(()=>{navigate("/login")},1000)}
+                    {setTimeout(() => { navigate("/login") }, 1000)}
                 </>
             }
         </>

@@ -73,8 +73,7 @@ function Carrusel() {
                     {!isActive && (
                       <h2 className="pointer-events-none text-center relative color-[initial] text-white drop-shadow-sm blur-[0.5px] text-1xl h-full flex items-center justify-center ">
                         <div className="uppercase text-2xl">{empresa.nombre}</div> 
-                      </h2>
-                      // tracking-in-expand
+                      </h2> 
                     )}
                     {isActive && <EffectCardClick empresa={empresa} />}
                   </div>

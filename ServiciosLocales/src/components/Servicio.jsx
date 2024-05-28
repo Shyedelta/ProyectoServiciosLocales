@@ -76,7 +76,7 @@ function Servicio({ coords, setCoords }) {
                     </div>
                 }
 
-                <div className='border h-[21em] flex flex-col w-full justify-between md:flex-row'>
+                <div className=' h-[21em] flex flex-col w-full justify-between md:flex-row'>
                     <ContactDetails empresa={empresa} />
                     {empresa && empresa.faq && <AcordionDetails items={items} />}
                 </div>

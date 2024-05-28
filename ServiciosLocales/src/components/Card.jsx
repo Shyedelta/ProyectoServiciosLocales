@@ -6,7 +6,7 @@ function Card({ empresa, imgURL }) {
     return (
         <div>
             {empresa &&
-                <div className="max-w-sm min-h-[30em] bg-white group overflow-hidden border-gray-200 rounded-lg shadow ">
+                <div className=" min-h-[30em] bg-white group overflow-hidden border-gray-200 rounded-lg shadow ">
                     <img className="w-full h-[15em] object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
                         src={imgURL || defaultImg} alt="" />
                     <div className="p-5 h-[15em] flex flex-col justify-around">
