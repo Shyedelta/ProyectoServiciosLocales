@@ -6,20 +6,34 @@ import Home from './components/Home';
 import NotFound from './components/NotFound';
 import ScrollToTop from './funciones/ScrollToTop';
 import Servicios from './components/Servicios';
+import Register from './components/Register';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [coords, setCoords] = useState(null);
+  const [userActive, setUserActive] = useState(null);
+
   useEffect(() => {
-    window.history.scrollRestoration = 'auto'
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUserActive(JSON.parse(storedUser));
+    }
+
+    window.history.scrollRestoration = 'auto';
   }, []);
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Layout coords={coords} setCoords={setCoords} />} >
+        <Route path="/" element={<Layout coords={coords} setCoords={setCoords} userActive={userActive} />} >
           <Route index element={<Home />} />
           <Route path="/servicio/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
           <Route path="/servicios" element={<Servicios coords={coords} setCoords={setCoords} />} />
+          <Route path="/servicios/:categoria" element={<Servicios coords={coords} setCoords={setCoords} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login setUserActive={setUserActive} />} />
+          {userActive && <Route path="/dashboard" element={<Dashboard userActive={userActive} />} /> }
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

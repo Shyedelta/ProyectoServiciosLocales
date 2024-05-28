@@ -5,8 +5,7 @@ function Modal({ coords, setModalVisible }) {
 
     useEffect(() => {
         if (coords != null) {
-            setModalVisible(false)
-            
+            setModalVisible(false) 
         }
         setTimeout(() => {
             setLoad(true);

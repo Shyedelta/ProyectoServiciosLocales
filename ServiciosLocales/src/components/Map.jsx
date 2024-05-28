@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, MarkerF, InfoWindowF, Polyline, useLoadScript } from "@react-google-maps/api";
-import { motion, AnimatePresence } from "framer-motion";
-function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
+
+function Map({ empresa, empresas, controlOff, setModalVisible }) {
   const [activeMarker, setActiveMarker] = useState(null);
   const [animateMarker, setAnimateMarker] = useState(false);
   const [markerPosition, setMarkerPosition] = useState(null);
@@ -21,28 +21,46 @@ function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
       setAnimateMarker(true);
     }, 700);
 
-    if (coords && coords.latitude && coords.longitude) {
-      setMarkerPosition({ lat: parseFloat(coords.latitude), lng: parseFloat(coords.longitude) });
-      if (setModalVisible) {
-        setModalVisible(false);
+    const getStoredLocation = () => {
+      const storedLocation = localStorage.getItem('markerPosition');
+      if (storedLocation) {
+        setMarkerPosition(JSON.parse(storedLocation));
       }
-    } else if (isLoaded) {
-      if (setModalVisible) {
-        setModalVisible(true);
+    };
+
+    if (!markerPosition) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setMarkerPosition({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            });
+          },
+          (error) => {
+            console.error("Error obteniendo ubicación:", error);
+            getStoredLocation();
+          }
+        );
+      } else {
+        getStoredLocation();
       }
-      const geocoder = new window.google.maps.Geocoder();
-      geocoder.geocode({ address: "Toledo" }, (results, status) => {
-        if (status === 'OK') {
-          const position = results[0].geometry.location;
-          setMarkerPosition({ lat: position.lat(), lng: position.lng() });
-        } else {
-          console.error("Error al obtener ubicación Toledo: " + status);
-        }
-      });
     }
 
     return () => clearTimeout(timer);
-  }, [coords, isLoaded, setModalVisible]);
+  }, [markerPosition]);
+
+  useEffect(() => {
+    if (markerPosition) {
+      localStorage.setItem('markerPosition', JSON.stringify(markerPosition));
+    }
+  }, [markerPosition]);
+
+  useEffect(() => {
+    if (empresa) {
+      calculateRoute();
+    }
+  }, [empresa, markerPosition]);
 
   const handleMarkerClick = (markerId) => {
     setActiveMarker(markerId);
@@ -56,9 +74,8 @@ function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
     setMarkerPosition({ lat: e.latLng.lat(), lng: e.latLng.lng() });
   };
 
-
   const calculateRoute = () => {
-    if (!empresas && empresa && markerPosition && (center)) {
+    if (controlOff && !empresas && empresa && markerPosition && center && window.google?.maps) {
       const directionsService = new window.google.maps.DirectionsService();
       directionsService.route(
         {
@@ -69,6 +86,8 @@ function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
             setDirections(result);
+          } else if (status === window.google.maps.DirectionsStatus.ZERO_RESULTS) {
+            console.warn("No se encontraron resultados para la ruta.");
           } else {
             console.error("Error al obtener la ruta:", status);
           }
@@ -77,20 +96,11 @@ function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
     }
   };
 
-  useEffect(() => {
-    if (empresa) {
-      calculateRoute();
-    }
-  }, [empresa, markerPosition]);
-
   return (
     <>
       {isLoaded ? (
         <GoogleMap
-          mapContainerStyle={{
-            width: '100%',
-            height: '100%'
-          }}
+          mapContainerStyle={{ width: '100%', height: '100%' }}
           zoom={empresas ? 11 : 12}
           center={center}
           options={{
@@ -107,7 +117,7 @@ function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
               {activeMarker === empresa.id && (
                 <InfoWindowF onCloseClick={handleCloseInfoWindow} >
                   <div className='p-1'>
-                    <p className='font-bold'>{empresa.name}</p>
+                    <p className='font-bold'>{empresa.nombre}</p>
                     <p>{empresa.servicio}</p>
                     <p>Teléfono: {empresa.telefono}</p>
                     <p>{empresa.horario}</p>
@@ -129,7 +139,7 @@ function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
               {activeMarker === index && (
                 <InfoWindowF onCloseClick={handleCloseInfoWindow}>
                   <div className='p-1'>
-                    <p className='font-bold'>{empresa.name}</p>
+                    <p className='font-bold'>{empresa.nombre}</p>
                     <p>{empresa.servicio}</p>
                     <p>Teléfono: {empresa.telefono}</p>
                     <p>{empresa.horario}</p>
@@ -150,8 +160,8 @@ function Map({ empresa, empresas, coords, controlOff, setModalVisible }) {
                 <InfoWindowF position={markerPosition} onCloseClick={handleCloseInfoWindow}>
                   <div className={`${controlOff && 'min-w-[10em]'}`}>
                     <p className="font-bold">Mi Ubicación</p>
-                    <p>Latitud: {markerPosition.lat.toFixed(8)}</p>
-                    <p>Longitud: {markerPosition.lng.toFixed(8)}</p>
+                    <p>Latitud: {markerPosition.lat}</p>
+                    <p>Longitud: {markerPosition.lng}</p>
                   </div>
                 </InfoWindowF>
               )}

@@ -9,9 +9,9 @@ function EffectCardClick({empresa}) {
             <div className="wave"></div>
             <div className="wave"></div>
             <div className="infotop scale-in-top delay-1">
-                {empresa.name}
+                {empresa.nombre}
                 <div className='font-light tracking-wide'>{empresa.servicio}</div>
-                <div className="name uppercase">{empresa.emprendedor}</div>
+                <div className="name uppercase">{empresa.propietario}</div>
                 <Link to={"/servicio/id/" + empresa.id} >
                     <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
                 </Link>

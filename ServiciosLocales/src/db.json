@@ -2,8 +2,8 @@
   "empresas": [
     {
       "id": 1,
-      "name": "Peluquería Estilo y Belleza",
-      "emprendedor": "María López",
+      "nombre": "Peluquería Estilo y Belleza",
+      "propietario": "María López",
       "ubicacion": {
         "latitud": 39.88131834656205,
         "longitud": -4.034011390818006
@@ -15,12 +15,35 @@
         "Peluquería",
         "Belleza"
       ],
-      "rating": 7
+      "rating": 7,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Peluquería Estilo y Belleza?",
+          "parrafos": [
+            "En Peluquería Estilo y Belleza, ofrecemos servicios de peluquería y estilismo, incluyendo cortes de cabello, tintes y peinados.",
+            "También ofrecemos tratamientos capilares personalizados."
+          ]
+        },
+        {
+          "pregunta": "¿Cuáles son los horarios de atención?",
+          "parrafos": [
+            "Nuestro horario de atención es de lunes a viernes de 9:00 a 19:00 y los sábados de 9:00 a 14:00.",
+            "Recomendamos hacer una cita previa para evitar esperas."
+          ]
+        },
+        {
+          "pregunta": "¿Qué tipos de productos utilizan?",
+          "parrafos": [
+            "Utilizamos productos de alta calidad para el cuidado del cabello.",
+            "Trabajamos con marcas reconocidas en el mercado para asegurar los mejores resultados."
+          ]
+        }
+      ]
     },
     {
       "id": 2,
-      "name": "Taller Mecánico El Progreso",
-      "emprendedor": "Juan García",
+      "nombre": "Taller Mecánico El Progreso",
+      "propietario": "Juan García",
       "ubicacion": {
         "latitud": 39.80905859527229,
         "longitud": -4.056256016425615
@@ -32,12 +55,35 @@
         "Taller mecánico",
         "Automóviles"
       ],
-      "rating": 8
+      "rating": 8,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Taller Mecánico El Progreso?",
+          "parrafos": [
+            "En Taller Mecánico El Progreso, ofrecemos servicios de reparación de automóviles, mantenimiento preventivo y diagnóstico de fallas.",
+            "También realizamos cambios de aceite, frenos y alineación de ruedas."
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es el horario de atención?",
+          "parrafos": [
+            "Nuestro horario de atención es de lunes a viernes de 8:00 a 18:00.",
+            "Es recomendable agendar una cita para un servicio más rápido."
+          ]
+        },
+        {
+          "pregunta": "¿Qué tipos de vehículos atienden?",
+          "parrafos": [
+            "Atendemos todo tipo de vehículos, incluyendo automóviles y camionetas.",
+            "Nuestro equipo está capacitado para trabajar con diversas marcas y modelos."
+          ]
+        }
+      ]
     },
     {
       "id": 3,
-      "name": "Cafetería El Rincón de los Sabores",
-      "emprendedor": "Pedro Martínez",
+      "nombre": "Cafetería El Rincón de los Sabores",
+      "propietario": "Pedro Martínez",
       "ubicacion": {
         "latitud": 39.93879103362934,
         "longitud": -4.020037515702591
@@ -49,12 +95,35 @@
         "Cafetería",
         "Pastelería"
       ],
-      "rating": 6
+      "rating": 6,
+      "faq": [
+        {
+          "pregunta": "¿Qué productos ofrece Cafetería El Rincón de los Sabores?",
+          "parrafos": [
+            "En nuestra cafetería, ofrecemos una amplia variedad de café, té y bebidas especiales.",
+            "También contamos con una selección de pasteles, galletas y repostería artesanal."
+          ]
+        },
+        {
+          "pregunta": "¿Cuáles son los horarios de apertura?",
+          "parrafos": [
+            "Estamos abiertos todos los días de 7:00 a 21:00.",
+            "Visítenos para disfrutar de un buen café en cualquier momento del día."
+          ]
+        },
+        {
+          "pregunta": "¿Ofrecen opciones veganas o sin gluten?",
+          "parrafos": [
+            "Sí, ofrecemos opciones veganas y productos sin gluten.",
+            "Nuestra prioridad es atender las necesidades dietéticas de todos nuestros clientes."
+          ]
+        }
+      ]
     },
     {
       "id": 4,
-      "name": "Electricidad El Faro",
-      "emprendedor": "Ana Rodríguez",
+      "nombre": "Electricidad El Faro",
+      "propietario": "Ana Rodríguez",
       "ubicacion": {
         "latitud": 39.9612384961952,
         "longitud": -3.8828514401100644
@@ -66,12 +135,35 @@
         "Electricidad",
         "Servicios"
       ],
-      "rating": 9
+      "rating": 9,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Electricidad El Faro?",
+          "parrafos": [
+            "Ofrecemos una amplia gama de servicios eléctricos, incluyendo instalaciones, reparaciones y mantenimiento.",
+            "Trabajamos tanto en proyectos residenciales como comerciales."
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es su horario de atención?",
+          "parrafos": [
+            "Nuestro horario de atención es de lunes a sábado de 9:00 a 18:00.",
+            "Para emergencias fuera de horario, contáctenos y haremos lo posible por asistirle."
+          ]
+        },
+        {
+          "pregunta": "¿Qué tipo de proyectos manejan?",
+          "parrafos": [
+            "Manejamos proyectos de diversa índole, desde pequeñas reparaciones hasta grandes instalaciones eléctricas.",
+            "Nuestro equipo está altamente capacitado para cumplir con sus necesidades."
+          ]
+        }
+      ]
     },
     {
       "id": 5,
-      "name": "Florería La Primavera",
-      "emprendedor": "Luisa Sánchez",
+      "nombre": "Florería La Primavera",
+      "propietario": "Luisa Sánchez",
       "ubicacion": {
         "latitud": 40.09073395536848,
         "longitud": -3.875102176280816
@@ -83,12 +175,35 @@
         "Florería",
         "Decoración"
       ],
-      "rating": 8
+      "rating": 8,
+      "faq": [
+        {
+          "pregunta": "¿Qué productos ofrece Florería La Primavera?",
+          "parrafos": [
+            "En Florería La Primavera, ofrecemos una amplia variedad de flores frescas y arreglos florales.",
+            "También contamos con plantas de interior y exterior, así como accesorios de jardinería."
+          ]
+        },
+        {
+          "pregunta": "¿Cuáles son los horarios de atención?",
+          "parrafos": [
+            "Estamos abiertos de lunes a domingo de 8:00 a 20:00.",
+            "Visítenos para elegir el arreglo perfecto para cualquier ocasión."
+          ]
+        },
+        {
+          "pregunta": "¿Ofrecen servicios de entrega?",
+          "parrafos": [
+            "Sí, ofrecemos servicios de entrega a domicilio.",
+            "Puede hacer su pedido en tienda o a través de nuestro sitio web."
+          ]
+        }
+      ]
     },
     {
       "id": 6,
-      "name": "Diseño Gráfico Creativo",
-      "emprendedor": "María Gómez",
+      "nombre": "Diseño Gráfico Creativo",
+      "propietario": "María Gómez",
       "ubicacion": {
         "latitud": 39.806538314884854,
         "longitud": -4.028039835104117
@@ -100,12 +215,35 @@
         "Diseño gráfico",
         "Publicidad"
       ],
-      "rating": 7
+      "rating": 7,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Diseño Gráfico Creativo?",
+          "parrafos": [
+            "Ofrecemos servicios de diseño gráfico para empresas y particulares, incluyendo logotipos, branding y material publicitario.",
+            "También realizamos diseño de páginas web y gráficos para redes sociales."
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es el proceso de trabajo?",
+          "parrafos": [
+            "El proceso comienza con una consulta para entender las necesidades del cliente.",
+            "Luego, desarrollamos propuestas de diseño que se ajusten a sus requerimientos y preferencias."
+          ]
+        },
+        {
+          "pregunta": "¿Cómo se puede contactar para una cita?",
+          "parrafos": [
+            "Puede contactarnos por teléfono al +34 645 321 987 o enviar un correo electrónico a contacto@creativodiseno.com.",
+            "Estaremos encantados de agendar una cita para discutir su proyecto."
+          ]
+        }
+      ]
     },
     {
       "id": 7,
-      "name": "Asesoría Contable y Fiscal",
-      "emprendedor": "Juan Pérez",
+      "nombre": "Asesoría Contable y Fiscal",
+      "propietario": "Juan Pérez",
       "ubicacion": {
         "latitud": 39.93651409981676,
         "longitud": -3.9191078758634914
@@ -117,12 +255,35 @@
         "Asesoría contable",
         "Asesoría fiscal"
       ],
-      "rating": 9
+      "rating": 9,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Asesoría Contable y Fiscal?",
+          "parrafos": [
+            "Ofrecemos servicios de contabilidad y asesoría fiscal para empresas y particulares.",
+            "Nuestros servicios incluyen preparación de impuestos, auditorías y planificación financiera."
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es su horario de atención?",
+          "parrafos": [
+            "Nuestro horario de atención es de lunes a viernes de 9:00 a 18:00 y los sábados de 9:00 a 13:00.",
+            "Recomendamos agendar una cita para un servicio más personalizado."
+          ]
+        },
+        {
+          "pregunta": "¿Qué tipo de empresas pueden beneficiarse de sus servicios?",
+          "parrafos": [
+            "Trabajamos con empresas de todos los tamaños, desde pequeñas empresas hasta grandes corporaciones.",
+            "También ofrecemos servicios a particulares que necesiten ayuda con sus impuestos personales."
+          ]
+        }
+      ]
     },
     {
       "id": 8,
-      "name": "Masajista Terapéutico",
-      "emprendedor": "Laura Fernández",
+      "nombre": "Masajista Terapéutico",
+      "propietario": "Laura Fernández",
       "ubicacion": {
         "latitud": 39.807882183066305,
         "longitud": -4.060425016854745
@@ -134,12 +295,35 @@
         "Masajes",
         "Salud"
       ],
-      "rating": 6
+      "rating": 6,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Masajista Terapéutico?",
+          "parrafos": [
+            "Ofrecemos una variedad de masajes terapéuticos, incluyendo masajes de relajación, deportivos y para aliviar el estrés.",
+            "Nuestros servicios están diseñados para mejorar su bienestar físico y mental."
+          ]
+        },
+        {
+          "pregunta": "¿Cómo se puede agendar una cita?",
+          "parrafos": [
+            "Puede agendar una cita llamando al +34 689 234 567.",
+            "También puede enviar un mensaje a través de nuestro sitio web para programar su sesión."
+          ]
+        },
+        {
+          "pregunta": "¿Qué debo esperar en mi primera sesión?",
+          "parrafos": [
+            "En su primera sesión, realizaremos una consulta para entender sus necesidades y objetivos.",
+            "Luego, adaptaremos el masaje para ofrecerle la mejor experiencia posible."
+          ]
+        }
+      ]
     },
     {
       "id": 9,
-      "name": "Entrenador Personal",
-      "emprendedor": "Sergio Martín",
+      "nombre": "Entrenador Personal",
+      "propietario": "Sergio Martín",
       "ubicacion": {
         "latitud": 39.98165049940761,
         "longitud": -4.281599624840911
@@ -151,14 +335,37 @@
         "Entrenamiento",
         "Salud"
       ],
-      "rating": 8
+      "rating": 8,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Entrenador Personal?",
+          "parrafos": [
+            "Ofrecemos programas de entrenamiento personalizados para ayudarle a alcanzar sus metas de fitness.",
+            "Nuestros servicios incluyen entrenamiento de fuerza, acondicionamiento físico y asesoramiento nutricional."
+          ]
+        },
+        {
+          "pregunta": "¿Cómo se puede agendar una sesión?",
+          "parrafos": [
+            "Puede agendar una sesión llamando al +34 657 876 543 o enviando un correo electrónico a contacto@entrenadorpersonal.com.",
+            "Ofrecemos horarios flexibles para adaptarnos a sus necesidades."
+          ]
+        },
+        {
+          "pregunta": "¿Qué debo esperar en mi primera sesión?",
+          "parrafos": [
+            "En su primera sesión, realizaremos una evaluación física y discutiremos sus objetivos de fitness.",
+            "Luego, diseñaremos un plan de entrenamiento personalizado para usted."
+          ]
+        }
+      ]
     },
     {
       "id": 10,
-      "name": "Reparación de Ordenadores",
-      "emprendedor": "José García",
+      "nombre": "Reparación de Ordenadores",
+      "propietario": "José García",
       "ubicacion": {
-        "latitud": 39.951729496473824, 
+        "latitud": 39.951729496473824,
         "longitud": -3.995906098455513
       },
       "servicio": "Reparación de ordenadores",
@@ -168,7 +375,30 @@
         "Informática",
         "Servicios"
       ],
-      "rating": 7
+      "rating": 7,
+      "faq": [
+        {
+          "pregunta": "¿Qué servicios ofrece Reparación de Ordenadores?",
+          "parrafos": [
+            "Ofrecemos servicios de reparación de ordenadores, incluyendo diagnóstico de problemas, reparaciones de hardware y software.",
+            "También ofrecemos servicios de actualización y mantenimiento de sistemas."
+          ]
+        },
+        {
+          "pregunta": "¿Cuál es su horario de atención?",
+          "parrafos": [
+            "Nuestro horario de atención es de lunes a viernes de 10:00 a 19:00.",
+            "Para servicios urgentes, puede contactarnos para disponibilidad fuera de horario."
+          ]
+        },
+        {
+          "pregunta": "¿Atienden tanto a particulares como a empresas?",
+          "parrafos": [
+            "Sí, ofrecemos servicios tanto a particulares como a empresas.",
+            "Nos adaptamos a las necesidades específicas de cada cliente para ofrecer el mejor servicio posible."
+          ]
+        }
+      ]
     }
   ]
 }

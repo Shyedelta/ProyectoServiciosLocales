@@ -7,7 +7,9 @@ import json from "../db.json"
 import Geolocation from '@react-native-community/geolocation';
 import Modal from './Modal.jsx';
 import default_img from "../assets/img.png"
-import { motion, useMotionValue, useTransform, animate, useScroll } from "framer-motion";
+import ContactDetails from './ContactDetails.jsx';
+import AcordionDetails from './AcordionDetails.jsx';
+import Valoraciones from './Valoraciones.jsx';
 
 function Servicio({ coords, setCoords }) {
     const [empresas, setEmpresas] = useState([]);
@@ -36,7 +38,7 @@ function Servicio({ coords, setCoords }) {
             console.error("Error al obtener los datos. ", error);
         }
     };
-
+    let items = null;
     const { id } = useParams();
     const empresa = empresas.find(e => e.id == id);
     const imgURL = empresa ? otros[2].find(img => img.nombre == empresa.categorias[0])?.img : default_img;
@@ -48,6 +50,13 @@ function Servicio({ coords, setCoords }) {
     //     return animation.stop;
     // }, []);
 
+    if(empresa && empresa.faq){
+        items = empresa.faq.map(faq => ({
+            pregunta: faq.pregunta,
+            parrafos: faq.parrafos
+        }));
+    }
+
     return (
         <div>
             {modalVisible && <Modal coords={coords} setModalVisible={setModalVisible} />}
@@ -56,20 +65,25 @@ function Servicio({ coords, setCoords }) {
                     <div style={{ backgroundImage: `url(${imgURL})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}
                         className='h-[19em] mb-0 p-5 rounded-xl content-center'>
                     </div>
-                    <div className="bg-black/60 shadow-md rounded-xl absolute inset-0 flex items-center justify-center pointer-events-none">
-                        {empresa && <p className='text-center text-white text-[4vw] px-5 font-extralight tracking-widest tracking-in-expand'>{empresa.name}</p>}
-                    </div>
+                    <Valoraciones empresa={empresa}/>
                 </div>
 
                 {empresa &&
-                    <div className='pt-10'>
+                    <div className='py-10'>
                         <div className='py-0 overflow-hidden shadow-lg rounded-2xl h-[23em] '>
                             <Map controlOff empresa={empresa} coords={coords} setModalVisible={setModalVisible} />
                         </div>
                     </div>
                 }
 
+                <div className='flex w-full justify-between'>
+                    <ContactDetails empresa={empresa} />
+                    {empresa && empresa.faq && <AcordionDetails items={items} />}
+                </div>
+
+
                 {coords && <span className='absolute top-7 left-10 text-white bg-purple-400 rounded-full px-2 border w-max'>{coords.latitude},  {coords.longitude}</span>}
+
 
                 {/* <motion.h1 className='font-bold text-6xl text-white '>{rounded}</motion.h1> */}
             </div>
