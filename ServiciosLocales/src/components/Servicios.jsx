@@ -44,7 +44,7 @@ function Servicios({ coords, setCoords }) {
             </div>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {empresasFiltradas.map((empresa) => {
             const imgURL = otros[2].find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
             return <Card key={empresa.id} empresa={empresa} imgURL={imgURL} />;

@@ -37,60 +37,9 @@
     height: 100%;
     border-radius: 16px;
     overflow: hidden;
-}
-
-.wave {
-    position: absolute;
-    width: 540px;
-    height: 700px;
-    opacity: 0.6;
-    left: 0;
-    top: 0;
-    margin-left: -50%;
-    margin-top: -70%;
-    background: linear-gradient(744deg, #af40ff31, #5b42f331 60%, #00ddeb);
 } 
 
-.wave:nth-child(2),
-.wave:nth-child(3) {
-    top: 210px;
-}
-
-.playing .wave {
-    border-radius: 40%;
-    animation: wave 3000ms infinite linear;
-}
-
-.wave {
-    border-radius: 40%;
-    animation: wave 55s infinite linear;
-}
-
-.playing .wave:nth-child(2) {
-    animation-duration: 4000ms;
-}
-
-.wave:nth-child(2) {
-    animation-duration: 50s;
-}
-
-.playing .wave:nth-child(3) {
-    animation-duration: 5000ms;
-}
-
-.wave:nth-child(3) {
-    animation-duration: 45s;
-}
-
-@keyframes wave {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-} 
+ 
 .scale-in-top {
     -webkit-animation: scale-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: scale-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -139,8 +88,7 @@
     font-weight: 500;
     color: #fff;
     background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-    border: none;
-    border-radius: 45px;
+    border: none; 
     box-shadow: 0px 8px 15px #0000001a;
     transition: all 0.5s ease 0s;
     cursor: pointer;
@@ -160,7 +108,7 @@
 }
 
 .react-multiple-carousel__arrow {
-    margin-bottom: 19em;
+    margin-bottom:0;
 }
 
 @supports (scrollbar-color: auto) {

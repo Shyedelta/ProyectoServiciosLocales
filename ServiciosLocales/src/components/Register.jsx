@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Toast from './Toast';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const masterKey = "$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e";
 const bUsers = "66543a29acd3cb34a84e3ff7";
+
 const Register = () => {
     const navigate = useNavigate();
-
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -18,6 +18,27 @@ const Register = () => {
     const [usuarioCreado, setUsuarioCreado] = useState(false);
     const [error, setError] = useState('');
     const [users, setUsers] = useState([]);
+
+    // Cargar usuarios existentes al montar el componente
+    useEffect(() => {
+        const getReq = new XMLHttpRequest();
+
+        getReq.onreadystatechange = () => {
+            if (getReq.readyState === XMLHttpRequest.DONE) {
+                if (getReq.status === 200) {
+                    const responseData = JSON.parse(getReq.responseText);
+                    const existingData = responseData.record || {};
+                    setUsers(existingData.users || []);
+                } else {
+                    console.error('Error al obtener datos:', getReq.responseText);
+                }
+            }
+        };
+
+        getReq.open("GET", `https://api.jsonbin.io/v3/b/${bUsers}`, true);
+        getReq.setRequestHeader("X-Master-Key", masterKey);
+        getReq.send();
+    }, []);
 
     const handleChange = (e) => {
         setFormData({
@@ -35,6 +56,12 @@ const Register = () => {
             return;
         }
 
+        const existingUser = users.find(user => user.email === formData.email);
+        if (existingUser) {
+            setError("Ya existe un usuario con este correo electrónico.");
+            return;
+        }
+
         const userData = {
             id: Date.now(),
             name: formData.name,
@@ -42,46 +69,23 @@ const Register = () => {
             password: formData.password
         };
 
-        const existingUser = users.find(user => user.email === formData.email);
-        if (existingUser) {
-            setError("Ya existe un usuario con este correo electrónico.");
-            return;
-        }
+        const existingData = { users: [...users, userData] };
 
-        const getReq = new XMLHttpRequest();
-
-        getReq.onreadystatechange = () => {
-            if (getReq.readyState === XMLHttpRequest.DONE) {
-                if (getReq.status === 200) {
-                    const responseData = JSON.parse(getReq.responseText);
-                    const existingData = responseData.record || {};
-                    existingData.users = existingData.users || [];
-                    existingData.users.push(userData);
-
-                    const putReq = new XMLHttpRequest();
-                    putReq.onreadystatechange = () => {
-                        if (putReq.readyState === XMLHttpRequest.DONE) {
-                            if (putReq.status === 200) {
-                                setUsuarioCreado(true);
-                            } else {
-                                console.error('Error al actualizar datos:', putReq.responseText);
-                            }
-                        }
-                    };
-
-                    putReq.open("PUT", `https://api.jsonbin.io/v3/b/${bUsers}`, true);
-                    putReq.setRequestHeader("Content-Type", "application/json");
-                    putReq.setRequestHeader("X-Master-Key", masterKey);
-                    putReq.send(JSON.stringify(existingData));
+        const putReq = new XMLHttpRequest();
+        putReq.onreadystatechange = () => {
+            if (putReq.readyState === XMLHttpRequest.DONE) {
+                if (putReq.status === 200) {
+                    setUsuarioCreado(true);
                 } else {
-                    console.error('Error al obtener datos:', getReq.responseText);
+                    console.error('Error al actualizar datos:', putReq.responseText);
                 }
             }
         };
 
-        getReq.open("GET", `https://api.jsonbin.io/v3/b/${bUsers}`, true);
-        getReq.setRequestHeader("X-Master-Key", masterKey);
-        getReq.send();
+        putReq.open("PUT", `https://api.jsonbin.io/v3/b/${bUsers}`, true);
+        putReq.setRequestHeader("Content-Type", "application/json");
+        putReq.setRequestHeader("X-Master-Key", masterKey);
+        putReq.send(JSON.stringify(existingData));
 
         setFormData({ name: '', email: '', password: '', passwordtwo: '' });
     };
@@ -103,13 +107,8 @@ const Register = () => {
                                     <input
                                         placeholder="Nombre"
                                         className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                        required
-                                        autoComplete="name"
-                                        type="text"
-                                        name="name"
-                                        id="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
+                                        required autoComplete="name" type="text" name="name" id="name"
+                                        value={formData.name} onChange={handleChange}
                                     />
                                 </div>
                                 <div className='mb-4'>
@@ -117,13 +116,8 @@ const Register = () => {
                                     <input
                                         placeholder="Correo electronico"
                                         className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                        required
-                                        autoComplete="email"
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
+                                        required autoComplete="email" type="email" name="email"  id="email"
+                                        value={formData.email} onChange={handleChange}
                                     />
                                 </div>
                                 <div className='mb-4'>
@@ -131,13 +125,9 @@ const Register = () => {
                                     <input
                                         placeholder="Contraseña"
                                         className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                        required
-                                        autoComplete="current-password"
-                                        type="password"
-                                        name="password"
-                                        id="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
+                                        required autoComplete="current-password"
+                                        type="password"  name="password" id="password"
+                                        value={formData.password} onChange={handleChange}
                                     />
                                 </div>
                                 <div className='mb-4'>
@@ -145,13 +135,9 @@ const Register = () => {
                                     <input
                                         placeholder="Repetir contraseña"
                                         className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                        required
-                                        autoComplete="current-password"
-                                        type="password"
-                                        name="passwordtwo"
-                                        id="passwordtwo"
-                                        value={formData.passwordtwo}
-                                        onChange={handleChange}
+                                        required  autoComplete="current-password"
+                                        type="password"  name="passwordtwo"   id="passwordtwo"
+                                        value={formData.passwordtwo}  onChange={handleChange}
                                     />
                                 </div>
                             </div>

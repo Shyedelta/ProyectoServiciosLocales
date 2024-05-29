@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 
 function Toast({ text }) {
     const [showToast, setShowToast] = useState(true);
@@ -6,7 +6,7 @@ function Toast({ text }) {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowToast(false);
-        }, 4000);
+        }, 1000);
 
         return () => clearTimeout(timer);
     }, []);

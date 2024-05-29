@@ -50,7 +50,7 @@ function Servicio({ coords, setCoords }) {
     //     return animation.stop;
     // }, []);
 
-    if(empresa && empresa.faq){
+    if (empresa && empresa.faq) {
         items = empresa.faq.map(faq => ({
             pregunta: faq.pregunta,
             parrafos: faq.parrafos
@@ -60,17 +60,16 @@ function Servicio({ coords, setCoords }) {
     return (
         <div>
             {modalVisible && <Modal coords={coords} setModalVisible={setModalVisible} />}
-            <div className='p-10 h-max flex flex-col'>
-                <div className="relative h-max">
-                    <div style={{ backgroundImage: `url(${imgURL})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}
-                        className='h-[19em] mb-0 p-5 rounded-xl content-center'>
+            <div className='pb-10 h-max w-full bg-white flex flex-col'>
+                <section style={{ backgroundImage: `url(${imgURL})` }} className={`bg-center bg-no-repeat bg-cover  bg-gray-700 bg-blend-multiply`}>
+                    <div className=" mx-auto max-w-screen-xl text-center py-10">
+                        <Valoraciones empresa={empresa} />
                     </div>
-                    <Valoraciones empresa={empresa}/>
-                </div>
+                </section>
 
                 {empresa &&
                     <div className='py-10'>
-                        <div className='py-0 overflow-hidden shadow-lg rounded-2xl h-[23em] '>
+                        <div className='py-0 overflow-hidden shadow-lg  h-[23em] '>
                             <Map controlOff empresa={empresa} coords={coords} setModalVisible={setModalVisible} />
                         </div>
                     </div>
@@ -80,10 +79,6 @@ function Servicio({ coords, setCoords }) {
                     <ContactDetails empresa={empresa} />
                     {empresa && empresa.faq && <AcordionDetails items={items} />}
                 </div>
-
-
-                {coords && <span className='absolute top-7 left-10 text-white bg-purple-400 rounded-full px-2 border w-max'>{coords.latitude},  {coords.longitude}</span>}
-
 
                 {/* <motion.h1 className='font-bold text-6xl text-white '>{rounded}</motion.h1> */}
             </div>

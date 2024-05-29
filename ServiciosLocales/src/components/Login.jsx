@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Toast from './Toast';
+import React, { useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const API_URL = 'https://api.jsonbin.io/v3/b/66543a29acd3cb34a84e3ff7';
 const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
@@ -37,10 +37,11 @@ function Login({ setUserActive }) {
                 console.log('Usuario autenticado:', user);
                 setError(null);
                 localStorage.setItem('user', JSON.stringify(user));
-                if(user.name == "admin"){
-                    navigate("/dashboard");
-                }else{
-                    navigate("/");
+
+                if (user.name == "admin") {
+                    setTimeout(() => { navigate("/dashboard") }, 1000)
+                } else {
+                    setTimeout(() => { navigate("/") }, 1000)
                 }
                 window.location.reload();
             } else {
@@ -85,13 +86,15 @@ function Login({ setUserActive }) {
                     </form>
                     <div className="px-8 py-4 bg-gray-100 text-center">
                         <span className="text-gray-600">¿No tienes cuenta? </span>
-                        <a className="font-medium text-indigo-500 hover:text-indigo-400" href="/register"> Crear cuenta</a>
+                        <Link to={"/register"} className="font-medium text-indigo-500 hover:text-indigo-400" >
+                            Crear cuenta
+                        </Link>
                     </div>
                 </div>
 
             </div>
 
-           
+
         </>
     );
 }

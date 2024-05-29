@@ -1,21 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function EffectCardClick({empresa}) {
+function EffectCardClick({ categoria }) {
     return (
-        <div className="e-card relative playing text-nowrap -translate-y-[6.2em]">
-            <div className="image"></div>
-            <div className="wave"></div>
-            <div className="wave"></div>
-            <div className="wave"></div>
-            <div className="text-center text-[15px] absolute p-[0.5em] top-[3em] left-0 right-0 font-[600] text-white overflow-hidden text-ellipsis scale-in-top delay-1">
-                {empresa.nombre}
-                <div className='font-light tracking-wide'>{empresa.servicio}</div>
-                <div className="text-[14px] font-medium relative top-[1em] uppercase">{empresa.propietario}</div>
-                <Link to={"/servicio/id/" + empresa.id} >
-                    <button className="buttonCustom my-8 cursor-pointer">VER MÁS</button>
-                </Link>
-            </div>
+        <div className="flex flex-col text-center text-[15px] text-white overflow-hidden text-ellipsis scale-in-top delay-1">
+            {categoria.nombre}
+            <Link to={"/servicios/" + categoria.nombre} >
+                <button className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-gray-900 rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">VER MÁS</button>
+            </Link>
         </div>
     )
 }
