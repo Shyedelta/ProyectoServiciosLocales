@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const masterKey = "$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e";
 const bUsers = "66543a29acd3cb34a84e3ff7";
 
-const Register = () => {
+const Register = ({ userActive }) => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
@@ -15,11 +15,16 @@ const Register = () => {
         passwordtwo: ''
     });
 
+    useEffect(() => { 
+        if (userActive?.name !== undefined) {
+            window.location.href = "/";
+        }
+    }, [userActive]);
+
     const [usuarioCreado, setUsuarioCreado] = useState(false);
     const [error, setError] = useState('');
     const [users, setUsers] = useState([]);
 
-    // Cargar usuarios existentes al montar el componente
     useEffect(() => {
         const getReq = new XMLHttpRequest();
 
@@ -93,8 +98,8 @@ const Register = () => {
 
     return (
         <>
-            <div className="max-w-md w-full mx-auto overflow-hidden">
-                <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+            <div className="max-w-md w-full mx-auto overflow-hidden h-full flex flex-col justify-center">
+                <div className="bg-white rounded-lg shadow overflow-hidden">
                     <div className="p-8">
                         <h2 className="text-center text-3xl font-medium text-gray-700">
                             Crea una cuenta
@@ -103,41 +108,41 @@ const Register = () => {
                         <form method="POST" action="#" className="mt-8 space-y-6" onSubmit={handleSubmit}>
                             <div className="rounded-md shadow-sm">
                                 <div className='mb-4'>
-                                    <label className="sr-only" htmlFor="name">Nombre</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="name" >Nombre</label>
                                     <input
-                                        placeholder="Nombre"
-                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        placeholder="John"
+                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         required autoComplete="name" type="text" name="name" id="name"
                                         value={formData.name} onChange={handleChange}
                                     />
                                 </div>
                                 <div className='mb-4'>
-                                    <label className="sr-only" htmlFor="email">Correo electronico</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">Correo electronico</label>
                                     <input
-                                        placeholder="Correo electronico"
-                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                        required autoComplete="email" type="email" name="email"  id="email"
+                                        placeholder="John.doe@example.com"
+                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        required autoComplete="email" type="email" name="email" id="email"
                                         value={formData.email} onChange={handleChange}
                                     />
                                 </div>
                                 <div className='mb-4'>
-                                    <label className="sr-only" htmlFor="password">Contraseña</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="password">Contraseña</label>
                                     <input
-                                        placeholder="Contraseña"
-                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        placeholder="•••••••••"
+                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         required autoComplete="current-password"
-                                        type="password"  name="password" id="password"
+                                        type="password" name="password" id="password"
                                         value={formData.password} onChange={handleChange}
                                     />
                                 </div>
                                 <div className='mb-4'>
-                                    <label className="sr-only" htmlFor="passwordtwo">Repetir contraseña</label>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="passwordtwo">Repetir contraseña</label>
                                     <input
-                                        placeholder="Repetir contraseña"
-                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-white text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                        required  autoComplete="current-password"
-                                        type="password"  name="passwordtwo"   id="passwordtwo"
-                                        value={formData.passwordtwo}  onChange={handleChange}
+                                        placeholder="•••••••••"
+                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        required autoComplete="current-password"
+                                        type="password" name="passwordtwo" id="passwordtwo"
+                                        value={formData.passwordtwo} onChange={handleChange}
                                     />
                                 </div>
                             </div>

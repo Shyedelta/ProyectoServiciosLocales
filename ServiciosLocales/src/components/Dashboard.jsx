@@ -2,20 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardUsers from './admin/DashboardUsers.jsx'
 import UsersEdit from './admin/UsersEdit.jsx';
+import DashboardInbox from './admin/DashboardInbox.jsx';
 function Dashboard({ userActive }) {
     const navigate = useNavigate();
     const [contenido, setContenido] = useState('dashboard');
 
     useEffect(() => {
-        if (userActive.name != "admin") {
-            navigate("/");
+        if (userActive.email !== "admin@gmail.com") {
+            window.location.href = "/";
         }
-    }, [])
+    }, [userActive]);
+
     const handleMenuClick = (select) => {
         setContenido(select)
     }
     return (
-        <div className='overflow-hidden'>
+        <div className='overflow-hidden bg-white borde-x h-full w-full'>
             <div className='flex justify-between overflow-hidden'>
                 <div className='hidden min-w-[18em] md:block m-10 mr-0 sticky z-10 w-[21em] rounded-md'>
                     <aside id="sidebar-multi-level-sidebar" className="fixed w-[16em] h-[30em]" aria-label="Sidebar">
@@ -70,15 +72,15 @@ function Dashboard({ userActive }) {
                 </div>
 
                 <div className="m-10 ml-0 w-full max-w-[75%] overflow-hidden">
-                    <div className="p-10 border-2 min-h-[65vh] w-full border-gray-200 border-dashed rounded-lg">
+                    <div className="p-10 border-2 overflow-y-auto bg-gray-50 min-h-[65vh] w-full border-gray-200 border-dashed rounded-lg">
                         {contenido === 'dashboard' &&
                             <div>Dashboard
-                                <UsersEdit />
+                                {/* <UsersEdit /> */}
                             </div>}
-                        {contenido === 'inbox' && <div>Inbox </div>}
+                        {contenido === 'inbox' && <DashboardInbox />}
                         {contenido === 'usuarios' && <DashboardUsers />}
                         {contenido === 'servicios' && <div>Servicios </div>}
-                        {contenido === 'logout' && <div>Cerrando sesión...</div>}
+                        {contenido === 'logout' && <div>{localStorage.clear()}</div>}
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ import Modal from './Modal.jsx';
 import default_img from "../assets/img.png"
 import ContactDetails from './ContactDetails.jsx';
 import AcordionDetails from './AcordionDetails.jsx';
-import Valoraciones from './Valoraciones.jsx';
+import InfoService from './InfoService.jsx';
 
 function Servicio({ coords, setCoords }) {
     const [empresas, setEmpresas] = useState([]);
@@ -41,14 +41,7 @@ function Servicio({ coords, setCoords }) {
     let items = null;
     const { id } = useParams();
     const empresa = empresas.find(e => e.id == id);
-    const imgURL = empresa ? otros[2].find(img => img.nombre == empresa.categorias[0])?.img : default_img;
-
-    // const count = useMotionValue(0);
-    // const rounded = useTransform(count, Math.round);
-    // useEffect(() => {
-    //     const animation = animate(count, 100, { duration: 10 });
-    //     return animation.stop;
-    // }, []);
+    const imgURL = empresa ? otros[1].find(img => img.nombre == empresa.categorias[0])?.img : default_img;
 
     if (empresa && empresa.faq) {
         items = empresa.faq.map(faq => ({
@@ -58,14 +51,16 @@ function Servicio({ coords, setCoords }) {
     }
 
     return (
-        <div>
+        <div className='w-full '>
             {modalVisible && <Modal coords={coords} setModalVisible={setModalVisible} />}
-            <div className='pb-10 h-max w-full bg-white flex flex-col'>
+            <div className='pb-10 h-max w-full bg-white flex flex-col border-x'>
                 <section style={{ backgroundImage: `url(${imgURL})` }} className={`bg-center bg-no-repeat bg-cover  bg-gray-700 bg-blend-multiply`}>
-                    <div className=" mx-auto max-w-screen-xl text-center py-10">
-                        <Valoraciones empresa={empresa} />
+                    <div className="max-w-screen-xl text-center py-20 flex-col shadow-md rounded-xl flex items-center justify-center pointer-events-none">
+                        <p className='text-center text-white text-[4vw] px-2 font-extralight my-10'>{empresa?.nombre}</p>
                     </div>
                 </section>
+
+                <InfoService empresa={empresa} />
 
                 {empresa &&
                     <div className='py-10'>
@@ -75,12 +70,11 @@ function Servicio({ coords, setCoords }) {
                     </div>
                 }
 
-                <div className=' h-[21em] flex flex-col w-full justify-between md:flex-row'>
+                <div className=' max-xl:flex-col px-10 flex flex-row overflow-hidden h-full w-full justify-between '>
                     <ContactDetails empresa={empresa} />
                     {empresa && empresa.faq && <AcordionDetails items={items} />}
                 </div>
 
-                {/* <motion.h1 className='font-bold text-6xl text-white '>{rounded}</motion.h1> */}
             </div>
         </div>
     );

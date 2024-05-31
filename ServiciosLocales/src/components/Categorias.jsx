@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import otros from "../funciones/otros.js";
 import "../styles/style.css";
-import { Link } from 'react-router-dom';
-import json from "../db.json"
+import { Link, useLocation } from 'react-router-dom';
+import json from "../db.json";
 import { motion, AnimatePresence } from "framer-motion";
 
-function categorias() {
+function Categorias() {
     const contenedorRef = useRef(null);
     const [empresas, setEmpresas] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         const obtenerDatos = async () => {
@@ -28,21 +29,30 @@ function categorias() {
             });
         }
     };
+    const isServiciosPath = /^\/servicios\/.+/;
+
     return (
-        <div>
+        <div className='p-10 pt-0'>
             <div className='flex justify-between '>
-                <button className='hover:opacity-100 opacity-20 ml-[0.3em] hover:scale-110 bg-black/70 p-[0.2em] rounded-full relative top-[3.35em] z-10' onClick={() => scrollTo(-150)}>
+                <button className='hover:opacity-100 opacity-10 ml-[1em] hover:scale-110 bg-black/70 p-[0.2em] rounded-full relative top-[3em] z-10' onClick={() => scrollTo(-150)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
                 </button>
-                <button className='hover:opacity-100 opacity-20 mr-[0.3em] hover:scale-110 bg-black/70 p-[0.2em] rounded-full relative top-[3.35em] z-10' onClick={() => scrollTo(150)}>
+                <button className='hover:opacity-100 opacity-10 mr-[1em] hover:scale-110 bg-black/70 p-[0.2em] rounded-full relative top-[3em] z-10' onClick={() => scrollTo(150)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
                 </button>
             </div>
-            <div ref={contenedorRef} className='bg-white/20 shadow-lg p-1 rounded-full  my-3 overflow-hidden flex content-center align-middle flex-nowrap max-h-11 h-11'>
-                {otros[2].map((c, index) => (
+            <div ref={contenedorRef} className='flex px-5 py-3 text-gray-700 overflow-hidden border border-gray-200 rounded-lg bg-white/20'>
+                {isServiciosPath.test(location.pathname) && (
+                    <span className={`z-auto mx-1 py-1 mt-[2px] active:opacity-70 transition text-center h-max min-w-[10em] border-b-2 border-transparent overflow-hidden hover:border-b-black/30 hover:border-b-2 text-sm font-medium me-2 cursor-pointer`}>
+                        <Link to="/servicios">
+                            <p className='h-full font-bold'>Todas</p>
+                        </Link>
+                    </span>
+                )}
+                {otros[1].map((c, index) => (
                     <span
                         key={index}
-                        className={`z-auto mx-1 py-1 mt-[2px] shadow-lg active:opacity-70 transition text-center h-max min-w-[10em]  overflow-hidden border-2 border-black/10 hover:outline  outline-2 ${c.color} ${c.text} text-sm font-medium me-2 rounded-2xl cursor-pointer `}
+                        className={`z-auto mx-1 py-1 mt-[2px] active:opacity-70 transition text-center h-max min-w-[10em] border-b-2 border-transparent overflow-hidden hover:border-b-black/30 hover:border-b-2 text-sm font-medium me-2 cursor-pointer`}
                     >
                         <AnimatePresence>
                             <motion.div
@@ -51,18 +61,16 @@ function categorias() {
                                 exit={{ opacity: 0 }}
                                 transition={{ delay: 0.2 * index }}
                             >
-                                {/* <Link to={empresas.length > 0 ? "/servicio/id/" + (empresas.find(x => x.categorias[0] == c.nombre || x.categorias[1] == c.nombre)?.id || "") : "/"}> */}
-                                <Link to={empresas.length > 0 ? "/servicios/" + (c.nombre || "") : "/servicios"}>
+                                <Link to={empresas.length > 0 ? `/servicios/${c.nombre || ""}` : "/servicios"}>
                                     <p className='h-full line-clamp-1'>{c.nombre}</p>
                                 </Link>
                             </motion.div>
                         </AnimatePresence>
-                        
                     </span>
                 ))}
             </div>
-        </div >
+        </div>
     );
 }
 
-export default categorias;
+export default Categorias;

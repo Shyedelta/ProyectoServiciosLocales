@@ -10,14 +10,14 @@ function Navbar({ openMenu,setOpenMenu }) {
             <div className="hidden lg:block md:w-auto sm:hidden" id="navbar-dropdown">
                 <div className="content-end place-content-center font-medium">
                     <ul className="grid grid-cols-3 gap-4 h-[4em] px-3 items-center">
-                        <li className="px-2 h-full flex justify-center items-center border border-transparent hover:border-b-purple-500 ">
+                        <li className="px-2 h-full flex justify-center items-center border-4 border-transparent hover:border-b-purple-500 ">
                             <Link to={"/"} className="w-full flex justify-center">
                                 <p className="text-transparent bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-center rounded">
                                     Inicio
                                 </p>
                             </Link>
                         </li>
-                        <li onClick={handleClick}  className="px-2 h-full flex justify-center items-center border border-transparent hover:border-b-purple-500">
+                        <li onClick={handleClick}  className="pl-7 px-4 h-full flex justify-center items-center border-4 border-transparent hover:border-b-purple-500">
                             <p className="cursor-pointer text-transparent bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-center rounded">
                                 <span className="flex items-center">
                                     Servicios
@@ -27,7 +27,7 @@ function Navbar({ openMenu,setOpenMenu }) {
                                 </span>
                             </p>
                         </li>
-                        <li className="px-2 h-full flex justify-center items-center border border-transparent hover:border-b-purple-500">
+                        <li className="px-2 h-full flex justify-center items-center border-4 border-transparent hover:border-b-purple-500">
                             <Link to={"/contact"} className="w-full flex justify-center">
                                 <p className="text-transparent bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-center rounded">
                                     Contacto

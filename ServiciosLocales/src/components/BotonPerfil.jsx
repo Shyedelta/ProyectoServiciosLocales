@@ -21,7 +21,7 @@ function BotonPerfil({ userActive }) {
                 </div>
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                     <li>
-                        {userActive && userActive.name == "admin" ? (
+                        {userActive && userActive.email == "admin@gmail.com" ? (
                             <Link to={"/dashboard"} className="block px-4 py-2 hover:bg-gray-100 " >
                                 Dashboard
                             </Link>
@@ -37,7 +37,8 @@ function BotonPerfil({ userActive }) {
 
                 </ul>
                 <div className="py-1">
-                    <a href="#" onClick={() => { localStorage.clear(); navigate("/"); }} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Cerrar sesión</a>
+                    <a href="#" onClick={() => { localStorage.clear(); window.location.href = "/"; }}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Cerrar sesión</a>
                 </div>
             </div>
         </li>)

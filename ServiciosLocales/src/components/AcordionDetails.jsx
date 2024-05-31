@@ -8,12 +8,12 @@ function AcordionDetails({ items }) {
     };
 
     return (
-        <div id="accordion-collapse" className='flex flex-col justify-between w-full h-max min-h-[14em] rounded-lg bg-gray-100 focus:bg-white' data-accordion="collapse">
+        <div id="accordion-collapse" className='flex flex-col justify-between w-full h-max min-h-[13em] rounded-lg bg-gray-100 focus:bg-white' data-accordion="collapse">
             {items.map((item, index) => (
                 <div key={index} >
                     <h2 id={`accordion-collapse-heading-${index + 1}`}>
                         <button type="button"
-                            className="min-h-[4.7em] focus:ring-gray-300 flex rounded-lg items-center justify-between focus-visible:bg-white w-full p-5 font-medium rtl:text-right text-gray-800 border border-b-0 border-gray-200 focus:ring-4  hover:bg-white"
+                            className=" focus:ring-gray-300 flex rounded-lg items-center justify-between focus-visible:bg-white w-full p-5 font-medium rtl:text-right text-gray-800 border border-b-0 border-gray-200 focus:ring-4  hover:bg-white"
                             data-accordion-target={`#accordion-collapse-body-${index + 1}`}
                             aria-expanded={activeIndex === index} aria-controls={`accordion-collapse-body-${index + 1}`}
                             onClick={() => handleAccordionToggle(index)}

@@ -15,6 +15,7 @@
         "Peluquería",
         "Belleza"
       ],
+      "verificado" : true,
       "rating": 7,
       "faq": [
         {
@@ -55,6 +56,7 @@
         "Taller mecánico",
         "Automóviles"
       ],
+      "verificado" : true,
       "rating": 8,
       "faq": [
         {
@@ -95,6 +97,7 @@
         "Cafetería",
         "Pastelería"
       ],
+      "verificado" : true,
       "rating": 6,
       "faq": [
         {
@@ -135,6 +138,7 @@
         "Electricidad",
         "Servicios"
       ],
+      "verificado" : true,
       "rating": 9,
       "faq": [
         {
@@ -175,6 +179,7 @@
         "Florería",
         "Decoración"
       ],
+      "verificado" : true,
       "rating": 8,
       "faq": [
         {
@@ -215,6 +220,7 @@
         "Diseño gráfico",
         "Publicidad"
       ],
+      "verificado" : true,
       "rating": 7,
       "faq": [
         {
@@ -255,6 +261,7 @@
         "Asesoría contable",
         "Asesoría fiscal"
       ],
+      "verificado" : true,
       "rating": 9,
       "faq": [
         {
@@ -295,6 +302,7 @@
         "Masajes",
         "Salud"
       ],
+      "verificado" : true,
       "rating": 6,
       "faq": [
         {
@@ -335,6 +343,7 @@
         "Entrenamiento",
         "Salud"
       ],
+      "verificado" : true,
       "rating": 8,
       "faq": [
         {
@@ -375,6 +384,7 @@
         "Informática",
         "Servicios"
       ],
+      "verificado" : true,
       "rating": 7,
       "faq": [
         {

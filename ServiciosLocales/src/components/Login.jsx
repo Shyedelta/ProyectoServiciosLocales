@@ -1,13 +1,18 @@
-import React, { useState } from 'react'; 
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 const API_URL = 'https://api.jsonbin.io/v3/b/66543a29acd3cb34a84e3ff7';
 const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
 
-function Login({ setUserActive }) {
+function Login({ userActive, setUserActive }) {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+    useEffect(() => { 
+        if (userActive?.name !== undefined) {
+            window.location.href = "/";
+        }
+    }, [userActive]);
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -34,7 +39,6 @@ function Login({ setUserActive }) {
             const user = users.find((user) => user.email === email && user.password === password);
 
             if (user) {
-                console.log('Usuario autenticado:', user);
                 setError(null);
                 localStorage.setItem('user', JSON.stringify(user));
 
@@ -55,17 +59,17 @@ function Login({ setUserActive }) {
 
     return (
         <>
-            <div className="max-w-md w-full mx-auto overflow-hidden">
+            <div className="max-w-md w-full mx-auto overflow-hidden h-full flex flex-col justify-center">
                 <div className="w-full bg-white border border-gray-200 rounded-lg shadow ">
                     <form onSubmit={handleSubmit} className="space-y-6 p-8" action="#">
                         <h2 className="text-3xl font-medium text-gray-900 ">Inicia sesión</h2>
                         <div>
                             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electronico</label>
-                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@example.com" required />
+                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="John.doe@example.com" required />
                         </div>
                         <div>
                             <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
+                            <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
                             {error && <div className="text-red-500 text-sm">{error}</div>}
                         </div>
                         <div className="flex items-start">

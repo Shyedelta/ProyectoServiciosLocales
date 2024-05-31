@@ -14,9 +14,9 @@ function ContactDetails({ empresa }) {
     return (
         <>
             {empresa && (
-                <div className="w-full max-w-[30%] max-h-[14em] bg-white border border-gray-200 mr-10 mb-10 shadow rounded-lg p-5">
+                <div className="w-full max-h-[14em] bg-white border border-gray-200 mr-10 mb-10 shadow rounded-lg p-5">
                     <h2 className="text-lg font-semibold text-gray-900 mb-2">Detalles de contacto</h2>
-                    <address className="relative  bg-gray-50 max-h-[10em] overflow-hidden p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-2">
+                    <address className="relative  bg-gray-50 max-h-[10em] overflow-hidden p-4 rounded-lg border border-gray-200 not-italic grid grid-cols-3">
                         <div className="space-y-2 text-gray-500 leading-loose hidden sm:block">
                             Nombre <br />
                             Servicio <br />
@@ -44,8 +44,6 @@ function ContactDetails({ empresa }) {
                             </span>
                         </button>
                         <div id="tooltip-contact-details" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-                            <span id="default-tooltip-message-contact-details" className={copied ? 'hidden' : 'inline'}>Copy to clipboard</span>
-                            <span id="success-tooltip-message-contact-details" className={copied ? 'inline' : 'hidden'}>Copied!</span>
                             <div className="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </address>

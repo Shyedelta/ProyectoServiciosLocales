@@ -28,25 +28,26 @@ function Servicios({ coords, setCoords }) {
   let empresasFiltradas = empresas.filter(empresa =>
     empresa.categorias.includes(categoria)
   );
-  if(categoria == undefined){
+  if (categoria == undefined) {
     empresasFiltradas = empresas;
   }
-  
+
 
   return (
     <>
-      <div className='mx-10'>
-        <Categorias />
+      <div className='bg-white border-x w-full flex justify-start flex-col mx-auto'>
         {empresas.length > 0 && (
-          <div className='py-10'>
-            <div className='py-0 overflow-hidden shadow-lg rounded-2xl h-[23em]'>
+          <div className='pt-10'>
+            <div className='py-0 overflow-hidden shadow-md h-[23em]'>
               <Map controlOff empresas={empresasFiltradas} coords={coords} />
             </div>
           </div>
         )}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Categorias />
+
+        <div className="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {empresasFiltradas.map((empresa) => {
-            const imgURL = otros[2].find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
+            const imgURL = otros[1].find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
             return <Card key={empresa.id} empresa={empresa} imgURL={imgURL} />;
           })}
         </div>

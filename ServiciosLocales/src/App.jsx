@@ -9,6 +9,7 @@ import Servicios from './components/Servicios';
 import Register from './components/Register';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import Contact from './components/Contact';
 
 function App() {
   const [coords, setCoords] = useState(null);
@@ -31,8 +32,9 @@ function App() {
           <Route path="/servicio/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
           <Route path="/servicios" element={<Servicios coords={coords} setCoords={setCoords} />} />
           <Route path="/servicios/:categoria" element={<Servicios coords={coords} setCoords={setCoords} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login setUserActive={setUserActive} />} />
+          <Route path="/register" element={<Register userActive={userActive} />} />
+          <Route path="/login" element={<Login userActive={userActive} setUserActive={setUserActive} />} />
+          <Route path="/contact" element={<Contact />} />
           {userActive && <Route path="/dashboard" element={<Dashboard userActive={userActive} />} /> }
           <Route path="*" element={<NotFound />} />
         </Route>
