@@ -10,6 +10,8 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Contact from './components/Contact';
+import ServicesClients from './components/ServicesClients';
+import InboxUsers from './components/InboxUsers';
 
 function App() {
   const [coords, setCoords] = useState(null);
@@ -35,6 +37,8 @@ function App() {
           <Route path="/register" element={<Register userActive={userActive} />} />
           <Route path="/login" element={<Login userActive={userActive} setUserActive={setUserActive} />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/misservicios" element={<ServicesClients />} />
+          <Route path="/inbox" element={<InboxUsers />} />
           {userActive && <Route path="/dashboard" element={<Dashboard userActive={userActive} />} /> }
           <Route path="*" element={<NotFound />} />
         </Route>

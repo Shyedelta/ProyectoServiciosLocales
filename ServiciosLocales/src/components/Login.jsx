@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 
 const API_URL = 'https://api.jsonbin.io/v3/b/66543a29acd3cb34a84e3ff7';
@@ -7,9 +6,11 @@ const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e'
 
 function Login({ userActive, setUserActive }) {
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
-    useEffect(() => { 
-        if (userActive?.name !== undefined) {
+
+    useEffect(() => {
+        if (userActive?.email == "admin@gmail.com") {
+            window.location.href = "/dashboard";
+        }else if (userActive?.name !== undefined) {
             window.location.href = "/";
         }
     }, [userActive]);
@@ -41,12 +42,13 @@ function Login({ userActive, setUserActive }) {
             if (user) {
                 setError(null);
                 localStorage.setItem('user', JSON.stringify(user));
-
-                if (user.name == "admin") {
-                    setTimeout(() => { navigate("/dashboard") }, 1000)
-                } else {
-                    setTimeout(() => { navigate("/") }, 1000)
-                }
+                setTimeout(() => {
+                    if (user.email == "admin@gmail.com") {
+                        window.location.href = "/dashboard";
+                    } else {
+                        window.location.href = "/";
+                    }
+                }, 2000)
                 window.location.reload();
             } else {
                 setError('Correo electrónico o contraseña incorrectos. Por favor, inténtalo de nuevo.');

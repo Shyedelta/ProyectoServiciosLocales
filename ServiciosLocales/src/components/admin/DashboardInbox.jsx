@@ -24,8 +24,9 @@ function DashboardInbox() {
                 }
 
                 const data = await response.json();
-                setMessages(data.record.messajes);
-                setFilteredMessages(data.record.messajes);
+                console.log(data)
+                setMessages(data.record.messages);
+                setFilteredMessages(data.record.messages);
             } catch (error) {
                 setError('Error al obtener mensajes. Por favor, inténtalo de nuevo más tarde.');
             }
@@ -56,12 +57,13 @@ function DashboardInbox() {
             {error && <p>{error}</p>}
             <ul>
                 {filteredMessages.map((message, index) => (
-                    <li key={index} className='mb-4'>
-                        <div className='border-2 overflow-hidden min-w-[20em] border-gray-400 bg-green-50 border-dashed rounded-xl p-5'>
+                    <li key={index} className='mb-4 bg-gray-200 rounded-xl'>
+                        <div className='border-2 overflow-hidden min-w-[20em] border-gray-200 border-dashed rounded-xl p-5'>
                             <p><strong>Usuario:</strong> {message.name} {message.apellido}</p>
+                            <p><strong>Email:</strong> {message.email}</p>
                             {message.mensajes.map((msg, idx) => (
-                                <fieldset key={idx} className='max-h-[15em] border-2 border-gray-300 border-dashed rounded-xl p-2 my-2'>
-                                    <legend className='font-semibold px-2 text-gray-900'>Mensaje {idx + 1} / Fecha: {msg.date}</legend>
+                                <fieldset key={idx} className=' max-h-[15em] border-2 bg-gray-100 border-gray-300 border-dashed rounded-xl p-2 my-2'>
+                                    <legend className=' px-2 text-gray-900'><strong>Mensaje {idx + 1}</strong> / Fecha: {msg.date}</legend>
                                     <div className='w-full p-2 rounded-md'>
                                         <p>{msg.msj}</p>
                                     </div>

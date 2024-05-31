@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Toast from './Toast';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const masterKey = "$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e";
 const bUsers = "66543a29acd3cb34a84e3ff7";
 
 const Register = ({ userActive }) => {
-    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -166,7 +164,7 @@ const Register = ({ userActive }) => {
             {usuarioCreado &&
                 <>
                     <Toast text={"Usuario creado."} />
-                    {setTimeout(() => { navigate("/login") }, 1000)}
+                    {setTimeout(() => { window.location.href = "/login" }, 1000)}
                 </>
             }
         </>

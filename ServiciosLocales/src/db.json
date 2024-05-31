@@ -4,6 +4,7 @@
       "id": 1,
       "nombre": "Peluquería Estilo y Belleza",
       "propietario": "María López",
+      "email": "marialopez@gmail.com",
       "ubicacion": {
         "latitud": 39.88131834656205,
         "longitud": -4.034011390818006
@@ -15,7 +16,7 @@
         "Peluquería",
         "Belleza"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 7,
       "faq": [
         {
@@ -45,6 +46,7 @@
       "id": 2,
       "nombre": "Taller Mecánico El Progreso",
       "propietario": "Juan García",
+      "email": "juangarcia@gmail.com",
       "ubicacion": {
         "latitud": 39.80905859527229,
         "longitud": -4.056256016425615
@@ -56,7 +58,7 @@
         "Taller mecánico",
         "Automóviles"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 8,
       "faq": [
         {
@@ -86,6 +88,7 @@
       "id": 3,
       "nombre": "Cafetería El Rincón de los Sabores",
       "propietario": "Pedro Martínez",
+      "email": "pedromartinez@gmail.com",
       "ubicacion": {
         "latitud": 39.93879103362934,
         "longitud": -4.020037515702591
@@ -97,7 +100,7 @@
         "Cafetería",
         "Pastelería"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 6,
       "faq": [
         {
@@ -127,6 +130,7 @@
       "id": 4,
       "nombre": "Electricidad El Faro",
       "propietario": "Ana Rodríguez",
+      "email": "anarodriguez@gmail.com",
       "ubicacion": {
         "latitud": 39.9612384961952,
         "longitud": -3.8828514401100644
@@ -138,7 +142,7 @@
         "Electricidad",
         "Servicios"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 9,
       "faq": [
         {
@@ -168,6 +172,7 @@
       "id": 5,
       "nombre": "Florería La Primavera",
       "propietario": "Luisa Sánchez",
+      "email": "luisasanchez@gmail.com",
       "ubicacion": {
         "latitud": 40.09073395536848,
         "longitud": -3.875102176280816
@@ -179,7 +184,7 @@
         "Florería",
         "Decoración"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 8,
       "faq": [
         {
@@ -209,6 +214,7 @@
       "id": 6,
       "nombre": "Diseño Gráfico Creativo",
       "propietario": "María Gómez",
+      "email": "mariagomez@gmail.com",
       "ubicacion": {
         "latitud": 39.806538314884854,
         "longitud": -4.028039835104117
@@ -220,7 +226,7 @@
         "Diseño gráfico",
         "Publicidad"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 7,
       "faq": [
         {
@@ -250,6 +256,7 @@
       "id": 7,
       "nombre": "Asesoría Contable y Fiscal",
       "propietario": "Juan Pérez",
+      "email": "juanperez@gmail.com",
       "ubicacion": {
         "latitud": 39.93651409981676,
         "longitud": -3.9191078758634914
@@ -261,7 +268,7 @@
         "Asesoría contable",
         "Asesoría fiscal"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 9,
       "faq": [
         {
@@ -291,6 +298,7 @@
       "id": 8,
       "nombre": "Masajista Terapéutico",
       "propietario": "Laura Fernández",
+      "email": "laurafernandez@gmail.com",
       "ubicacion": {
         "latitud": 39.807882183066305,
         "longitud": -4.060425016854745
@@ -302,7 +310,7 @@
         "Masajes",
         "Salud"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 6,
       "faq": [
         {
@@ -332,6 +340,7 @@
       "id": 9,
       "nombre": "Entrenador Personal",
       "propietario": "Sergio Martín",
+      "email": "sergiomartin@gmail.com",
       "ubicacion": {
         "latitud": 39.98165049940761,
         "longitud": -4.281599624840911
@@ -343,7 +352,7 @@
         "Entrenamiento",
         "Salud"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 8,
       "faq": [
         {
@@ -373,6 +382,7 @@
       "id": 10,
       "nombre": "Reparación de Ordenadores",
       "propietario": "José García",
+      "email": "josegarcia@gmail.com",
       "ubicacion": {
         "latitud": 39.951729496473824,
         "longitud": -3.995906098455513
@@ -384,7 +394,7 @@
         "Informática",
         "Servicios"
       ],
-      "verificado" : true,
+      "verificado": true,
       "rating": 7,
       "faq": [
         {

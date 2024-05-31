@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import DashboardUsers from './admin/DashboardUsers.jsx'
-import UsersEdit from './admin/UsersEdit.jsx';
 import DashboardInbox from './admin/DashboardInbox.jsx';
 function Dashboard({ userActive }) {
-    const navigate = useNavigate();
     const [contenido, setContenido] = useState('dashboard');
 
     useEffect(() => {
-        if (userActive.email !== "admin@gmail.com") {
+        if (userActive?.email !== "admin@gmail.com") {
             window.location.href = "/";
         }
     }, [userActive]);
@@ -74,9 +71,7 @@ function Dashboard({ userActive }) {
                 <div className="m-10 ml-0 w-full max-w-[75%] overflow-hidden">
                     <div className="p-10 border-2 overflow-y-auto bg-gray-50 min-h-[65vh] w-full border-gray-200 border-dashed rounded-lg">
                         {contenido === 'dashboard' &&
-                            <div>Dashboard
-                                {/* <UsersEdit /> */}
-                            </div>}
+                            <div>Dashboard</div>}
                         {contenido === 'inbox' && <DashboardInbox />}
                         {contenido === 'usuarios' && <DashboardUsers />}
                         {contenido === 'servicios' && <div>Servicios </div>}

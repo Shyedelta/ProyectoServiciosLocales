@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import defaultImg from "../imgs/default.jpg"
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function BotonPerfil({ userActive }) {
     const [openMenu, setOpenMenu] = useState(false);
     const handleClick = () => {
         setOpenMenu(!openMenu);
     }
-    const navigate = useNavigate();
     return (
         <li className='hover:border-black border-b-transparent border-b-2 max-w-[2.5em] hover:border-purple-500/50 active:border-purple-500/50 flex flex-col justify-center h-[4em]'>
             <button onClick={handleClick} type="button" className={`${openMenu ? 'relative' : 'block'} top-24 w-max h-max flex text-sm bg-gray-400 rounded-full ring-gray-300 ring-4 hover:ring-gray-400 `} aria-expanded="false" >
@@ -37,7 +36,7 @@ function BotonPerfil({ userActive }) {
 
                 </ul>
                 <div className="py-1">
-                    <a href="#" onClick={() => { localStorage.clear(); window.location.href = "/"; }}
+                    <a href="#" onClick={() => { localStorage.removeItem('user'); window.location.href = "/"; }}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Cerrar sesión</a>
                 </div>
             </div>

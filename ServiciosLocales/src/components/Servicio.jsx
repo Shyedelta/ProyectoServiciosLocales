@@ -61,7 +61,7 @@ function Servicio({ coords, setCoords }) {
                 </section>
 
                 <InfoService empresa={empresa} />
-
+                
                 {empresa &&
                     <div className='py-10'>
                         <div className='py-0 overflow-hidden shadow-lg  h-[23em] '>
