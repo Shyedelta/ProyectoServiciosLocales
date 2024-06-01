@@ -24,7 +24,7 @@ function Banner() {
                     </div>
                 </div>
             ) : (
-                <section className={`w-full bg-center bg-no-repeat bg-[url('./imgs/toledo.jpg')] bg-gray-700 bg-blend-multiply`}>
+                <section className={`w-full bg-center bg-no-repeat bg-[url('./imgs/toledo.jpg')] bg-gray-700/80 bg-blend-multiply`}>
                     <div className=" mx-auto max-w-screen-xl text-center pb-32 pt-56 px-10">
                         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
                             ¡No esperes más!<br />Contacta con los más cercanos

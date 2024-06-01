@@ -9,7 +9,7 @@ function SectionTeam() {
     const teamImages = [teamImg1, teamImg2, teamImg3, teamImg4];
 
     return (
-        <div className='bg-gray-50 w-full min-h-96 overflow-hidden p-10 py-24'>
+        <div className='bg-gray-100 w-full min-h-96 overflow-hidden p-10 py-24'>
             <div className='pb-10 flex flex-row gap-24 justify-between max-[1470px]:flex-col max-[1470px]:gap-10'>
                 <div className='flex flex-col justify-between gap-5'>
                     <h2 className='text-4xl font-bold'>Nuestro equipo</h2>

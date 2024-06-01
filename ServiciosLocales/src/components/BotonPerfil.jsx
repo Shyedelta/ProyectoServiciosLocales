@@ -8,9 +8,9 @@ function BotonPerfil({ userActive }) {
         setOpenMenu(!openMenu);
     }
     return (
-        <li className='hover:border-black border-b-transparent border-b-2 max-w-[2.5em] hover:border-purple-500/50 active:border-purple-500/50 flex flex-col justify-center h-[4em]'>
-            <button onClick={handleClick} type="button" className={`${openMenu ? 'relative' : 'block'} top-24 w-max h-max flex text-sm bg-gray-400 rounded-full ring-gray-300 ring-4 hover:ring-gray-400 `} aria-expanded="false" >
-                <img className="w-10 h-10 rounded-full opacity-90" src={defaultImg} alt="user image" />
+        <li className='hover:border-black border-b-transparent border-b-4 max-w-[2.5em] hover:border-purple-500/50 active:border-purple-500/50 flex flex-col justify-center h-[4em]'>
+            <button onClick={handleClick} type="button" className={`${openMenu ? 'relative' : 'block'} top-24 w-max h-max flex text-sm bg-gray-400/50 rounded-full ring-gray-300 ring-4 hover:ring-gray-400 `} aria-expanded="false" >
+                <img className="w-10 h-10 rounded-full " src={defaultImg} alt="user image" />
             </button>
             <div onMouseLeave={handleClick} className={`${openMenu ? 'relative' : 'hidden'} z-10 top-[7em] right-[8em] font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}>
                 <div className='ml-4 py-2 text-sm line-clamp-2 text-gray-700 text-clip w-32 '>

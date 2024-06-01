@@ -6,7 +6,7 @@ function Navbar({ openMenu,setOpenMenu }) {
         setOpenMenu(!openMenu);
     }
     return (
-        <div className=" bg-white">
+        <div className="">
             <div className="hidden lg:block md:w-auto sm:hidden" id="navbar-dropdown">
                 <div className="content-end place-content-center font-medium">
                     <ul className="grid grid-cols-3 gap-4 h-[4em] px-3 items-center">

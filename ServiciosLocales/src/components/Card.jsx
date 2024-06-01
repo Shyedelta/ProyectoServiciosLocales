@@ -6,7 +6,7 @@ function Card({ empresa, imgURL }) {
     return (
         <div>
             {empresa && (
-                <div className="min-h-[30em] bg-white group overflow-hidden border-gray-200 rounded-lg shadow">
+                <div className="min-h-[30em] bg-gray-50 group overflow-hidden border-gray-200 rounded-lg shadow">
                     <div className="relative">
                         {empresa.verificado && (
                             <span className="absolute top-2 right-2 z-40 inline-flex items-center justify-center w-6 h-6 text-sm font-semibold text-green-700 bg-green-100 border border-green-700 rounded-full">

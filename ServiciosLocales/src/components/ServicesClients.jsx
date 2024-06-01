@@ -10,8 +10,6 @@ function ServicesClients() {
     const jsonEmpresas = 'https://api.jsonbin.io/v3/b/66543829acd3cb34a84e3f2d';
 
     useEffect(() => {
-
-        // Consumir el json de empresas para obtener los datos de la empresa correspondiente
         const fetchEmpresaData = async () => {
             try {
                 const response = await fetch(jsonEmpresas, {
