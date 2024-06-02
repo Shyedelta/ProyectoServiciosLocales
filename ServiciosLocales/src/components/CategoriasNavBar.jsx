@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function CategoriasNavBar({ setOpenMenu }) {
   return (
     <div className=" shadow-2xl absolute top-16 right-0  w-screen overflow-auto min-h-[max-content] scroll-smooth ">
-      <div onMouseLeave={() => { setOpenMenu(false) }} className="sticky z-50 w-full p-1 bg-gray-100 border-t border-b border-gray-200 ">
+      <div onClick={() => { setOpenMenu(false) }} className="sticky z-50 w-full p-1 bg-gray-100 border-t border-b border-gray-200 ">
         <div className="max-w-[70%] h-full py-2 mx-auto font-medium flex justify-center align-middle">
           {otros[1].map((categoria, index) => (
             <div key={index} className='mx-auto '>

@@ -48,11 +48,9 @@ function Contact() {
             const messages = data.record.messajes;
             const userIndex = messages.findIndex(user => user.email === formData.email);
 
-            if (userIndex !== -1) {
-                // El usuario ya existe, agregamos el mensaje al array existente
+            if (userIndex !== -1) { 
                 messages[userIndex].mensajes.push(newMessage);
-            } else {
-                // El usuario no existe, lo agregamos con su mensaje
+            } else { 
                 messages.push({
                     name: formData.name,
                     apellido: formData.apellido,
@@ -60,9 +58,7 @@ function Contact() {
                     number: formData.number,
                     mensajes: [newMessage]
                 });
-            }
-
-            // Ahora actualizamos los mensajes en la API
+            } 
             const updateResponse = await fetch(API_URL, {
                 method: 'PUT',
                 headers: {
@@ -86,8 +82,7 @@ function Contact() {
                 message: ''
             });
         } catch (error) {
-            setError('Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
-            console.log(error)
+            setError('Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.'); 
             setSuccess(null);
         }
     };
@@ -96,7 +91,7 @@ function Contact() {
 
     return (
         <div className="flex flex-col-reverse 2xl:flex-row min-h-screen border-x ">
-            <div className="w-full h-full bg-gray-100 bg-[url('./imgs/bgcontact.jpg')]  bg-bottom bg-cover bg-no-repeat ">
+             <div className="w-full h-full bg-gray-100 bg-[url('./imgs/bgcontact.jpg')]  bg-bottom bg-cover bg-no-repeat ">
                 <div className='bg-black/50 w-full h-full grid place-content-center '>
                     <div className="p-10 overflow-hidden ">
                         <div >

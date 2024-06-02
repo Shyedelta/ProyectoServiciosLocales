@@ -23,7 +23,7 @@ function App() {
       setUserActive(JSON.parse(storedUser));
     }
 
-    window.history.scrollRestoration = 'auto';
+    window.history.scrollRestoration = 'start';
   }, []);
   return (
     <BrowserRouter>

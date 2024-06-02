@@ -3,20 +3,19 @@ import Navbar from './Navbar';
 import BotonPerfil from './BotonPerfil';
 import { Link } from 'react-router-dom'
 import CategoriasNavBar from './CategoriasNavBar';
-
+import logoColor from '../imgs/logocolor.png'
 function Header({ userActive }) {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <>
-      <nav className=" shadow-md  sticky  w-full z-50 top-0 start-0 bg-gray-800 border-gray-600">
+      <nav className=" select-none shadow-md  sticky  w-full z-50 top-0 start-0 bg-gray-800 border-gray-600">
         <div className="px-20 grid grid-cols-3 place-content-center align-middle mx-auto h-[4em]">
-
-          <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <Link to={"/"} className="flex items-center space-x-3 rtl:space-x-reverse">
             <span className="min-w-[8em] mx-auto self-center text-2xl tracking-wide w-max whitespace-nowrap  bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent hover:tracking-normal text-center">
-              ServiciosLocales
+              <img src={logoColor} alt="Logo ServiciosLocales" className='w-52' />
             </span>
-          </a>
+          </Link>
 
           <Navbar openMenu={openMenu} setOpenMenu={setOpenMenu} />
           <div className='grid place-content-center'>

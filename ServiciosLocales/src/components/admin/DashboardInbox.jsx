@@ -23,8 +23,7 @@ function DashboardInbox() {
                     throw new Error('Error al obtener mensajes');
                 }
 
-                const data = await response.json();
-                console.log(data)
+                const data = await response.json(); 
                 setMessages(data.record.messages);
                 setFilteredMessages(data.record.messages);
             } catch (error) {

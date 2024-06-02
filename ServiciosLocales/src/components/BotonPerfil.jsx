@@ -12,8 +12,8 @@ function BotonPerfil({ userActive }) {
             <button onClick={handleClick} type="button" className={`${openMenu ? 'relative' : 'block'} top-24 w-max h-max flex text-sm bg-gray-400/50 rounded-full ring-gray-300 ring-4 hover:ring-gray-400 `} aria-expanded="false" >
                 <img className="w-10 h-10 rounded-full " src={defaultImg} alt="user image" />
             </button>
-            <div onMouseLeave={handleClick} className={`${openMenu ? 'relative' : 'hidden'} z-10 top-[7em] right-[8em] font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600`}>
-                <div className='ml-4 py-2 text-sm line-clamp-2 text-gray-700 text-clip w-32 '>
+            <div onMouseLeave={handleClick} className={`${openMenu ? 'relative' : 'hidden'} z-10 top-[7em] right-[8em] font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-[12em] dark:bg-gray-700 dark:divide-gray-600`}>
+                <div className='ml-4 py-2 text-sm line-clamp-2 text-gray-700 text-clip w-[11em] '>
                     <p>{userActive.name}<br /></p>
                     <p className=' text-gray-400'>{userActive.email}<br /></p>
 

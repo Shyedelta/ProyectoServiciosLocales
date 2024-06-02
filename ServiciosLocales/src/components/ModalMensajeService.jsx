@@ -1,50 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
-function ModalMensajeService({ openModalMsg, setOpenModalMsg }) {
+function ModalMensajeService({ openModalMsg, setOpenModalMsg, recipientEmail }) {
     const [mensaje, setMensaje] = useState('');
-    const [empresaEmail, setEmpresaEmail] = useState('');
-    const location = useLocation();
     const API_URL = 'https://api.jsonbin.io/v3/b/6658e97aad19ca34f871d2d3';
     const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
-    const jsonEmpresas = 'https://api.jsonbin.io/v3/b/66543829acd3cb34a84e3f2d';
-
-    useEffect(() => {
-        // Obtener la ID de la empresa desde la URL
-        const pathParts = location.pathname.split('/');
-        const empresaId = pathParts[pathParts.length - 1];
-
-        // Consumir el json de empresas para obtener los datos de la empresa correspondiente
-        const fetchEmpresaData = async () => {
-            try {
-                const response = await fetch(jsonEmpresas, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': masterKey
-                    }
-                });
-                const data = await response.json();
-                const empresa = data.record.empresas.find(emp => emp.id == empresaId);
-
-                if (empresa) {
-                    setEmpresaEmail(empresa.email);
-                } else {
-                    console.error('Empresa no encontrada');
-                }
-            } catch (error) {
-                console.error('Error al obtener datos de la empresa', error);
-            }
-        };
-
-        fetchEmpresaData();
-    }, [location]);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         const user = JSON.parse(localStorage.getItem('user'));
         const origenEmail = user ? user.email : '';
-
+    
         try {
             const response = await fetch(API_URL, {
                 method: 'GET',
@@ -53,61 +18,52 @@ function ModalMensajeService({ openModalMsg, setOpenModalMsg }) {
                     'X-Master-Key': masterKey
                 }
             });
-
+    
             if (!response.ok) {
                 throw new Error('Error al obtener mensajes');
             }
-
+    
             const data = await response.json();
-            const messages = data.record.messages;
-
-            let messageUpdated = false;
-            messages.forEach(msg => {
-                if (msg.destino === empresaEmail) {
-                    msg.chats.forEach(chat => {
-                        if (chat.origen === origenEmail) {
-                            chat.msg.push({
-                                text: mensaje,
-                                date: new Date().toLocaleDateString()
-                            });
-                            messageUpdated = true;
-                        }
+            let conversations = data.record.conversations || [];
+    
+            let conversationFound = false;
+            conversations.forEach(conversation => {
+                if (conversation.participants.includes(recipientEmail)) {
+                    conversationFound = true;
+                    conversation.messages.push({
+                        id: Date.now(),
+                        timestamp: new Date().toLocaleDateString(),
+                        sender: origenEmail,
+                        recipient: recipientEmail,
+                        content: mensaje
                     });
-
-                    if (!messageUpdated) {
-                        msg.chats.push({
-                            origen: origenEmail,
-                            msg: [{
-                                text: mensaje,
-                                date: new Date().toLocaleDateString()
-                            }]
-                        });
-                        messageUpdated = true;
-                    }
                 }
             });
-
-            if (!messageUpdated) {
-                messages.push({
-                    destino: empresaEmail,
-                    chats: [{
-                        origen: origenEmail,
-                        msg: [{
-                            text: mensaje,
-                            date: new Date().toLocaleDateString()
-                        }]
+    
+            if (!conversationFound) {
+                const newConversation = {
+                    id: Date.now(),
+                    participants: [origenEmail, recipientEmail],
+                    messages: [{
+                        id: Date.now(),
+                        timestamp: new Date().toLocaleDateString(),
+                        sender: origenEmail,
+                        recipient: recipientEmail,
+                        content: mensaje
                     }]
-                });
+                };
+                conversations.push(newConversation);
             }
+    
             const updateResponse = await fetch(API_URL, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Master-Key': masterKey
                 },
-                body: JSON.stringify({ messages })
+                body: JSON.stringify({ conversations })
             });
-
+    
             if (!updateResponse.ok) {
                 throw new Error('Error al actualizar mensajes');
             }
@@ -118,7 +74,7 @@ function ModalMensajeService({ openModalMsg, setOpenModalMsg }) {
             alert('Hubo un error al enviar el mensaje');
         }
     };
-
+    
     return (
         <div>
             <div id="crud-modal" tabIndex="-1" aria-hidden="true" className={`${openModalMsg ? 'block' : 'hidden'} overflow-hidden bg-black/70 overflow-y-auto overflow-x-hidden absolute left-0 top-0 grid place-content-center z-50 justify-center items-center w-screen h-screen`}>

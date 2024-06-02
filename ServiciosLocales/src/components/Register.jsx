@@ -163,7 +163,7 @@ const Register = ({ userActive }) => {
             </div>
             {usuarioCreado &&
                 <>
-                    <Toast text={"Usuario creado."} />
+                    <Toast text={"Usuario creado."} onClose={false} />
                     {setTimeout(() => { window.location.href = "/login" }, 1000)}
                 </>
             }

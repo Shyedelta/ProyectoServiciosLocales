@@ -21,8 +21,8 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
     return R * c;
   };
 
-  useEffect(() => { 
-    const timer = setTimeout(() => setAnimateMarker(true), 700); 
+  useEffect(() => {
+    const timer = setTimeout(() => setAnimateMarker(true), 700);
     const storedLocation = localStorage.getItem('markerPosition');
     if (storedLocation) setMarkerPosition(JSON.parse(storedLocation));
     else if (navigator.geolocation) navigator.geolocation.getCurrentPosition(
@@ -85,10 +85,18 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
     }
   };
 
+  const clearStoredLocation = () => {
+    localStorage.removeItem('markerPosition');
+    setMarkerPosition(null);
+  };
+
   if (!isLoaded) return <div>Loading...</div>;
 
   return (
     <>
+      <button onClick={clearStoredLocation} className=' z-50 relative top-[3em] left-48 ring-4 ring-slate-400 bg-white p-2 rounded-full'>
+        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 21C16.9706 21 21 16.9706 21 12C21 9.69494 20.1334 7.59227 18.7083 6L16 3M12 3C7.02944 3 3 7.02944 3 12C3 14.3051 3.86656 16.4077 5.29168 18L8 21M21 3H16M16 3V8M3 21H8M8 21V16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+      </button>
       <GoogleMap
         mapContainerStyle={{ width: '100%', height: '100%' }}
         zoom={empresas ? 11 : 12}
@@ -143,30 +151,29 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
           >
             {activeMarker === 'mi-ubicacion' && (
               <InfoWindow position={markerPosition} onCloseClick={handleCloseInfoWindow}>
-              <div className={`${controlOff && 'min-w-[10em]'}`}>
-                <p className="font-bold">Mi Ubicación</p>
-                <p>Latitud: {markerPosition.lat}</p>
-                <p>Longitud: {markerPosition.lng}</p>
-                <p>Distancia: {(distance).toFixed(1) + "Km"}</p>
-              </div>
-            </InfoWindow>
-          )}
-        </Marker>
-      )}
-      {markerPosition && controlOff && directions && (
-        <Polyline
-          path={directions.routes[0].overview_path}
-          options={{
-            strokeColor: "#4285F4",
-            strokeOpacity: 0.7,
-            strokeWeight: 7,
-          }}
-        />
-      )}
-    </GoogleMap>
-  </>
-);
+                <div className={`${controlOff && 'min-w-[10em]'}`}>
+                  <p className="font-bold">Mi Ubicación</p>
+                  <p>Latitud: {markerPosition.lat}</p>
+                  <p>Longitud: {markerPosition.lng}</p>
+                  <p>Distancia: {(distance).toFixed(1) + "Km"}</p>
+                </div>
+              </InfoWindow>
+            )}
+          </Marker>
+        )}
+        {markerPosition && controlOff && directions && (
+          <Polyline
+            path={directions.routes[0].overview_path}
+            options={{
+              strokeColor: "#4285F4",
+              strokeOpacity: 0.7,
+              strokeWeight: 7,
+            }}
+          />
+        )}
+      </GoogleMap>
+    </>
+  );
 }
 
 export default Map;
-

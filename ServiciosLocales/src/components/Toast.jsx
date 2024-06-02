@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
-function Toast({ text }) {
+function Toast({ text, onClose }) {
     const [showToast, setShowToast] = useState(true);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowToast(false);
-        }, 1000);
-
+            onClose();  
+        }, 3000);
         return () => clearTimeout(timer);
-    }, []);
+    }, [onClose]);
 
     return (
-        <div className={`${showToast ? 'block' : 'hidden'} absolute top-32 left-14 `}>
+        <div className={`${showToast ? 'block' : 'hidden'} absolute top-32 left-14`}>
             <div id="toast-success" className="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
                 <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
                     <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
