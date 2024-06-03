@@ -43,8 +43,7 @@ function Login({ userActive, setUserActive }) {
                 setError(null);
                 localStorage.setItem('user', JSON.stringify(user));
                 setTimeout(() => {
-                    navigate("/");
-                    // window.location.reload();
+                    window.location.href = "/";
                 }, 2000)
 
             } else {
