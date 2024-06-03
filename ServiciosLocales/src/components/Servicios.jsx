@@ -5,7 +5,7 @@ import Categorias from "../components/Categorias";
 import "../styles/style.css";
 import json from "../db.json";
 import Card from './Card.jsx';
-import otros from "../funciones/otros.js";
+import categorias from "../funciones/otros.js";
 import default_img from "../assets/img.png";
 
 function Servicios({ coords, setCoords }) {
@@ -47,7 +47,7 @@ function Servicios({ coords, setCoords }) {
 
         <div className="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {empresasFiltradas.map((empresa) => {
-            const imgURL = otros[1].find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
+            const imgURL = categorias.find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
             return <Card key={empresa.id} empresa={empresa} imgURL={imgURL} />;
           })}
         </div>

@@ -8,53 +8,54 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
   const [directions, setDirections] = useState(null);
   const [closestEmpresa, setClosestEmpresa] = useState(null);
   const [distance, setDistance] = useState(null);
+  const [loaded, setLoaded] = useState(false);
   const { isLoaded } = useLoadScript({ googleMapsApiKey: "AIzaSyBQTmH4sZjvUcHvS18ngof48-wJIcN4sFo" });
 
   const center = empresa ? { lat: parseFloat(empresa.ubicacion.latitud), lng: parseFloat(empresa.ubicacion.longitud) } : { lat: 39.87442386, lng: -4.03691974 };
 
-  const calculateDistance = (pos1, pos2) => {
-    const R = 6371;
-    const dLat = (pos2.lat - pos1.lat) * (Math.PI / 180);
-    const dLng = (pos2.lng - pos1.lng) * (Math.PI / 180);
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(pos1.lat * (Math.PI / 180)) * Math.cos(pos2.lat * (Math.PI / 180)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
-  };
+  useEffect(() => {
+    if (isLoaded) {
+      setLoaded(true);
+      const timer = setTimeout(() => setAnimateMarker(true), 700);
+      const storedLocation = localStorage.getItem('markerPosition');
+      if (storedLocation) setMarkerPosition(JSON.parse(storedLocation));
+      else if (navigator.geolocation) navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentPosition = { lat: position.coords.latitude, lng: position.coords.longitude };
+          setMarkerPosition(currentPosition);
+          localStorage.setItem('markerPosition', JSON.stringify(currentPosition));
+        },
+        (error) => console.error("Error obteniendo ubicación:", error)
+      );
+      return () => clearTimeout(timer);
+    }
+  }, [isLoaded]);
 
   useEffect(() => {
-    const timer = setTimeout(() => setAnimateMarker(true), 700);
-    const storedLocation = localStorage.getItem('markerPosition');
-    if (storedLocation) setMarkerPosition(JSON.parse(storedLocation));
-    else if (navigator.geolocation) navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const currentPosition = { lat: position.coords.latitude, lng: position.coords.longitude };
-        setMarkerPosition(currentPosition);
-        localStorage.setItem('markerPosition', JSON.stringify(currentPosition));
-      },
-      (error) => console.error("Error obteniendo ubicación:", error)
-    );
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    let closest = null, minDistance = Infinity;
-    const updateClosest = (empresa, pos) => {
-      const dist = calculateDistance(markerPosition, pos);
-      if (dist < minDistance) {
-        closest = empresa;
-        minDistance = dist;
-      }
-      setDistance(dist);
-    };
-
     if (markerPosition && empresas && empresas.length) {
-      empresas.forEach((empresa) => empresa.ubicacion && updateClosest(empresa, { lat: parseFloat(empresa.ubicacion.latitud), lng: parseFloat(empresa.ubicacion.longitud) }));
+      let closest = null;
+      let minDistance = Infinity;
+
+      empresas.forEach((empresa) => {
+        if (empresa.ubicacion) {
+          calculateRouteAndDistance(markerPosition, empresa, (distance, result) => {
+            if (distance < minDistance) {
+              minDistance = distance;
+              closest = empresa;
+              setDirections(result);
+              setDistance(distance.toFixed(1));
+            }
+          });
+        }
+      });
+
       setClosestEmpresa(closest);
-      closest && setTimeout(() => calculateRoute(closest), 500);
     } else if (markerPosition && empresa) {
-      setClosestEmpresa(empresa);
-      updateClosest(empresa, { lat: parseFloat(empresa.ubicacion.latitud), lng: parseFloat(empresa.ubicacion.longitud) });
-      setTimeout(() => calculateRoute(empresa), 500);
+      calculateRouteAndDistance(markerPosition, empresa, (distance, result) => {
+        setClosestEmpresa(empresa);
+        setDistance(distance.toFixed(1));
+        setDirections(result);
+      });
     }
   }, [markerPosition, empresas, empresa]);
 
@@ -67,19 +68,24 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
     localStorage.setItem('markerPosition', JSON.stringify(newMarkerPosition));
   };
 
-  const calculateRoute = (empresa) => {
-    if (controlOff && empresa && markerPosition && window.google?.maps) {
+  const calculateRouteAndDistance = (origin, destinationEmpresa, callback) => {
+    if (window.google?.maps) {
       const directionsService = new window.google.maps.DirectionsService();
       directionsService.route(
         {
-          origin: markerPosition,
-          destination: { lat: parseFloat(empresa.ubicacion.latitud), lng: parseFloat(empresa.ubicacion.longitud) },
+          origin,
+          destination: { lat: parseFloat(destinationEmpresa.ubicacion.latitud), lng: parseFloat(destinationEmpresa.ubicacion.longitud) },
           travelMode: window.google.maps.TravelMode.DRIVING
         },
         (result, status) => {
-          if (status === window.google.maps.DirectionsStatus.OK) setDirections(result);
-          else if (status === window.google.maps.DirectionsStatus.ZERO_RESULTS) console.warn("No se encontraron resultados para la ruta.");
-          else console.error("Error al obtener la ruta:", status);
+          if (status === window.google.maps.DirectionsStatus.OK) {
+            const distance = result.routes[0].legs[0].distance.value / 1000;
+            callback(distance, result);
+          } else if (status === window.google.maps.DirectionsStatus.ZERO_RESULTS) {
+            console.warn("No se encontraron resultados para la ruta.");
+          } else {
+            console.error("Error al obtener la ruta:", status);
+          }
         }
       );
     }
@@ -90,11 +96,11 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
     setMarkerPosition(null);
   };
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded || !loaded) return <div>Loading...</div>;
 
   return (
     <>
-      <button onClick={clearStoredLocation} className=' z-50 relative top-[3em] left-48 ring-4 ring-slate-400 bg-white p-2 rounded-full'>
+      <button onClick={clearStoredLocation} className=' z-10 relative top-[3em] left-48 ring-4 ring-slate-400 bg-white p-2 rounded-full'>
         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 21C16.9706 21 21 16.9706 21 12C21 9.69494 20.1334 7.59227 18.7083 6L16 3M12 3C7.02944 3 3 7.02944 3 12C3 14.3051 3.86656 16.4077 5.29168 18L8 21M21 3H16M16 3V8M3 21H8M8 21V16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
       </button>
       <GoogleMap
@@ -155,7 +161,7 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
                   <p className="font-bold">Mi Ubicación</p>
                   <p>Latitud: {markerPosition.lat}</p>
                   <p>Longitud: {markerPosition.lng}</p>
-                  <p>Distancia: {(distance).toFixed(1) + "Km"}</p>
+                  {distance && <p>Distancia: {distance + " Km"}</p>}
                 </div>
               </InfoWindow>
             )}

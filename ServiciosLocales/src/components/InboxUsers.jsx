@@ -90,13 +90,13 @@ function InboxUsers() {
                 <p>No hay mensajes.</p>
             ) : (
                 <div className='flex '>
-                    <aside id="default-sidebar" className="  top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-                            <span className="m-3 mb-10 font-bold tracking-wide text-lg">Chats</span> 
-                            <ul className="bg-gray-200 p-1 rounded-md">
+                    <aside id="default-sidebar" className=" top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-100 rounded-l-2xl dark:bg-gray-800">
+                            <span className="m-3 font-bold tracking-wide text-lg">Chats</span> 
+                            <ul className="bg-gray-200 p-1 mt-5 mx-2 rounded-md">
                                 {userConversations.map((conversation, index) => (
-                                    <li key={index} className=' m-2 font-medium '>
-                                        <a href="#" className="flex items-center py-2 text-gray-600 hover:text-gray-800 rounded-lg bg-gray-300 hover:bg-gray-100   group"
+                                    <li key={index} className=' m-2 font-medium overflow-hidden'>
+                                        <a href="#" className="flex items-center py-2 text-gray-600 hover:text-gray-800 rounded-lg bg-gray-100 hover:bg-gray-300   group"
                                             onClick={() => setActiveConversation(conversation)}
                                         >
                                             <span className="ms-3"> {conversation.participants.filter(email => email !== userEmail).join(', ')}</span>
@@ -106,14 +106,14 @@ function InboxUsers() {
                             </ul>
                         </div>
                     </aside>
-                    <ul className='p-10 bg-gray-200 w-full'>
+                    <ul className='p-10 bg-gray-200 rounded-r-2xl max-h-screen overflow-hidden w-full'>
                         {activeConversation && (
                             <li>
                                 <h2 className='bg-green-100 shadow-sm p-2 px-4 rounded-md mb-2'>{activeConversation.participants.filter(email => email !== userEmail).join(', ')}</h2>
-                                <ul className='space-y-4 bg-gray-100 shadow rounded-lg p-4 flex flex-col'>
+                                <ul className='space-y-4 bg-gray-100 shadow h-[80vh] rounded-lg p-4 flex flex-col max-h-[80vh] overflow-y-auto'>
                                     {activeConversation.messages.map((message, index) => (
                                         <li key={index} className='w-max' style={{ alignSelf: message.sender === userEmail ? 'flex-end' : 'flex-start' }}>
-                                            <div className={`p-2 px-4 rounded-lg ${message.sender === userEmail ? 'bg-blue-200 self-end' : 'bg-white shadow self-start'}`}>
+                                            <div className={`p-2 px-4 max-w-[40em] rounded-lg ${message.sender === userEmail ? 'bg-blue-200 self-end' : 'bg-white shadow self-start'}`}>
                                                 <span className='block text-sm text-gray-600'>{new Date(message.timestamp).toLocaleDateString()}</span>
                                                 <span className='block'>{message.content}</span>
                                             </div>

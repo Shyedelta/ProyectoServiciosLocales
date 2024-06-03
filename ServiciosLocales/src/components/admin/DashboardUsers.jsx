@@ -80,6 +80,7 @@ function DashboardUsers() {
       }
 
       setDeleteUserId(null);
+      window.location.reload();
     } catch (error) {
       console.error('Error al eliminar el usuario:', error);
       setError(error);

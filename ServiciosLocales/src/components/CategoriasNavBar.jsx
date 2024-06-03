@@ -1,4 +1,4 @@
-import otros from '../funciones/otros';
+import categorias from '../funciones/otros';
 import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom'
 
@@ -7,7 +7,7 @@ function CategoriasNavBar({ setOpenMenu }) {
     <div className=" shadow-2xl absolute top-16 right-0  w-screen overflow-auto min-h-[max-content] scroll-smooth ">
       <div onClick={() => { setOpenMenu(false) }} className="sticky z-50 w-full p-1 bg-gray-100 border-t border-b border-gray-200 ">
         <div className="max-w-[70%] h-full py-2 mx-auto font-medium flex justify-center align-middle">
-          {otros[1].map((categoria, index) => (
+          {categorias.map((categoria, index) => (
             <div key={index} className='mx-auto '>
               {categoria.icon && <Link to={"/servicios/" + categoria.nombre}>
                 <button type="button" className="inline-flex flex-col items-center justify-center px-4 hover:bg-gray-50 p-1 group">

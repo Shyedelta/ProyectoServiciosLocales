@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import json from "../../db.json"
-import otros from "../../funciones/otros.js";
+import categorias from "../../funciones/otros.js";
 import default_img from "../../assets/img.png";
 import { Link } from "react-router-dom";
 
@@ -29,7 +29,7 @@ function SectionServicesTop() {
                 </div>
                 <div className="mt-6 grid lg:grid-cols-3 grid-cols-1  gap-x-6 gap-y-6 ">
                     {empresas.slice(4, 7).map((empresa) => {
-                        const imgURL = otros[1].find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
+                        const imgURL = categorias.find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
                         return <Link to={`/servicio/id/${empresa.id}`} key={empresa.id} className=" cursor-pointer">
                             <div className="group relative">
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DashboardUsers from './admin/DashboardUsers.jsx'
 import DashboardInbox from './admin/DashboardInbox.jsx';
+import DashboardServices from './admin/DashboardServices.jsx';
 function Dashboard({ userActive }) {
     const [contenido, setContenido] = useState('dashboard');
 
@@ -68,14 +69,14 @@ function Dashboard({ userActive }) {
                     </aside>
                 </div>
 
-                <div className="m-10 ml-0 w-full max-w-[75%] overflow-hidden">
-                    <div className="p-10 border-2 overflow-y-auto bg-gray-50 min-h-[65vh] w-full border-gray-200 border-dashed rounded-lg">
+                <div className="m-10 ml-0 w-full overflow-hidden">
+                    <div className="p-10 border-2 overflow-y-auto bg-gray-50 max-h-[80vh] min-h-[65vh] w-full border-gray-200 border-dashed rounded-lg">
                         {contenido === 'dashboard' &&
                             <div>Dashboard</div>}
                         {contenido === 'inbox' && <DashboardInbox />}
                         {contenido === 'usuarios' && <DashboardUsers />}
-                        {contenido === 'servicios' && <div>Servicios </div>}
-                        {contenido === 'logout' && <div>{localStorage.clear()}</div>}
+                        {contenido === 'servicios' && <DashboardServices />}
+                        {contenido === 'logout' && <div>{localStorage.removeItem('user')}{window.location.href = "/"}</div>}
                     </div>
                 </div>
             </div>

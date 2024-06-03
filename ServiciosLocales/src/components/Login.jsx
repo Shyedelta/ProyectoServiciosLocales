@@ -43,8 +43,8 @@ function Login({ userActive, setUserActive }) {
                 setError(null);
                 localStorage.setItem('user', JSON.stringify(user));
                 setTimeout(() => {
-                    window.location.reload();
-                    // navigate("/");
+                    navigate("/");
+                    // window.location.reload();
                 }, 2000)
 
             } else {

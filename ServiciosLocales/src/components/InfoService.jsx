@@ -63,7 +63,7 @@ function InfoService({ empresa }) {
     return (
         <>
             <div className="px-10 mt-10 gap-3 h-max p-3 w-full grid grid-rows-1 lg:grid-cols-3 place-items-center">
-                <div className='w-full overflow-hidden flex flex-col p-4 px-10 bg-green-400 rounded-xl gap-2'>
+                <div className='w-full overflow-hidden flex flex-col p-4 px-10 bg-green-400/70 hover:bg-green-400 rounded-xl gap-2'>
                     <p className='text-lg font-bold tracking-wide text-white'>Categorias</p>
                     <div className='flex line-clamp-1 text-nowrap'>
                         {empresa?.categorias?.map((categoria, index) => (
@@ -75,7 +75,7 @@ function InfoService({ empresa }) {
                         ))}
                     </div>
                 </div>
-                <div className='w-full overflow-hidden flex flex-col p-5 px-10 bg-amber-600 rounded-xl gap-2'>
+                <div className='w-full overflow-hidden flex flex-col p-5 px-10 bg-amber-700/70 hover:bg-amber-700 rounded-xl gap-2'>
                     <p className='text-lg font-bold tracking-wide text-white'>Valoración</p>
                     <div className='flex'>
                         {stars.map((star, index) => (
@@ -84,7 +84,7 @@ function InfoService({ empresa }) {
                         <p className='mx-5 hidden xl:block text-white'>{filledStars} <span className='font-bold'>/ 5</span></p>
                     </div>
                 </div>
-                <div className='w-full overflow-hidden p-5 gap-5 rounded-xl bg-blue-400 grid grid-cols-2 content-between'>
+                <div className='w-full overflow-hidden p-5 gap-5 rounded-xl bg-blue-400/70 hover:bg-blue-400 grid grid-cols-2 content-between'>
                     <div className='flex gap-2'>
                         <div className='rounded-full bg-black/40 text-white font-bold aspect-square h-14 grid place-content-center '>
                             {empresa && (empresa?.propietario).charAt(0)}

@@ -40,32 +40,32 @@ function Contact() {
             }
 
             const data = await response.json();
-            console.log(JSON.stringify(data))
-            if (!data.record || !data.record.messajes) {
-                throw new Error('La respuesta de la API no tiene la estructura esperada');
-            }
+            const messages = data.record.messages;
 
-            const messages = data.record.messajes;
             const userIndex = messages.findIndex(user => user.email === formData.email);
 
-            if (userIndex !== -1) { 
+            if (userIndex !== -1) {
+                // Usuario existente, agregamos el nuevo mensaje
                 messages[userIndex].mensajes.push(newMessage);
-            } else { 
-                messages.push({
+            } else {
+                // Usuario no encontrado, creamos uno nuevo
+                const newUser = {
                     name: formData.name,
                     apellido: formData.apellido,
                     email: formData.email,
                     number: formData.number,
                     mensajes: [newMessage]
-                });
-            } 
+                };
+                messages.push(newUser);
+            }
+
             const updateResponse = await fetch(API_URL, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-Master-Key': masterKey
                 },
-                body: JSON.stringify({ messajes: messages })
+                body: JSON.stringify({ messages: messages })
             });
 
             if (!updateResponse.ok) {
@@ -87,10 +87,8 @@ function Contact() {
         }
     };
 
-
-
     return (
-        <div className="flex flex-col-reverse 2xl:flex-row min-h-screen border-x ">
+        <div className="flex flex-col-reverse 2xl:flex-row min-h-screen">
              <div className="w-full h-full bg-gray-100 bg-[url('./imgs/bgcontact.jpg')]  bg-bottom bg-cover bg-no-repeat ">
                 <div className='bg-black/50 w-full h-full grid place-content-center '>
                     <div className="p-10 overflow-hidden ">
@@ -130,7 +128,7 @@ function Contact() {
                             <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900">
                                 Nombre
                             </label>
-                            <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                            <input required type="text" name="name" id="name" value={formData.name} onChange={handleChange} className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                         </div>
                         <div>
                             <label htmlFor="apellido" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -139,7 +137,7 @@ function Contact() {
                             <input type="text" name="apellido" id="apellido" value={formData.apellido} onChange={handleChange} className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                         </div>
                         <div className="sm:col-span-2">
-                            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
+                            <label required htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900">
                                 Email
                             </label>
                             <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} autoComplete="email" className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
@@ -151,7 +149,7 @@ function Contact() {
                             <input type="text" name="number" id="number" value={formData.number} onChange={handleChange} className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                         </div>
                         <div className="sm:col-span-2">
-                            <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
+                            <label required  htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
                                 Mensaje
                             </label>
                             <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />

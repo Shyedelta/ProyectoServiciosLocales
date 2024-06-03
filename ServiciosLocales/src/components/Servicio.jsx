@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "../styles/style.css"
-import otros from "../funciones/otros.js"
+import categorias from "../funciones/otros.js"
 import Map from "../components/Map"
 import json from "../db.json"
 import Geolocation from '@react-native-community/geolocation';
@@ -41,7 +41,7 @@ function Servicio({ coords, setCoords }) {
     let items = null;
     const { id } = useParams();
     const empresa = empresas.find(e => e.id == id);
-    const imgURL = empresa ? otros[1].find(img => img.nombre == empresa.categorias[0])?.img : default_img;
+    const imgURL = empresa ? categorias.find(img => img.nombre == empresa.categorias[0])?.img : default_img;
 
     if (empresa && empresa.faq) {
         items = empresa.faq.map(faq => ({
@@ -62,9 +62,9 @@ function Servicio({ coords, setCoords }) {
 
                 <InfoService empresa={empresa} />
                 
-                {empresa &&
-                    <div className='py-10'>
-                        <div className='py-0 overflow-hidden shadow-lg  h-[23em] '>
+                {empresa && 
+                    <div className='pb-10 mb-10 '>
+                        <div className='  shadow-lg  h-[23em] bg-trasparent '>
                             <Map controlOff empresa={empresa} coords={coords} setModalVisible={setModalVisible} />
                         </div>
                     </div>

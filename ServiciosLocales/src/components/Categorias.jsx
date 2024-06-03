@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import otros from "../funciones/otros.js";
+import categorias from "../funciones/otros.js";
 import "../styles/style.css";
 import { Link, useLocation } from 'react-router-dom';
 import json from "../db.json";
@@ -49,7 +49,7 @@ function Categorias() {
                         </Link>
                     </span>
                 )}
-                {otros[1].map((c, index) => (
+                {categorias.map((c, index) => (
                     <span
                         key={index}
                         className={`z-auto mx-1 py-1 mt-[2px] active:opacity-70 transition text-center h-max min-w-[10em] border-b-2 border-transparent overflow-hidden hover:border-b-black/30 hover:border-b-2 text-sm font-medium me-2 cursor-pointer`}
