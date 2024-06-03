@@ -3,6 +3,7 @@ import defaultImg from "../assets/img.png";
 import { Link } from 'react-router-dom';
 
 function Card({ empresa, imgURL }) {
+    
     return (
         <div>
             {empresa && (
@@ -38,8 +39,9 @@ function Card({ empresa, imgURL }) {
                         </Link>
                     </div>
                 </div>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 }
 

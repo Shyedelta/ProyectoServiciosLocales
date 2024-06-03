@@ -5,7 +5,6 @@ import categorias from "../funciones/otros.js"
 import Map from "../components/Map"
 import json from "../db.json"
 import Geolocation from '@react-native-community/geolocation';
-import Modal from './Modal.jsx';
 import default_img from "../assets/img.png"
 import ContactDetails from './ContactDetails.jsx';
 import AcordionDetails from './AcordionDetails.jsx';
@@ -52,7 +51,6 @@ function Servicio({ coords, setCoords }) {
 
     return (
         <div className='w-full '>
-            {modalVisible && <Modal coords={coords} setModalVisible={setModalVisible} />}
             <div className='pb-10 h-max w-full bg-white flex flex-col border-x'>
                 <section style={{ backgroundImage: `url(${imgURL})` }} className={`bg-center bg-no-repeat bg-cover  bg-gray-700 bg-blend-multiply`}>
                     <div className="max-w-screen-xl text-center py-20 flex-col shadow-md rounded-xl flex items-center justify-center pointer-events-none">

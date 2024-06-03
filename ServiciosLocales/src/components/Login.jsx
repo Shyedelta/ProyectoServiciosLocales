@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const API_URL = 'https://api.jsonbin.io/v3/b/66543a29acd3cb34a84e3ff7';
 const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
 
-function Login({ userActive, setUserActive }) {
+function Login({ userActive }) {
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {

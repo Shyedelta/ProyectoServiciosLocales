@@ -1,5 +1,4 @@
 import categorias from '../funciones/otros';
-import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom'
 
 function CategoriasNavBar({ setOpenMenu }) {

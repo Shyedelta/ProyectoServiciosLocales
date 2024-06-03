@@ -8,7 +8,7 @@ import Card from './Card.jsx';
 import categorias from "../funciones/otros.js";
 import default_img from "../assets/img.png";
 
-function Servicios({ coords, setCoords }) {
+function Servicios({ coords }) {
   const [empresas, setEmpresas] = useState([]);
   const { categoria } = useParams();
 

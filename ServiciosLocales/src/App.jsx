@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 import Contact from './components/Contact';
 import ServicesClients from './components/ServicesClients';
 import InboxUsers from './components/InboxUsers';
+import ConfigAccount from './components/ConfigAccount';
 
 function App() {
   const [coords, setCoords] = useState(null);
@@ -22,23 +23,23 @@ function App() {
     if (storedUser) {
       setUserActive(JSON.parse(storedUser));
     }
-
     window.history.scrollRestoration = 'auto';
   }, []);
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Layout coords={coords} setCoords={setCoords} userActive={userActive} />} >
+        <Route path="/" element={<Layout userActive={userActive} />} >
           <Route index element={<Home />} />
           <Route path="/servicio/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
           <Route path="/servicios" element={<Servicios coords={coords} setCoords={setCoords} />} />
-          <Route path="/servicios/:categoria" element={<Servicios coords={coords} setCoords={setCoords} />} />
+          <Route path="/servicios/:categoria" element={<Servicios coords={coords} />} />
           <Route path="/register" element={<Register userActive={userActive} />} />
-          <Route path="/login" element={<Login userActive={userActive} setUserActive={setUserActive} />} />
+          <Route path="/login" element={<Login userActive={userActive} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/misservicios" element={<ServicesClients />} />
           <Route path="/inbox" element={<InboxUsers />} />
+          <Route path="/config" element={<ConfigAccount />} />
           {userActive && <Route path="/dashboard" element={<Dashboard userActive={userActive} />} /> }
           <Route path="*" element={<NotFound />} />
         </Route>
