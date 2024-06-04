@@ -6,16 +6,14 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
   const [animateMarker, setAnimateMarker] = useState(false);
   const [markerPosition, setMarkerPosition] = useState(null);
   const [directions, setDirections] = useState(null);
-  const [closestEmpresa, setClosestEmpresa] = useState(null);
   const [distance, setDistance] = useState(null);
-  const [loaded, setLoaded] = useState(false);
+
   const { isLoaded } = useLoadScript({ googleMapsApiKey: "AIzaSyBQTmH4sZjvUcHvS18ngof48-wJIcN4sFo" });
 
   const center = empresa ? { lat: parseFloat(empresa.ubicacion.latitud), lng: parseFloat(empresa.ubicacion.longitud) } : { lat: 39.87442386, lng: -4.03691974 };
 
   useEffect(() => {
     if (isLoaded) {
-      setLoaded(true);
       const timer = setTimeout(() => setAnimateMarker(true), 700);
       const storedLocation = localStorage.getItem('markerPosition');
       if (storedLocation) setMarkerPosition(JSON.parse(storedLocation));
@@ -35,7 +33,6 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
     if (markerPosition && empresas && empresas.length) {
       let closest = null;
       let minDistance = Infinity;
-
       empresas.forEach((empresa) => {
         if (empresa.ubicacion) {
           calculateRouteAndDistance(markerPosition, empresa, (distance, result) => {
@@ -48,11 +45,8 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
           });
         }
       });
-
-      setClosestEmpresa(closest);
     } else if (markerPosition && empresa) {
       calculateRouteAndDistance(markerPosition, empresa, (distance, result) => {
-        setClosestEmpresa(empresa);
         setDistance(distance.toFixed(1));
         setDirections(result);
       });
@@ -96,7 +90,7 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
     setMarkerPosition(null);
   };
 
-  if (!isLoaded || !loaded) return <div>Loading...</div>;
+  if (!isLoaded) return <div>Loading...</div>;
 
   return (
     <>
@@ -104,15 +98,13 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 21C16.9706 21 21 16.9706 21 12C21 9.69494 20.1334 7.59227 18.7083 6L16 3M12 3C7.02944 3 3 7.02944 3 12C3 14.3051 3.86656 16.4077 5.29168 18L8 21M21 3H16M16 3V8M3 21H8M8 21V16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
       </button>
       <GoogleMap
-        mapContainerStyle={{ width: '100%', height: '100%' }}
-        zoom={empresas ? 11 : 12}
+        mapContainerStyle={{ width: '100%', height: '100%' }} zoom={empresas ? 11 : 12}
         center={!controlOff ? center : (markerPosition || center)}
         options={{ draggable: controlOff, disableDefaultUI: !controlOff }}
       >
         {empresa && empresa.ubicacion && (
           <Marker
-            position={center}
-            onClick={() => handleMarkerClick(empresa.id)}
+            position={center} onClick={() => handleMarkerClick(empresa.id)}
             animation={animateMarker ? window.google.maps.Animation.DROP : null}
           >
             {activeMarker === empresa.id && (
@@ -129,12 +121,10 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
         )}
         {empresas && empresas.map((empresa, index) => empresa.ubicacion && (
           <Marker
-            key={index}
-            position={{ lat: parseFloat(empresa.ubicacion.latitud), lng: parseFloat(empresa.ubicacion.longitud) }}
-            onClick={() => handleMarkerClick(index)}
-            animation={animateMarker ? window.google.maps.Animation.DROP : null}
+            key={empresa.id} position={{ lat: parseFloat(empresa.ubicacion.latitud), lng: parseFloat(empresa.ubicacion.longitud) }}
+            onClick={() => handleMarkerClick(empresa.id)} animation={animateMarker ? window.google.maps.Animation.DROP : null}
           >
-            {activeMarker === index && (
+            {activeMarker === empresa.id && (
               <InfoWindow onCloseClick={handleCloseInfoWindow}>
                 <div className='p-1'>
                   <p className='font-bold'>{empresa.nombre}</p>
@@ -148,10 +138,7 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
         ))}
         {controlOff && markerPosition && (
           <Marker
-            position={markerPosition}
-            draggable={true}
-            onDragEnd={handleMarkerDragEnd}
-            onClick={() => handleMarkerClick('mi-ubicacion')}
+            position={markerPosition} draggable={true} onDragEnd={handleMarkerDragEnd} onClick={() => handleMarkerClick('mi-ubicacion')}
             animation={animateMarker ? window.google.maps.Animation.DROP : null}
             icon={`https://img.icons8.com/external-kmg-design-flat-kmg-design/38/external-map-map-and-navigation-kmg-design-flat-kmg-design-2.png`}
           >
@@ -170,11 +157,7 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
         {markerPosition && controlOff && directions && (
           <Polyline
             path={directions.routes[0].overview_path}
-            options={{
-              strokeColor: "#4285F4",
-              strokeOpacity: 0.7,
-              strokeWeight: 7,
-            }}
+            options={{ strokeColor: "#4285F4", strokeOpacity: 0.7, strokeWeight: 7, }}
           />
         )}
       </GoogleMap>
