@@ -75,15 +75,11 @@ function CardUsers({ user, handleDropdownToggle, index, openDropdownIndex, handl
                             Servicios
                         </Link>
                     ) : (
-                        <button
-                            onClick={() => console.log('No hay empresa disponible')}
-                            className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-gray-300 rounded-lg cursor-not-allowed"
-                            disabled
-                        >
+                        <button className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-gray-300 rounded-lg cursor-not-allowed" disabled >
                             Servicios
                         </button>
                     )}
-                    <a href="#" className="py-2.5 px-4 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Mensaje</a>
+                    <a href="#" className="py-2.5 px-4 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 ">Mensaje</a>
                 </div>
             </div>
         </div>

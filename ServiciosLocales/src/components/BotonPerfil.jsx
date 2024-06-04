@@ -14,7 +14,7 @@ function BotonPerfil({ userActive }) {
             </button>
             <div onMouseLeave={handleClick} className={`${openMenu ? 'relative' : 'hidden'} z-10 top-[7em] right-[8em] font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-[12em] dark:bg-gray-700 dark:divide-gray-600`}>
                 <div className='ml-4 py-2 text-sm line-clamp-2 text-gray-700 text-clip w-[11em] '>
-                    <p>{userActive.name}<br /></p>
+                    <p>{userActive.name} {userActive.lastName}<br /></p>
                     <p className=' text-gray-400'>{userActive.email}<br /></p>
 
                 </div>

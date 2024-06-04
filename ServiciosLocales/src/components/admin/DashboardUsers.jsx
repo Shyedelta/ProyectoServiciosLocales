@@ -142,7 +142,7 @@ function DashboardUsers() {
         <UsersEdit user={editUser} onUpdateUser={handleUpdateUser} onCancel={() => setEditUser(null)} />
       ) : (
         filteredUsers.length === 0 ? (
-          <div>No hay usuarios disponibles.</div>
+          <div className='absolute p-5'>No hay usuarios disponibles.</div>
         ) : (
           filteredUsers.map((user, index) => (
             <CardUsers

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ModalMensajeService from './ModalMensajeService';
 import Toast from './Toast';
 
-function InfoService({ empresa }) {
+function InfoService({ empresa,mensajeEnviado,setMensajeEnviado }) {
     const [openModalMsg, setOpenModalMsg] = useState(null);
     const [categoriaClasses, setCategoriaClasses] = useState([]);
     const [user, setUser] = useState(null);
@@ -94,6 +94,7 @@ function InfoService({ empresa }) {
                             <p className='my-auto text-white font-extralight text-clip line-clamp-1'>{empresa?.email}</p>
                         </div>
                     </div>
+                    {mensajeEnviado && <Toast text={"Se ha enviado el mensaje"} />}
                     {toast && <Toast text={"Inicia sesión para enviar un mensaje"} onClose={handleToastClose} />}
                         <button
                             onClick={user !== null ?
@@ -109,7 +110,7 @@ function InfoService({ empresa }) {
                 </div>
             </div>
 
-            {openModalMsg && <ModalMensajeService openModalMsg={openModalMsg} setOpenModalMsg={setOpenModalMsg} recipientEmail={empresa?.email} />}
+            {openModalMsg && <ModalMensajeService openModalMsg={openModalMsg} setOpenModalMsg={setOpenModalMsg} recipientEmail={empresa?.email} setMensajeEnviado={setMensajeEnviado}/>}
         </>
     );
 }

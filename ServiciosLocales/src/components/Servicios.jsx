@@ -35,7 +35,7 @@ function Servicios({ coords }) {
 
   return (
     <>
-      <div className='bg-white border-x w-full h-full min-h-screen flex justify-start flex-col mx-auto'>
+      <div className='bg-white will-change-[top] border-x w-full h-full min-h-screen flex justify-start flex-col mx-auto'>
         {empresas.length > 0 && (
           <div className='pt-10'>
             <div className='py-0 overflow-hidden shadow-md h-[23em]'>

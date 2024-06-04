@@ -82,14 +82,15 @@ function Contact() {
                 message: ''
             });
         } catch (error) {
-            setError('Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.'); 
+            setError('Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
             setSuccess(null);
         }
     };
-
+    
     return (
         <div className="flex flex-col-reverse 2xl:flex-row min-h-screen">
-             <div className="w-full h-full bg-gray-100 bg-[url('./imgs/bgcontact.jpg')]  bg-bottom bg-cover bg-no-repeat ">
+            
+            <div className="w-full h-full bg-gray-100 bg-[url('./imgs/bgcontact.jpg')]  bg-bottom bg-cover bg-no-repeat ">
                 <div className='bg-black/50 w-full h-full grid place-content-center '>
                     <div className="p-10 overflow-hidden ">
                         <div >
@@ -149,7 +150,7 @@ function Contact() {
                             <input type="text" name="number" id="number" value={formData.number} onChange={handleChange} className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                         </div>
                         <div className="sm:col-span-2">
-                            <label required  htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
+                            <label required htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900">
                                 Mensaje
                             </label>
                             <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="block mt-2.5 w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />

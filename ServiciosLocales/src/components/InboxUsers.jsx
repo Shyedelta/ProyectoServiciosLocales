@@ -88,45 +88,43 @@ function InboxUsers() {
         <div className=' h-full w-full bg-white'>
             {error && <p className='text-red-500'>{error}</p>}
             {userConversations.length === 0 ? (
-                <p>
-                    <div class="flex items-center justify-center w-scree h-screen border bg-gray-800 border-gray-700">
-                        <div class="px-4 py-2 text-2xl font-medium leading-none text-center rounded-full animate-pulse bg-blue-900 text-blue-200">loading...</div>
-                    </div>
-                </p>
+                <div className="flex items-center justify-center w-scree h-screen border bg-gray-800 border-gray-700">
+                    <div className="px-4 py-2 text-2xl font-medium leading-none text-center rounded-full animate-pulse bg-blue-900 text-blue-200">loading...</div>
+                </div>
             ) : (
                 <div className='flex '>
                     <aside id="default-sidebar" className=" top-0 left-0 z-40 w-[28em] h-screen max-h-[93vh] transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-600 border-gray-800 border-r-4 ">
-                            <span className="m-3 font-bold text-white tracking-wide text-lg">Chats</span>
-                            <ul className="bg-gray-700 p-1 mt-5 mx-2 rounded-2xl  divide-y divide px-5 divide-gray-500">
+                        <div className="h-full px-3 py-4 overflow-y-auto bg-white border-gray-300 border-r-4 ">
+                            <span className="m-3 font-bold text-gray-800 tracking-wide text-lg">Chats</span>
+                            <ul className="bg-gray-200 p-1 mt-5 mx-2 rounded-xl divide-y divide px-5 divide-gray-400">
                                 {userConversations.map((conversation, index) => (
                                     <li key={index} className="py-3 cursor-pointer" onClick={() => setActiveConversation(conversation)}>
-                                        <div className="flex items-center bg-gray-700 hover:bg-gray-600 p-4 rounded-xl space-x-3 rtl:space-x-reverse">
-                                            <div className="flex-shrink-0">
+                                        <div className="flex items-center bg-gray-100 hover:bg-gray-300 p-4 rounded-md space-x-3 rtl:space-x-reverse">
+                                            <div className="flex-shrink-0 ring-2 ring-gray-400 rounded-full">
                                                 <img className="w-8 h-8 rounded-full" src={defaultImg} alt="Perfil" />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm font-semibold text-white truncate ">
+                                                <p className="text-sm font-semibold text-gray-800 truncate ">
                                                     {conversation.participants.filter(email => email !== userEmail).join(', ')}                                            </p>
                                                 <p className="text-sm text-gray-500 truncate">
                                                     {conversation.participants.filter(email => email !== userEmail).join(', ')}
                                                 </p>
                                             </div>
-                                           
+
                                         </div>
                                     </li>
                                 ))}
                             </ul>
                         </div>
                     </aside>
-                    <ul className='p-10 bg-gray-700 max-h-[93vh] overflow-hidden w-full'>
+                    <ul className='p-5 bg-gray-200 max-h-[93vh] overflow-hidden w-full'>
                         {activeConversation && (
-                            <li className='flex flex-col justify-between'>
+                            <li className='flex flex-col h-full justify-between'>
                                 <h2 className='bg-green-100 shadow-sm p-2 px-4 h-fit rounded-md mb-2'>{activeConversation.participants.filter(email => email !== userEmail).join(', ')}</h2>
-                                <ul className='space-y-4 bg-gray-600 shadow rounded-lg p-4 flex flex-col h-[72vh] overflow-y-auto'>
+                                <ul className='space-y-4 bg-gray-100 shadow rounded-lg p-4 flex flex-col h-[72vh] overflow-y-auto'>
                                     {activeConversation.messages.map((message, index) => (
                                         <li key={index} className='w-max' style={{ alignSelf: message.sender === userEmail ? 'flex-end' : 'flex-start' }}>
-                                            <div className={`flex flex-col w-full max-w-[460px] leading-1.5 p-4 border-gray-200 shadow ${message.sender === userEmail ? 'bg-blue-200 self-end rounded-l-xl rounded-b-xl ' : 'bg-gray-100 rounded-e-xl rounded-es-xl self-start'}`}>
+                                            <div className={`flex flex-col w-full max-w-[460px] leading-1.5 p-4 border-gray-200 shadow ${message.sender === userEmail ? 'bg-blue-200 self-end rounded-l-xl rounded-b-xl ' : 'bg-gray-200 rounded-e-xl rounded-es-xl self-start'}`}>
                                                 <div className="flex items-center space-x-2 rtl:space-x-reverse">
                                                     <span className="text-sm font-semibold text-gray-900 ">{message.sender}</span>
                                                     <span className="text-sm font-normal text-gray-500">{new Date(message.timestamp).toLocaleDateString()}</span>
@@ -134,7 +132,6 @@ function InboxUsers() {
                                                 <p className="text-sm font-normal pt-2.5 text-gray-900 ">{message.content}</p>
                                             </div>
                                         </li>
-
                                     ))}
                                 </ul>
                                 <div className="flex h-16 items-stretch mt-4">

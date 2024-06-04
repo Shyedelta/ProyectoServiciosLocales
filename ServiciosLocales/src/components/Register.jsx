@@ -8,12 +8,13 @@ const bUsers = "66543a29acd3cb34a84e3ff7";
 const Register = ({ userActive }) => {
     const [formData, setFormData] = useState({
         name: '',
+        lastName: '',
         email: '',
         password: '',
         passwordtwo: ''
     });
 
-    useEffect(() => { 
+    useEffect(() => {
         if (userActive?.name !== undefined) {
             window.location.href = "/";
         }
@@ -68,6 +69,7 @@ const Register = ({ userActive }) => {
         const userData = {
             id: Date.now(),
             name: formData.name,
+            lastName: formData.lastName,
             email: formData.email,
             password: formData.password
         };
@@ -90,13 +92,13 @@ const Register = ({ userActive }) => {
         putReq.setRequestHeader("X-Master-Key", masterKey);
         putReq.send(JSON.stringify(existingData));
 
-        setFormData({ name: '', email: '', password: '', passwordtwo: '' });
+        setFormData({ name: '', lastName: '', email: '', password: '', passwordtwo: '' });
     };
 
 
     return (
         <>
-            <div className="max-w-md w-full mx-auto overflow-hidden h-full flex flex-col justify-center">
+            <div className="max-w-md w-full min-h-[90vh] mx-auto overflow-hidden h-full flex flex-col justify-center">
                 <div className="bg-white rounded-lg shadow overflow-hidden">
                     <div className="p-8">
                         <h2 className="text-center text-3xl font-medium text-gray-700">
@@ -105,14 +107,25 @@ const Register = ({ userActive }) => {
                         <p className="mt-4 text-center text-gray-600">Accede a todas nuestras funciones</p>
                         <form method="POST" action="#" className="mt-8 space-y-6" onSubmit={handleSubmit}>
                             <div className="rounded-md shadow-sm">
-                                <div className='mb-4'>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="name" >Nombre</label>
-                                    <input
-                                        placeholder="John"
-                                        className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                        required autoComplete="name" type="text" name="name" id="name"
-                                        value={formData.name} onChange={handleChange}
-                                    />
+                                <div className='grid grid-cols-2 gap-5'>
+                                    <div className='mb-4'>
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="name" >Nombre</label>
+                                        <input
+                                            placeholder="John"
+                                            className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                            required autoComplete="name" type="text" name="name" id="name"
+                                            value={formData.name} onChange={handleChange}
+                                        />
+                                    </div>
+                                    <div className='mb-4'>
+                                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="name" >Apellido</label>
+                                        <input
+                                            placeholder="Doe"
+                                            className="appearance-none relative block w-full px-3 py-3 border border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                            required autoComplete="lastName" type="text" name="lastName" id="lastName"
+                                            value={formData.lastName} onChange={handleChange}
+                                        />
+                                    </div>
                                 </div>
                                 <div className='mb-4'>
                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">Correo electronico</label>

@@ -9,10 +9,12 @@ import default_img from "../assets/img.png"
 import ContactDetails from './ContactDetails.jsx';
 import AcordionDetails from './AcordionDetails.jsx';
 import InfoService from './InfoService.jsx';
+import Toast from './Toast.jsx'
 
 function Servicio({ coords, setCoords }) {
     const [empresas, setEmpresas] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [mensajeEnviado, setMensajeEnviado] = useState(false);
 
     useEffect(() => {
         obtenerUbicacion();
@@ -35,7 +37,7 @@ function Servicio({ coords, setCoords }) {
             setEmpresas(data.empresas);
         } catch (error) {
             console.error("Error al obtener los datos. ", error);
-        }
+        } 
     };
     let items = null;
     const { id } = useParams();
@@ -58,9 +60,9 @@ function Servicio({ coords, setCoords }) {
                     </div>
                 </section>
 
-                <InfoService empresa={empresa} />
-                
-                {empresa && 
+                <InfoService empresa={empresa} setMensajeEnviado={setMensajeEnviado} mensajeEnviado={mensajeEnviado}/>
+
+                {empresa &&
                     <div className='pb-10 mb-10 '>
                         <div className='  shadow-lg  h-[23em] bg-trasparent '>
                             <Map controlOff empresa={empresa} coords={coords} setModalVisible={setModalVisible} />

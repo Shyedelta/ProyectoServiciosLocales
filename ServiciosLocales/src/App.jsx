@@ -25,12 +25,17 @@ function App() {
     }
     window.history.scrollRestoration = 'auto';
   }, []);
+  
+  function scrollWin() {
+    window.scrollTo(0, 0);
+    console.log("scroll")
+  }
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout userActive={userActive} />} >
-          <Route index element={<Home />} />
+          <Route index element={<Home userActive={userActive} />} />
           <Route path="/servicio/id/:id" element={<Servicio coords={coords} setCoords={setCoords} />} />
           <Route path="/servicios" element={<Servicios coords={coords} setCoords={setCoords} />} />
           <Route path="/servicios/:categoria" element={<Servicios coords={coords} />} />
@@ -39,8 +44,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/misservicios" element={<ServicesClients />} />
           <Route path="/inbox" element={<InboxUsers />} />
-          <Route path="/config" element={<ConfigAccount />} />
-          {userActive && <Route path="/dashboard" element={<Dashboard userActive={userActive} />} /> }
+          <Route path="/config" element={<ConfigAccount userActive={userActive} setUserActive={setUserActive} />} />
+          {userActive && <Route path="/dashboard" element={<Dashboard userActive={userActive} />} />}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

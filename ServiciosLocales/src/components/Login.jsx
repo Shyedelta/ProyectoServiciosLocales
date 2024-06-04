@@ -57,7 +57,7 @@ function Login({ userActive }) {
 
     return (
         <>
-            <div className="max-w-md w-full mx-auto overflow-hidden h-full flex flex-col justify-center">
+            <div className="max-w-md w-full mx-auto overflow-hidden min-h-[90vh] h-full flex flex-col justify-center">
                 <div className="w-full bg-white border border-gray-200 rounded-lg shadow ">
                     <form onSubmit={handleSubmit} className="space-y-6 p-8" action="#">
                         <h2 className="text-3xl font-medium text-gray-900 ">Inicia sesión</h2>
