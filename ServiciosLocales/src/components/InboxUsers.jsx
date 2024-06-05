@@ -92,11 +92,11 @@ function InboxUsers() {
                     <div className="px-4 py-2 text-2xl font-medium leading-none text-center rounded-full animate-pulse bg-blue-900 text-blue-200">loading...</div>
                 </div>
             ) : (
-                <div className='flex '>
-                    <aside id="default-sidebar" className=" top-0 left-0 z-40 w-[28em] h-screen max-h-[93vh] transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                        <div className="h-full px-3 py-4 overflow-y-auto bg-white border-gray-300 border-r-4 ">
+                <div className='flex flex-col md:flex-row'>
+                    <aside id="default-sidebar" className=" top-0 left-0 z-40 md:w-[28em] w-screen h-fit md:h-screen max-h-[93vh]" aria-label="Sidebar">
+                        <div className="h-full px-3 py-4 overflow-y-auto bg-white border-gray-300 md:border-r-4 ">
                             <span className="m-3 font-bold text-gray-800 tracking-wide text-lg">Chats</span>
-                            <ul className="bg-gray-200 p-1 mt-5 mx-2 rounded-xl divide-y divide px-5 divide-gray-400">
+                            <ul className="bg-gray-200 overflow-y-hidden p-1 mt-5 mx-2 rounded-xl gap-10 md:gap-0 md:divide-y divide px-5 divide-gray-400 flex flex-row md:flex-col">
                                 {userConversations.map((conversation, index) => (
                                     <li key={index} className="py-3 cursor-pointer" onClick={() => setActiveConversation(conversation)}>
                                         <div className="flex items-center bg-gray-100 hover:bg-gray-300 p-4 rounded-md space-x-3 rtl:space-x-reverse">

@@ -56,7 +56,7 @@ function DashboardInbox() {
             {error && <p>{error}</p>}
             <ul>
                 {filteredMessages.map((message, index) => (
-                    <li key={index} className='mb-4 bg-gray-200 rounded-xl'>
+                    <li key={index} className='mb-4 bg-gray-200 overflow-hidden rounded-xl'>
                         <div className='border-2 overflow-hidden min-w-[20em] border-gray-200 border-dashed rounded-xl p-5'>
                             <p><strong>Usuario:</strong> {message.name} {message.apellido}</p>
                             <p><strong>Email:</strong> {message.email}</p>
