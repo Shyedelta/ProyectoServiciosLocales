@@ -20,7 +20,7 @@ function SectionExplore() {
                                     <div className="flex items-center space-x-6 lg:space-x-8">
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                                                <img src={categorias[0].img}alt="" className="h-full w-full object-cover object-center" />
+                                                <img src={categorias[0].img}alt=""className=" h-full w-full object-cover object-center" />
                                             </div>
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
                                                 <img src={categorias[1].img}alt=""  className="h-full w-full object-cover object-center" />
@@ -28,21 +28,21 @@ function SectionExplore() {
                                         </div>
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src={categorias[2].img}alt=""className="h-full w-full object-cover object-center"/>
+                                                <img src={categorias[2].img}alt=""className="  h-full w-full object-cover object-center"/>
                                             </div>
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src={categorias[3].img}alt=""className="h-full w-full object-cover object-center"/>
+                                                <img src={categorias[3].img}alt=""className="  h-full w-full object-cover object-center"/>
                                             </div>
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src={categorias[4].img}alt=""className="h-full w-full object-cover object-center"/>
+                                                <img src={categorias[4].img}alt=""className="  h-full w-full object-cover object-center"/>
                                             </div>
                                         </div>
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src={categorias[5].img}alt=""className="h-full w-full object-cover object-center"/>
+                                                <img src={categorias[5].img}alt=""className="  h-full w-full object-cover object-center"/>
                                             </div>
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src={categorias[6].img}alt=""className="h-full w-full object-cover object-center"/>
+                                                <img src={categorias[6].img}alt=""className="  h-full w-full object-cover object-center"/>
                                             </div>
                                         </div>
                                     </div>

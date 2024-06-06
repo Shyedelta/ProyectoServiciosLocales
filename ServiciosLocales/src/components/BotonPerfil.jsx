@@ -31,7 +31,9 @@ function BotonPerfil({ userActive }) {
                         )}
                     </li>
                     <li>
-                        <a href="/config" className="block px-4 py-2 hover:bg-gray-100 ">Configuración</a>
+                        <Link to={"/config"} className="block px-4 py-2 hover:bg-gray-100 ">
+                            Configuración
+                        </Link>
                     </li>
 
                 </ul>
