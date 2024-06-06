@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Loading from './Loading'
 import defaultImg from "../imgs/default.jpg"
 
 function InboxUsers() {
@@ -88,9 +89,7 @@ function InboxUsers() {
         <div className=' h-full w-full bg-white'>
             {error && <p className='text-red-500'>{error}</p>}
             {userConversations.length === 0 ? (
-                <div className="flex items-center justify-center w-scree h-screen border bg-gray-800 border-gray-700">
-                    <div className="px-4 py-2 text-2xl font-medium leading-none text-center rounded-full animate-pulse bg-blue-900 text-blue-200">loading...</div>
-                </div>
+                <Loading />
             ) : (
                 <div className='flex flex-col md:flex-row'>
                     <aside id="default-sidebar" className=" top-0 left-0 z-40 md:w-[28em] w-screen h-fit md:h-screen max-h-[93vh]" aria-label="Sidebar">

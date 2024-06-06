@@ -17,7 +17,7 @@ function Navbar({ openMenu,setOpenMenu }) {
                                 </p>
                             </Link>
                         </li>
-                        <li onClick={handleClick}  className="pl-7 px-4 h-full flex justify-center items-center border-4 border-transparent hover:border-b-purple-500">
+                        <li onMouseEnter={handleClick}  className="pl-7 px-4 h-full flex justify-center items-center border-4 border-transparent hover:border-b-purple-500">
                             <p className="cursor-pointer text-transparent bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-center rounded">
                                 <span className="flex items-center">
                                     Servicios

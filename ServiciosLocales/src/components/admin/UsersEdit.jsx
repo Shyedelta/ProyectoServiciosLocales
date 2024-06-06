@@ -11,6 +11,7 @@ function UsersEdit({ user, onUpdateUser, onCancel }) {
         email: '',
         password: ''
     });
+    const [passwordError, setPasswordError] = useState('');
 
     useEffect(() => {
         if (user) {
@@ -22,14 +23,14 @@ function UsersEdit({ user, onUpdateUser, onCancel }) {
                 phone: user.phone || '',
                 website: user.website || '',
                 email: user.email || '',
-                password: user.password || ''
+                password: ''
             });
         }
     }, [user]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-         setFormData((prevData) => ({
+        setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
@@ -37,6 +38,11 @@ function UsersEdit({ user, onUpdateUser, onCancel }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (formData.password !== user.password) {
+            setPasswordError('La contraseña no coincide con la original.');
+            return;
+        }
+        setPasswordError('');
         onUpdateUser({ ...user, ...formData });
     };
 
@@ -100,7 +106,12 @@ function UsersEdit({ user, onUpdateUser, onCancel }) {
                     <input type="password" id="password" name="password"
                         value={formData.password} onChange={handleChange}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                        placeholder="•••••••••" />
+                        placeholder="•••••••••"
+                        required
+                    />
+                    {passwordError && (
+                        <p className="mt-2 text-sm text-red-600">{passwordError}</p>
+                    )}
                 </div>
                 <div className="flex justify-between">
                     {onCancel &&

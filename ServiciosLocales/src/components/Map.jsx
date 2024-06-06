@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { GoogleMap, Marker, InfoWindow, Polyline, useLoadScript } from "@react-google-maps/api";
 
-function Map({ empresa, empresas, controlOff, setModalVisible }) {
+function Map({ empresa, empresas, controlOff }) {
   const [activeMarker, setActiveMarker] = useState(null);
-  const [animateMarker, setAnimateMarker] = useState(false);
+  const [animateMarker, setAnimateMarker] = useState(true);
   const [markerPosition, setMarkerPosition] = useState(null);
   const [directions, setDirections] = useState(null);
   const [distance, setDistance] = useState(null);
@@ -14,7 +14,7 @@ function Map({ empresa, empresas, controlOff, setModalVisible }) {
 
   useEffect(() => {
     if (isLoaded) {
-      const timer = setTimeout(() => setAnimateMarker(true), 700);
+      const timer = setTimeout(() => setAnimateMarker(false), 1000);
       const storedLocation = localStorage.getItem('markerPosition');
       if (storedLocation) setMarkerPosition(JSON.parse(storedLocation));
       else if (navigator.geolocation) navigator.geolocation.getCurrentPosition(

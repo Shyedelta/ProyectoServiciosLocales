@@ -9,7 +9,6 @@ import default_img from "../assets/img.png"
 import ContactDetails from './ContactDetails.jsx';
 import AcordionDetails from './AcordionDetails.jsx';
 import InfoService from './InfoService.jsx';
-import Toast from './Toast.jsx'
 
 function Servicio({ coords, setCoords }) {
     const [empresas, setEmpresas] = useState([]);
