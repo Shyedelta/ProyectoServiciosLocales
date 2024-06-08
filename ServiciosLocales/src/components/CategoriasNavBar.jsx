@@ -5,7 +5,7 @@ function CategoriasNavBar({ setOpenMenu }) {
   return (
     <div className=" shadow-2xl absolute top-16 right-0  w-screen overflow-auto min-h-[max-content] scroll-smooth ">
       <div onMouseLeave={() => { setOpenMenu(false) }} className="sticky z-50 w-full p-1 bg-gray-100 border-t border-b border-gray-200 ">
-        <div className="flex-wrap lg:flex-nowrap divide-x max-w-[70%] h-full py-2 mx-auto font-medium flex justify-center align-middle">
+        <div className="flex-wrap lg:flex-nowrap  max-w-[70%] h-full py-2 mx-auto font-medium flex justify-center align-middle">
           {categorias.slice(0,10).map((categoria, index) => (
             <div key={index} className='mx-auto grid place-content-center'>
               {categoria.icon && <Link to={"/servicios/" + categoria.nombre}>
@@ -16,7 +16,7 @@ function CategoriasNavBar({ setOpenMenu }) {
               </Link>}
             </div>
           ))}
-          <div className='mx-auto '>
+          <div className=' mx-auto '>
             <Link to={"/servicios"}> 
               <div className='text-gray-600  w-full h-full grid place-content-center'>
                 <button type="button" className="w-max inline-flex flex-col items-center justify-between px-4 hover:bg-gray-50 p-1 group">

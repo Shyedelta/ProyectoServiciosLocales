@@ -58,11 +58,15 @@ function Categorias() {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
+                                exit={{ opacity: 0 }} 
                                 transition={{ delay: 0.2 * index }}
                             >
                                 <Link to={empresas.length > 0 ? `/servicios/${c.nombre || ""}` : "/servicios"}>
-                                    <p className='h-full line-clamp-1'>{c.nombre}</p>
+                                    <motion.p
+                                        whileHover={{ scale: 1.2 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                                        className='h-full line-clamp-1'>{c.nombre}</motion.p>
                                 </Link>
                             </motion.div>
                         </AnimatePresence>

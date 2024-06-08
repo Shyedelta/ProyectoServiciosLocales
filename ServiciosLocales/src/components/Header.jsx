@@ -4,12 +4,14 @@ import BotonPerfil from './BotonPerfil';
 import { Link } from 'react-router-dom'
 import CategoriasNavBar from './CategoriasNavBar';
 import logoColor from '../imgs/logocolor.png'
+import { motion } from 'framer-motion'
+
 function Header({ userActive }) {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <>
-      <nav className=" select-none shadow-md  sticky  w-full z-50 top-0 start-0 bg-gray-800 border-gray-600">
+      <nav className=" select-none shadow-md  sticky  w-full z-50 top-0 start-0 bg-gray-800 backdrop-blur-xl border-gray-600">
         <div className="px-2 md:px-20 grid grid-cols-3 place-content-center align-middle mx-auto h-[4em]">
           <Link to={"/"} className="flex items-center space-x-3 rtl:space-x-reverse">
             <span className="min-w-[8em] mx-auto self-center text-2xl tracking-wide w-max whitespace-nowrap  bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent hover:tracking-normal text-center">
@@ -30,9 +32,13 @@ function Header({ userActive }) {
               </div>
             ) : (
               <Link to={"/login"} >
-                <span className="grid  min-w-[8em] my-auto self-center text-xl tracking-wide w-max whitespace-nowrap  bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent hover:tracking-normal text-center">
+                <motion.div
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  className="grid min-w-[8em] my-auto self-center text-xl tracking-wider w-max whitespace-nowrap  bg-gradient-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent text-center">
                   Iniciar sesión
-                </span>
+                </motion.div>
               </Link>
             )}
           </div>

@@ -47,7 +47,7 @@ function Section() {
                             <motion.li
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
-                                transition={{delay: 0.1 * index }}
+                                transition={{delay: 0.3 * index }}
                                 key={feature.name} className="relative pl-16 "
                             >
                                 <div className="text-base font-semibold leading-7 text-gray-900">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Banner from './Banner'
 import Section from './Sections/Section'
 import SectionTeam from './Sections/SectionTeam'
@@ -8,10 +8,9 @@ import SectionServicesDesc from './Sections/SectionServicesDesc'
 import SectionExplore from './Sections/SectionExplore'
 
 function Home({ userActive }) {
-   
     return (
         <div className=' min-h-screen h-full w-full'>
-            <div className=' bg-white h-full w-full md:border-x border-none '>
+            <div className=' bg-white h-full w-full md:border-x border-none '> 
                 <Banner />
                 <Section />
                 <SectionTeam />

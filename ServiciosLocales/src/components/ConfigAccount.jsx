@@ -49,8 +49,7 @@ function ConfigAccount({ userActive, setUserActive }) {
     }
   }, [userActive]);
 
-  const handleUpdateUser = async (updatedUser) => {
-
+  const handleUpdateUser = async (updatedUser) => { 
     const updatedUsers = users.map((user) => user.id == updatedUser.id ? updatedUser : user);
     setUsers(updatedUsers);
     try {
@@ -61,8 +60,8 @@ function ConfigAccount({ userActive, setUserActive }) {
           'X-Master-Key': masterKey
         }
       });
-
       const data = await response.json();
+
       const putResponse = await fetch(API_URL, {
         method: 'PUT',
         headers: {
@@ -104,8 +103,8 @@ function ConfigAccount({ userActive, setUserActive }) {
       <div className='flex flex-col md:flex-row w-full min-h-screen'>
         <div className='bg-gray-100 p-6 shadow-md flex flex-col w-full md:w-1/3 gap-6'>
           <div className='flex flex-col items-center gap-4'>
-            <span className='relative flex shrink-0 overflow-hidden rounded-full w-20 h-20'>
-              <img src={defaultImg} alt='Foto perfil' />
+            <span className='relative flex shrink-0 overflow-hidden shadow rounded-full w-20 h-20'>
+              <img src={defaultImg} alt='Foto perfil'  />
             </span>
             <div className='text-center overflow-hidden'>
               <h2 className='text-lg font-semibold uppercase'>{user?.name} {user?.lastName}</h2>

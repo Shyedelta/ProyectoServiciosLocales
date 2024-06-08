@@ -3,8 +3,35 @@ import DashboardUsers from './admin/DashboardUsers.jsx'
 import DashboardInbox from './admin/DashboardInbox.jsx';
 import DashboardServices from './admin/DashboardServices.jsx';
 function Dashboard({ userActive }) {
+    const [numMsg, setNumMsg] = useState(null);
     const [contenido, setContenido] = useState('inbox');
+    const API_URL = "https://api.jsonbin.io/v3/b/66589ac1ad19ca34f871abe5";
+    const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
 
+    useEffect(() => {
+        const fetchMessages = async () => {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': masterKey
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error al obtener mensajes');
+                }
+
+                const data = await response.json(); 
+                setNumMsg(data.record.messages); 
+            } catch (error) {
+                console.error('Error al obtener mensajes. Por favor, inténtalo de nuevo más tarde.');
+            }
+        };
+
+        fetchMessages();
+    }, []);
     useEffect(() => {
         if (userActive?.email !== "admin@gmail.com") {
             window.location.href = "/";
@@ -14,6 +41,7 @@ function Dashboard({ userActive }) {
     const handleMenuClick = (select) => {
         setContenido(select)
     }
+
     return (
         <div className='overflow-hidden bg-white borde-x h-full w-full'>
             <div className='flex justify-between overflow-hidden md:flex-row flex-col'>
@@ -39,7 +67,7 @@ function Dashboard({ userActive }) {
                                             <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                                         </svg>
                                         <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                                        <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+                                        {numMsg && <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{numMsg?.length}</span>}
                                     </a>
                                 </li>
                                 <li>

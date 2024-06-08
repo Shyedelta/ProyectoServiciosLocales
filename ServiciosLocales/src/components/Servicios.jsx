@@ -7,7 +7,7 @@ import json from "../db.json";
 import Card from './Card.jsx';
 import categorias from "../funciones/otros.js";
 import default_img from "../assets/img.png";
-
+import { motion, AnimatePresence } from 'framer-motion'
 function Servicios({ coords }) {
   const [empresas, setEmpresas] = useState([]);
   const { categoria } = useParams();
@@ -32,7 +32,6 @@ function Servicios({ coords }) {
     empresasFiltradas = empresas;
   }
 
-
   return (
     <>
       <div className='bg-white will-change-[top] border-x w-full h-full min-h-screen flex justify-start flex-col mx-auto'>
@@ -44,14 +43,22 @@ function Servicios({ coords }) {
           </div>
         )}
         <Categorias />
+        <AnimatePresence>
 
-        <div className="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          {empresasFiltradas.map((empresa) => {
-            const imgURL = categorias.find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
-            return <Card key={empresa.id} empresa={empresa} imgURL={imgURL} />;
-          })}
-        </div>
-      </div>
+          <div className="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10" >
+            {empresasFiltradas.map((empresa,index) => {
+              const imgURL = categorias.find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
+              return <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }} 
+                key={empresa.id}
+                transition={{ ease: "easeOut", delay: 0.2 * index}} >
+                <Card  empresa={empresa} imgURL={imgURL} />
+              </motion.div>
+            })}
+          </div>
+        </AnimatePresence>
+      </div >
     </>
   );
 }
