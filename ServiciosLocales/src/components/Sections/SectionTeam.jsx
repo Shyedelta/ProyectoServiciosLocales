@@ -4,6 +4,7 @@ import teamImg2 from "../../imgs/sectionteam2.png";
 import teamImg3 from "../../imgs/sectionteam3.png";
 import teamImg4 from "../../imgs/sectionteam4.png";
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
 
 function SectionTeam() {
     const teamImages = [teamImg1, teamImg2, teamImg3, teamImg4];
@@ -33,7 +34,8 @@ function SectionTeam() {
                 <img className='h-96 object-cover rounded-xl' src={teamImg1} alt="Team image 1" />
             </div>
             <div className='block max-[1070px]:hidden'>
-                <div className='flex justify-end max-[1470px]:justify-center'>
+                <div
+                    className='flex justify-end max-[1470px]:justify-center'>
                     <img className='h-72 object-cover rounded-xl self-end' src={teamImg3} alt="Team image 3" />
                     <img className='h-96 object-cover rounded-xl mx-10' src={teamImg2} alt="Team image 2" />
                     <img className='h-72 object-cover rounded-xl' src={teamImg4} alt="Team image 4" />
