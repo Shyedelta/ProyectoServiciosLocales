@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import defaultImg from "../../imgs/default.jpg";
+import { masterKey, jsonEmpresas } from '../../funciones/constantes.js'; 
 
 function CardUsers({ user, handleDropdownToggle, index, openDropdownIndex, handleDeleteUser, handleEditUser }) {
-    const [empresaId, setEmpresaId] = useState(null);
-    const jsonEmpresas = 'https://api.jsonbin.io/v3/b/66543829acd3cb34a84e3f2d';
-    const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+    const [empresaId, setEmpresaId] = useState(null); 
 
     useEffect(() => {
         const fetchEmpresaData = async () => {
@@ -79,7 +78,9 @@ function CardUsers({ user, handleDropdownToggle, index, openDropdownIndex, handl
                             Servicios
                         </button>
                     )}
-                    <a href="#" className="py-2.5 px-4 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 ">Mensaje</a>
+                    <a href="#" disabled className="py-2.5 px-4 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 ">
+                        Mensaje
+                    </a>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ function Banner() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowContent(true);
-        }, 1000);
+        }, 700);
 
         return () => clearTimeout(timer);
     }, []);
@@ -26,7 +26,7 @@ function Banner() {
                 </div>
             ) : (
                 <section className={`w-full h-[90vh] bg-cover grid place-content-center bg-center bg-no-repeat bg-[url('./imgs/toledo.jpg')] bg-gray-700/90 bg-blend-multiply`}>
-                    <div className=" mx-auto max-w-screen-xl text-center pb-32 pt-32 px-10">
+                    <div className=" mx-auto max-w-screen text-center pb-32 pt-32 px-10">
                         <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
                             ¡No esperes más!<br />Contacta con los más cercanos
                         </h1>

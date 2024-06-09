@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import ModalConfirmDelete from "./ModalConfirmDelete"
 import UsersEdit from './UsersEdit';
 import CardUsers from './CardUsers';
+import { masterKey, bUsers } from '../../funciones/constantes.js'; 
 
-function DashboardUsers() {
-  const API_URL = 'https://api.jsonbin.io/v3/b/66543a29acd3cb34a84e3ff7';
-  const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+function DashboardUsers() { 
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +15,7 @@ function DashboardUsers() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(bUsers, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -48,7 +47,7 @@ function DashboardUsers() {
   const confirmDeleteUser = async () => {
     try {
       const userIdToDelete = users.find(x => x.id == deleteUserId).id;
-      const response = await fetch(API_URL, {
+      const response = await fetch(bUsers, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -57,11 +56,11 @@ function DashboardUsers() {
       });
 
       const data = await response.json();
-      const existingUsers = data.record.users;
+      const existingUsers = data.record?.users;
 
       const updatedUsers = existingUsers.filter(user => user.id !== userIdToDelete);
 
-      const putResponse = await fetch(API_URL, {
+      const putResponse = await fetch(bUsers, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +94,7 @@ function DashboardUsers() {
     setUsers(updatedUsers);
     setEditUser(null);
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(bUsers, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +104,7 @@ function DashboardUsers() {
 
       const data = await response.json();
 
-      const putResponse = await fetch(API_URL, {
+      const putResponse = await fetch(bUsers, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

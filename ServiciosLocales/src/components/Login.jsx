@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-
-const API_URL = 'https://api.jsonbin.io/v3/b/66543a29acd3cb34a84e3ff7';
-const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+import { masterKey, bUsers } from '../funciones/constantes.js'; 
 
 function Login({ userActive }) {
     const [error, setError] = useState(null);
@@ -22,7 +20,7 @@ function Login({ userActive }) {
         const password = formData.get('password');
 
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(bUsers, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

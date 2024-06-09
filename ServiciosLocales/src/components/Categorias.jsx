@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import categorias from "../funciones/otros.js";
+import categorias from "../funciones/categorias.js";
 import "../styles/style.css";
 import { Link, useLocation } from 'react-router-dom';
 import json from "../db.json";

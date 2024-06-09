@@ -2,8 +2,11 @@ import React from 'react';
 import defaultImg from "../assets/img.png";
 import { Link } from 'react-router-dom';
 
-function Card({ empresa, imgURL }) {
-    
+function Card({ empresa, imgURL, onDelete }) {
+    const handleDelete = () => {
+        onDelete(empresa?.id);
+    };
+
     return (
         <div>
             {empresa && (
@@ -28,19 +31,24 @@ function Card({ empresa, imgURL }) {
                         <p className="mb-3 font-normal text-gray-700 line-clamp-3">
                             {empresa.faq[0].parrafos[0]}
                         </p>
-                        <Link
-                            to={`/servicio/id/${empresa.id}`}
-                            className="inline-flex w-max items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-                        >
-                            Ver más
-                            <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" >
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                        </Link>
+                        <div className='flex  justify-between align-middle'>
+                            <Link
+                                to={`/servicio/id/${empresa.id}`}
+                                className=" inline-flex w-max items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                            >
+                                Ver más
+                                <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" >
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                </svg>
+
+                            </Link>
+                            {onDelete && <button onClick={handleDelete} className=" bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg focus:outline-none">
+                                Borrar servicio
+                            </button>}
+                        </div>
                     </div>
                 </div>
-            )
-            }
+            )}
         </div >
     );
 }

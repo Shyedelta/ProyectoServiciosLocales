@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import json from "../../db.json"
-import categorias from "../../funciones/otros.js";
+import categorias from "../../funciones/categorias.js";
 import default_img from "../../assets/img.png";
 import { Link } from "react-router-dom";
 

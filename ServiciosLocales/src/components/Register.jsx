@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Toast from './Toast';
 import { Link } from 'react-router-dom';
-
-const masterKey = "$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e";
-const bUsers = "66543a29acd3cb34a84e3ff7";
+import { masterKey, bUsers } from '../funciones/constantes.js';
 
 const Register = ({ userActive }) => {
     const [formData, setFormData] = useState({
@@ -22,28 +20,7 @@ const Register = ({ userActive }) => {
 
     const [usuarioCreado, setUsuarioCreado] = useState(false);
     const [error, setError] = useState('');
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        const getReq = new XMLHttpRequest();
-
-        getReq.onreadystatechange = () => {
-            if (getReq.readyState === XMLHttpRequest.DONE) {
-                if (getReq.status === 200) {
-                    const responseData = JSON.parse(getReq.responseText);
-                    const existingData = responseData.record || {};
-                    setUsers(existingData.users || []);
-                } else {
-                    console.error('Error al obtener datos:', getReq.responseText);
-                }
-            }
-        };
-
-        getReq.open("GET", `https://api.jsonbin.io/v3/b/${bUsers}`, true);
-        getReq.setRequestHeader("X-Master-Key", masterKey);
-        getReq.send();
-    }, []);
-
+    
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -51,7 +28,7 @@ const Register = ({ userActive }) => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
@@ -60,39 +37,56 @@ const Register = ({ userActive }) => {
             return;
         }
 
-        const existingUser = users.find(user => user.email === formData.email);
-        if (existingUser) {
-            setError("Ya existe un usuario con este correo electrónico.");
-            return;
-        }
-
-        const userData = {
-            id: Date.now(),
-            name: formData.name,
-            lastName: formData.lastName,
-            email: formData.email,
-            password: formData.password
-        };
-
-        const existingData = { users: [...users, userData] };
-
-        const putReq = new XMLHttpRequest();
-        putReq.onreadystatechange = () => {
-            if (putReq.readyState === XMLHttpRequest.DONE) {
-                if (putReq.status === 200) {
-                    setUsuarioCreado(true);
-                } else {
-                    console.error('Error al actualizar datos:', putReq.responseText);
+        try {
+            const response = await fetch(bUsers, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': masterKey
                 }
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al obtener datos. Por favor, inténtalo de nuevo más tarde.');
             }
-        };
 
-        putReq.open("PUT", `https://api.jsonbin.io/v3/b/${bUsers}`, true);
-        putReq.setRequestHeader("Content-Type", "application/json");
-        putReq.setRequestHeader("X-Master-Key", masterKey);
-        putReq.send(JSON.stringify(existingData));
+            const data = await response.json();
+            const users = data.record.users;
 
-        setFormData({ name: '', lastName: '', email: '', password: '', passwordtwo: '' });
+            const existingUser = users.find(user => user.email === formData.email);
+
+            if (existingUser) {
+                setError("Ya existe un usuario con este correo electrónico.");
+                return;
+            }
+
+            const userData = {
+                id: Date.now(),
+                name: formData.name,
+                lastName: formData.lastName,
+                email: formData.email,
+                password: formData.password
+            };
+
+            const putResponse = await fetch(bUsers, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': masterKey
+                },
+                body: JSON.stringify({ users: [...users, userData] })
+            });
+
+            if (!putResponse.ok) {
+                throw new Error('Error al actualizar datos. Por favor, inténtalo de nuevo más tarde.');
+            }
+
+            setUsuarioCreado(true);
+            setFormData({ name: '', lastName: '', email: '', password: '', passwordtwo: '' });
+        } catch (error) {
+            console.error('Error:', error.message);
+            setError('Error al procesar la solicitud. Por favor, inténtalo de nuevo más tarde.');
+        }
     };
 
 

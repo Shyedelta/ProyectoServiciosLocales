@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { masterKey, bContact } from '../../funciones/constantes.js'; 
 
 function DashboardInbox() {
     const [messages, setMessages] = useState([]);
     const [filteredMessages, setFilteredMessages] = useState([]);
     const [error, setError] = useState(null);
-    const [searchTerm, setSearchTerm] = useState('');
-    const API_URL = "https://api.jsonbin.io/v3/b/66589ac1ad19ca34f871abe5";
-    const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+    const [searchTerm, setSearchTerm] = useState(''); 
 
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(bContact, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

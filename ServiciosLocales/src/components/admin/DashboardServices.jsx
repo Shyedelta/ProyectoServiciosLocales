@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import categorias from '../../funciones/otros';
+import categorias from '../../funciones/categorias.js';
 import Card from '../Card';  
+import { masterKey, jsonEmpresas } from '../../funciones/constantes.js'; 
 
 function DashboardServices() {
   const [empresas, setEmpresas] = useState([]); 
-  const [user, setUser] = useState(null);
-  const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
-  const jsonEmpresas = 'https://api.jsonbin.io/v3/b/66543829acd3cb34a84e3f2d';
+  const [user, setUser] = useState(null); 
 
   useEffect(() => {
     const fetchEmpresaData = async () => {

@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import ServicesClients from './components/ServicesClients';
 import InboxUsers from './components/InboxUsers';
 import ConfigAccount from './components/ConfigAccount';
+import CreateService from './components/CreateService';
 
 function App() {
   const [coords, setCoords] = useState(null);
@@ -24,12 +25,8 @@ function App() {
       setUserActive(JSON.parse(storedUser));
     }
     window.history.scrollRestoration = 'auto';
-  }, []);
-  
-  function scrollWin() {
-    window.scrollTo(0, 0);
-    console.log("scroll")
-  }
+  }, []); 
+   
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -45,6 +42,7 @@ function App() {
           <Route path="/misservicios" element={<ServicesClients />} />
           <Route path="/inbox" element={<InboxUsers />} />
           <Route path="/config" element={<ConfigAccount userActive={userActive} setUserActive={setUserActive} />} />
+          <Route path="/createservice" element={<CreateService coords={coords} setCoords={setCoords} />} />
           {userActive && <Route path="/dashboard" element={<Dashboard userActive={userActive} />} />}
           <Route path="*" element={<NotFound />} />
         </Route>

@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Loading from './Loading'
 import defaultImg from "../imgs/default.jpg"
-
+import { masterKey, bConversations } from '../funciones/constantes.js';
 function InboxUsers() {
     const [conversations, setConversations] = useState([]);
     const [error, setError] = useState(null);
-    const [activeConversation, setActiveConversation] = useState(null);
-    const API_URL = "https://api.jsonbin.io/v3/b/6658e97aad19ca34f871d2d3";
-    const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+    const [activeConversation, setActiveConversation] = useState(null); 
     const [newMessage, setNewMessage] = useState('');
     const [enviando, setEnviando] = useState(false);
     useEffect(() => {
         const fetchConversations = async () => {
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(bConversations, {
                     headers: {
                         'X-Master-Key': masterKey,
                         'Content-Type': 'application/json'
@@ -62,7 +60,7 @@ function InboxUsers() {
                 return conversation;
             });
 
-            const response = await fetch(API_URL, {
+            const response = await fetch(bConversations, {
                 method: 'PUT',
                 headers: {
                     'X-Master-Key': masterKey,

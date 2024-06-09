@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import defaultImg from "../imgs/default.jpg"
 import UsersEdit from './admin/UsersEdit';
+import { masterKey, bUsers } from '../funciones/constantes.js'; 
 
-function ConfigAccount({ userActive, setUserActive }) {
-  const API_URL = 'https://api.jsonbin.io/v3/b/66543a29acd3cb34a84e3ff7';
-  const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+function ConfigAccount({ userActive, setUserActive }) { 
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -13,7 +12,7 @@ function ConfigAccount({ userActive, setUserActive }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(bUsers, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -53,7 +52,7 @@ function ConfigAccount({ userActive, setUserActive }) {
     const updatedUsers = users.map((user) => user.id == updatedUser.id ? updatedUser : user);
     setUsers(updatedUsers);
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(bUsers, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +61,7 @@ function ConfigAccount({ userActive, setUserActive }) {
       });
       const data = await response.json();
 
-      const putResponse = await fetch(API_URL, {
+      const putResponse = await fetch(bUsers, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

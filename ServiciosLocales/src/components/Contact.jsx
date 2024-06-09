@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { masterKey, bContact } from '../funciones/constantes.js'; 
 
 function Contact() {
     const [formData, setFormData] = useState({
@@ -9,9 +10,7 @@ function Contact() {
         message: ''
     });
     const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
-    const API_URL = "https://api.jsonbin.io/v3/b/66589ac1ad19ca34f871abe5";
-    const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+    const [success, setSuccess] = useState(null); 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -27,7 +26,7 @@ function Contact() {
         };
 
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(bContact, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,10 +44,8 @@ function Contact() {
             const userIndex = messages.findIndex(user => user.email === formData.email);
 
             if (userIndex !== -1) {
-                // Usuario existente, agregamos el nuevo mensaje
                 messages[userIndex].mensajes.push(newMessage);
-            } else {
-                // Usuario no encontrado, creamos uno nuevo
+            } else { 
                 const newUser = {
                     name: formData.name,
                     apellido: formData.apellido,
@@ -59,7 +56,7 @@ function Contact() {
                 messages.push(newUser);
             }
 
-            const updateResponse = await fetch(API_URL, {
+            const updateResponse = await fetch(bContact, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

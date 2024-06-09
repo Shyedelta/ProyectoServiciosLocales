@@ -3,22 +3,30 @@ import { useParams } from 'react-router-dom';
 import Map from "../components/Map";
 import Categorias from "../components/Categorias";
 import "../styles/style.css";
-import json from "../db.json";
 import Card from './Card.jsx';
-import categorias from "../funciones/otros.js";
+import categorias from "../funciones/categorias.js";
 import default_img from "../assets/img.png";
 import { motion, AnimatePresence } from 'framer-motion'
+import { masterKey, jsonEmpresas } from '../funciones/constantes.js';
+
 function Servicios({ coords }) {
   const [empresas, setEmpresas] = useState([]);
   const { categoria } = useParams();
 
   const obtenerDatos = async () => {
     try {
-      const data = await json;
-      setEmpresas(data.empresas);
+      const response = await fetch(jsonEmpresas, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': masterKey,
+        },
+      })
+      const data = await response.json();
+      setEmpresas(data.record.empresas)
     } catch (error) {
       console.error("Error al obtener los datos. ", error);
-    }
+    };
   };
 
   useEffect(() => {
@@ -46,14 +54,14 @@ function Servicios({ coords }) {
         <AnimatePresence>
 
           <div className="px-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10" >
-            {empresasFiltradas.map((empresa,index) => {
+            {empresasFiltradas.map((empresa, index) => {
               const imgURL = categorias.find((img) => img.nombre === empresa.categorias[0])?.img || default_img;
               return <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }} 
+                animate={{ opacity: 1 }}
                 key={empresa.id}
-                transition={{ ease: "easeOut", delay: 0.2 * index}} >
-                <Card  empresa={empresa} imgURL={imgURL} />
+                transition={{ ease: "easeOut", delay: 0.2 * index }} >
+                <Card empresa={empresa} imgURL={imgURL} />
               </motion.div>
             })}
           </div>

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-
+import { masterKey, bConversations } from '../funciones/constantes.js';
 function ModalMensajeService({ openModalMsg, setOpenModalMsg, recipientEmail, setMensajeEnviado }) {
-    const [mensaje, setMensaje] = useState('');
-    const API_URL = 'https://api.jsonbin.io/v3/b/6658e97aad19ca34f871d2d3';
-    const masterKey = '$2a$10$4FfE4DnGChnGhtxL1fZ7pu59/F1H8lTTdZ0PA1aeltIMWLrmpVW2e';
+    const [mensaje, setMensaje] = useState(''); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -12,7 +10,7 @@ function ModalMensajeService({ openModalMsg, setOpenModalMsg, recipientEmail, se
         const origenEmail = user ? user.email : '';
 
         try {
-            const response = await fetch(API_URL, {
+            const response = await fetch(bConversations, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -56,7 +54,7 @@ function ModalMensajeService({ openModalMsg, setOpenModalMsg, recipientEmail, se
                 conversations.push(newConversation);
             }
 
-            const updateResponse = await fetch(API_URL, {
+            const updateResponse = await fetch(bConversations, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
