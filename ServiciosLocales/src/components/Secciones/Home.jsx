@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Banner from './Banner'
-import Section from './Sections/Section'
-import SectionTeam from './Sections/SectionTeam'
-import SectionServicesTop from './Sections/SectionServicesTop'
-import SectionEmail from './Sections/SectionEmail'
-import SectionServicesDesc from './Sections/SectionServicesDesc'
-import SectionExplore from './Sections/SectionExplore'
+import Banner from '../EstructuraHome/Banner'
+import Section from '../EstructuraHome/Section'
+import SectionTeam from '../EstructuraHome/SectionTeam'
+import SectionServicesTop from '../EstructuraHome/SectionServicesTop'
+import SectionEmail from '../EstructuraHome/SectionEmail'
+import SectionServicesDesc from '../EstructuraHome/SectionServicesDesc'
+import SectionExplore from '../EstructuraHome/SectionExplore'
 
 function Home({ userActive }) {
     return (

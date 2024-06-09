@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Toast from './Toast';
+import Toast from '../Toast.jsx';
 import { Link } from 'react-router-dom';
-import { masterKey, bUsers } from '../funciones/constantes.js';
+import { masterKey, bUsers } from '../../funciones/constantes.js';
 
 const Register = ({ userActive }) => {
     const [formData, setFormData] = useState({

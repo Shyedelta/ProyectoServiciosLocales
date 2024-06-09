@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import ModalMensajeService from './ModalMensajeService';
-import Toast from './Toast';
+import Toast from '../Toast';
 
 function InfoService({ empresa,mensajeEnviado,setMensajeEnviado }) {
     const [openModalMsg, setOpenModalMsg] = useState(null);

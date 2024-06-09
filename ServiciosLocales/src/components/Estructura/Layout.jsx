@@ -1,7 +1,7 @@
 import React from 'react';
-import "../styles/style.css";
-import Header from './Header';
-import Footer from './Footer';
+import "../../styles/style.css";
+import Header from '../Estructura/Header';
+import Footer from '../Estructura/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
 
 function Layout({ userActive }) {

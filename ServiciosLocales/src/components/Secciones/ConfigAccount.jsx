@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import defaultImg from "../imgs/default.jpg"
-import UsersEdit from './admin/UsersEdit';
-import { masterKey, bUsers } from '../funciones/constantes.js'; 
+import defaultImg from "../../imgs/default.jpg"
+import UsersEdit from '../admin/UsersEdit.jsx';
+import { masterKey, bUsers } from '../../funciones/constantes.js'; 
 
 function ConfigAccount({ userActive, setUserActive }) { 
   const [users, setUsers] = useState([]);

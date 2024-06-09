@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Loading from './Loading'
-import defaultImg from "../imgs/default.jpg"
-import { masterKey, bConversations } from '../funciones/constantes.js';
+import Loading from '../Loading.jsx'
+import defaultImg from "../../imgs/default.jpg"
+import { masterKey, bConversations } from '../../funciones/constantes.js';
 function InboxUsers() {
     const [conversations, setConversations] = useState([]);
     const [error, setError] = useState(null);

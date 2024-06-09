@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Servicio from './components/Servicio';
-import Home from './components/Home';
+import Layout from './components/Estructura/Layout';
+import Servicio from './components/Secciones/Servicio';
+import Home from './components/Secciones/Home';
 import NotFound from './components/NotFound';
 import ScrollToTop from './funciones/ScrollToTop';
-import Servicios from './components/Servicios';
-import Register from './components/Register';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
-import Contact from './components/Contact';
-import ServicesClients from './components/ServicesClients';
-import InboxUsers from './components/InboxUsers';
-import ConfigAccount from './components/ConfigAccount';
-import CreateService from './components/CreateService';
+import Servicios from './components/Secciones/Servicios';
+import Register from './components/Secciones/Register';
+import Login from './components/Secciones/Login';
+import Dashboard from './components/admin/Dashboard';
+import Contact from './components/Secciones/Contact';
+import ServicesClients from './components/Secciones/ServicesClients';
+import InboxUsers from './components/Secciones/InboxUsers';
+import ConfigAccount from './components/Secciones/ConfigAccount';
+import CreateService from './components/Secciones/CreateService';
 
 function App() {
   const [coords, setCoords] = useState(null);

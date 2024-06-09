@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Card from './Card.jsx';
-import categorias from "../funciones/categorias.js";
+import Card from '../Card.jsx';
+import categorias from "../../funciones/categorias.js";
 import { Link } from 'react-router-dom';
-import { masterKey, jsonEmpresas } from '../funciones/constantes.js';
+import { masterKey, jsonEmpresas } from '../../funciones/constantes.js';
 
 function ServicesClients() {
     const [empresas, setEmpresas] = useState([]);

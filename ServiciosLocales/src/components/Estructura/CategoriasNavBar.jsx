@@ -1,4 +1,4 @@
-import categorias from '../funciones/categorias';
+import categorias from '../../funciones/categorias';
 import { Link } from 'react-router-dom'
 
 function CategoriasNavBar({ setOpenMenu }) {

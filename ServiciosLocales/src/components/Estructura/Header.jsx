@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import BotonPerfil from './BotonPerfil';
 import { Link } from 'react-router-dom'
 import CategoriasNavBar from './CategoriasNavBar';
-import logoColor from '../imgs/logocolor.png'
+import logoColor from '../../imgs/logocolor.png'
 import { motion } from 'framer-motion'
 
 function Header({ userActive }) {

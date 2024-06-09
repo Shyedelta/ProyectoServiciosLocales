@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { masterKey, bConversations } from '../funciones/constantes.js';
+import { masterKey, bConversations } from '../../funciones/constantes.js';
 function ModalMensajeService({ openModalMsg, setOpenModalMsg, recipientEmail, setMensajeEnviado }) {
     const [mensaje, setMensaje] = useState(''); 
 

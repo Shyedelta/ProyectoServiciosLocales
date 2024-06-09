@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import "../styles/style.css"
-import categorias from "../funciones/categorias.js"
-import Map from "../components/Map"
+import "../../styles/style.css"
+import categorias from "../../funciones/categorias.js"
+import Map from "../Map.jsx"
 // import json from "../db.json"
 import Geolocation from '@react-native-community/geolocation';
-import default_img from "../assets/img.png"
-import ContactDetails from './ContactDetails.jsx';
-import AcordionDetails from './AcordionDetails.jsx';
-import InfoService from './InfoService.jsx';
-import { masterKey, jsonEmpresas } from '../funciones/constantes.js';
+import default_img from "../../assets/img.png"
+import ContactDetails from '../EstructuraServicio/ContactDetails.jsx';
+import AcordionDetails from '../EstructuraServicio/AcordionDetails.jsx';
+import InfoService from '../EstructuraServicio/InfoService.jsx';
+import { masterKey, jsonEmpresas } from '../../funciones/constantes.js';
 
 function Servicio({ coords, setCoords }) {
     const [empresas, setEmpresas] = useState([]);

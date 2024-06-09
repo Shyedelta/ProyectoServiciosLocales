@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { masterKey, bContact } from '../funciones/constantes.js'; 
+import { masterKey, bContact } from '../../funciones/constantes.js'; 
 
 function Contact() {
     const [formData, setFormData] = useState({

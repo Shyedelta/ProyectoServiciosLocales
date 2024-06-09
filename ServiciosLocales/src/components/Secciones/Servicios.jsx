@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Map from "../components/Map";
-import Categorias from "../components/Categorias";
-import "../styles/style.css";
-import Card from './Card.jsx';
-import categorias from "../funciones/categorias.js";
-import default_img from "../assets/img.png";
+import Map from "../Map.jsx";
+import Categorias from "../Categorias.jsx";
+import "../../styles/style.css";
+import Card from '../Card.jsx';
+import categorias from "../../funciones/categorias.js";
+import default_img from "../../assets/img.png";
 import { motion, AnimatePresence } from 'framer-motion'
-import { masterKey, jsonEmpresas } from '../funciones/constantes.js';
+import { masterKey, jsonEmpresas } from '../../funciones/constantes.js';
 
 function Servicios({ coords }) {
   const [empresas, setEmpresas] = useState([]);

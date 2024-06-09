@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logoNoColor from '../imgs/logonocolor.png'
+import logoNoColor from '../../imgs/logonocolor.png'
 
 function Footer() {
     return (

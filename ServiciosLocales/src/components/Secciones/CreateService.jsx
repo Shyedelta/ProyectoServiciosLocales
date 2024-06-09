@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import categorias from '../funciones/categorias.js';
-import Map from './Map';
-import { masterKey, jsonEmpresas } from '../funciones/constantes.js'; 
+import categorias from '../../funciones/categorias.js';
+import Map from '../Map.jsx';
+import { masterKey, jsonEmpresas } from '../../funciones/constantes.js'; 
 
 function CreateService() { 
     const [loading, setLoading] = useState(false);

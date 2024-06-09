@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import { masterKey, bUsers } from '../funciones/constantes.js'; 
+import { masterKey, bUsers } from '../../funciones/constantes.js'; 
 
 function Login({ userActive }) {
     const [error, setError] = useState(null);

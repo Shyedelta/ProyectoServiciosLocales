@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import defaultImg from "../imgs/default.jpg"
+import defaultImg from "../../imgs/default.jpg"
 import { Link } from 'react-router-dom'
 
 function BotonPerfil({ userActive }) {

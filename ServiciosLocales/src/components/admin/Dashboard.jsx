@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import DashboardUsers from './admin/DashboardUsers.jsx'
-import DashboardInbox from './admin/DashboardInbox.jsx';
-import DashboardServices from './admin/DashboardServices.jsx';
+import DashboardUsers from './DashboardUsers.jsx'
+import DashboardInbox from './DashboardInbox.jsx';
+import DashboardServices from './DashboardServices.jsx';
 function Dashboard({ userActive }) {
     const [numMsg, setNumMsg] = useState(null);
     const [contenido, setContenido] = useState('inbox');
